@@ -1,0 +1,11 @@
+/.idea/
+/.gradle/
+/.intellijPlatform/
+/.kotlin/
+.gradle/
+
+bin/
+obj/
+build/
+
+/src/dotnet/nuget.config

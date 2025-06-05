@@ -1,0 +1,16 @@
+<idea-plugin package="fr.socolin.awesomeLogViewer.module.simpleConsole">
+    <dependencies>
+        <module name="fr.socolin.awesomeLogViewer.core"/>
+    </dependencies>
+    <resource-bundle>messages.SimpleConsoleBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectConfigurable
+            parentId="fr.socolin.awesomeLogViewer.core.core.settings.GlobalPluginsSettingsConfigurable"
+            instance="fr.socolin.awesomeLogViewer.module.simpleConsole.settings.ui.SimpleConsoleProcessorSettingsConfigurable"
+            id="fr.socolin.awesomeLogViewer.core.settings.processor.SimpleConsole"
+            displayName="Simple Console"
+            nonDefaultProject="true"/>
+        <postStartupActivity implementation="fr.socolin.awesomeLogViewer.module.simpleConsole.SimpleConsoleLogProcessorRegistration"/>
+    </extensions>
+</idea-plugin>

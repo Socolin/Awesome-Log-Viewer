@@ -1,0 +1,23 @@
+<idea-plugin package="fr.socolin.awesomeLogViewer.core">
+    <dependencies>
+        <plugin id="com.intellij.modules.json"/>
+    </dependencies>
+
+    <resource-bundle>messages.CoreBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectConfigurable
+            parentId="tools"
+            instance="fr.socolin.awesomeLogViewer.core.core.settings.GlobalPluginsSettingsConfigurable"
+            id="fr.socolin.awesomeLogViewer.core.core.settings.GlobalPluginsSettingsConfigurable"
+            displayName="Awesome Log Viewer"
+            nonDefaultProject="true"/>
+    </extensions>
+    <projectListeners>
+        <listener class="fr.socolin.awesomeLogViewer.core.core.session.run.ProgramExecutionListener"
+                  topic="com.intellij.execution.ExecutionListener"/>
+        <listener class="fr.socolin.awesomeLogViewer.core.core.session.debug.DebuggerManagerListener"
+                  topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
+    </projectListeners>
+
+</idea-plugin>

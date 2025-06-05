@@ -1,0 +1,11 @@
+<idea-plugin package="fr.socolin.awesomeLogViewer.platformSpecificJava">
+    <dependencies>
+        <module name="fr.socolin.awesomeLogViewer.core"/>
+        <plugin id="com.intellij.modules.java"/>
+    </dependencies>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <runConfigurationExtension implementation="fr.socolin.awesomeLogViewer.platformSpecificJava.session.run.MyRunConfigurationExtension"/>
+    </extensions>
+
+</idea-plugin>

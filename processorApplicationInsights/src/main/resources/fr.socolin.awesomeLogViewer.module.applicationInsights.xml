@@ -1,0 +1,19 @@
+<idea-plugin package="fr.socolin.awesomeLogViewer.module.applicationInsights">
+    <dependencies>
+        <module name="fr.socolin.awesomeLogViewer.core"/>
+        <plugin id="com.intellij.modules.json"/>
+    </dependencies>
+
+    <resource-bundle>messages.ApplicationInsightsBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectConfigurable
+            parentId="fr.socolin.awesomeLogViewer.core.core.settings.GlobalPluginsSettingsConfigurable"
+            instance="fr.socolin.awesomeLogViewer.module.applicationInsights.settings.ui.ApplicationInsightsProcessorSettingsConfigurable"
+            id="fr.socolin.awesomeLogViewer.core.settings.processor.ApplicationInsights"
+            displayName="Application Insights"
+            nonDefaultProject="true"/>
+        <postStartupActivity implementation="fr.socolin.awesomeLogViewer.module.applicationInsights.ApplicationInsightsLogProcessorRegistration"/>
+    </extensions>
+
+</idea-plugin>

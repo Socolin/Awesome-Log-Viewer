@@ -1,0 +1,17 @@
+<idea-plugin package="fr.socolin.awesomeLogViewer.module.openTelemetry">
+    <dependencies>
+        <module name="fr.socolin.awesomeLogViewer.core"/>
+    </dependencies>
+
+    <resource-bundle>messages.OpenTelemetryBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectConfigurable
+            parentId="fr.socolin.awesomeLogViewer.core.core.settings.GlobalPluginsSettingsConfigurable"
+            instance="fr.socolin.awesomeLogViewer.module.openTelemetry.settings.ui.OpenTelemetryProcessorSettingsConfigurable"
+            id="fr.socolin.awesomeLogViewer.core.settings.processor.OpenTelemetry"
+            displayName="Open Telemetry"
+            nonDefaultProject="true"/>
+        <postStartupActivity implementation="fr.socolin.awesomeLogViewer.module.openTelemetry.OpenTelemetryLogProcessorRegistration"/>
+    </extensions>
+</idea-plugin>
