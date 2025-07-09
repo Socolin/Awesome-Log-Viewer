@@ -40,6 +40,9 @@ repositories {
 val runRider by intellijPlatformTesting.runIde.registering {
     type = IntelliJPlatformType.Rider
     version = libs.versions.riderSdk
+    task {
+        jvmArgs("-Drider.backend.dotnet.runtime.path=/home/socolin/.dotnet/dotnet")
+    }
 }
 // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-testing-extension.html
 val runRiderDemoStand by intellijPlatformTesting.runIde.registering {
@@ -58,7 +61,7 @@ val runIdeaUltimate by intellijPlatformTesting.runIde.registering {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaCommunity(libs.versions.ideaSdk)
+        intellijIdeaCommunity(libs.versions.ideaSdk, useInstaller = false)
         pluginVerifier()
         pluginModule(implementation(project(":pluginCore")))
         pluginModule(implementation(project(":processorApplicationInsights")))

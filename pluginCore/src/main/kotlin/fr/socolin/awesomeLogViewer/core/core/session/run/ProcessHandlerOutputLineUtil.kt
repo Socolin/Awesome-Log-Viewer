@@ -1,8 +1,8 @@
 package fr.socolin.awesomeLogViewer.core.core.session.run
 
-import com.intellij.execution.process.ProcessAdapter
 import com.intellij.execution.process.ProcessEvent
 import com.intellij.execution.process.ProcessHandler
+import com.intellij.execution.process.ProcessListener
 import com.intellij.openapi.util.Key
 import com.jetbrains.rd.util.getOrCreate
 import com.jetbrains.rd.util.reactive.ISource
@@ -19,7 +19,7 @@ class ProcessHandlerOutputLineUtil(
         get() = _lineReceived
 
     fun startListening() {
-        processHandler.addProcessListener(object : ProcessAdapter() {
+        processHandler.addProcessListener(object : ProcessListener {
             override fun onTextAvailable(event: ProcessEvent, outputType: Key<*>) {
                 val buffer = outputBuffers.getOrCreate(outputType) { java.lang.StringBuilder() }
                 var lastNewLineIndex = 0

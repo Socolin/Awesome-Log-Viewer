@@ -10,6 +10,7 @@ import fr.socolin.awesomeLogViewer.core.core.log_processor.NetworkLogProcessor
 import com.jetbrains.rd.util.lifetime.Lifetime
 import com.jetbrains.rider.run.PatchCommandLineExtension
 import com.jetbrains.rider.run.WorkerRunInfo
+import com.jetbrains.rider.runtime.DotNetExecutable
 import com.jetbrains.rider.runtime.DotNetRuntime
 import org.jetbrains.concurrency.Promise
 import org.jetbrains.concurrency.resolvedPromise
@@ -21,6 +22,7 @@ class MyPatchCommandLineExtension(
         lifetime: Lifetime,
         workerRunInfo: WorkerRunInfo,
         processInfo: ProcessInfo?,
+        dotNetExecutable: DotNetExecutable?,
         project: Project
     ): Promise<WorkerRunInfo> {
         val logProcessorManager = LogProcessorManager.getInstance(project)
@@ -38,6 +40,7 @@ class MyPatchCommandLineExtension(
     override fun patchRunCommandLine(
         commandLine: GeneralCommandLine,
         dotNetRuntime: DotNetRuntime,
+        dotNetExecutable: DotNetExecutable?,
         project: Project
     ): ProcessListener? {
         val logProcessorManager = LogProcessorManager.getInstance(project)

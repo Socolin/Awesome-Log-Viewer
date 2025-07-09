@@ -10,3 +10,4 @@ for file in $(grep StartRemoveOSS -rl processorSimpleConsole/)
 do
     sed -i '/StartRemoveOSS/,/EndRemoveOSS/d' "$file"
 done
+rm sync_oss.sh

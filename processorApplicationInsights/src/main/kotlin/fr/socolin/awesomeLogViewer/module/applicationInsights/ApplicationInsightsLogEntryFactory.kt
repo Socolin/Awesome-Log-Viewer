@@ -1,18 +1,10 @@
 package fr.socolin.awesomeLogViewer.module.applicationInsights
 
-import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import com.google.gson.JsonParser
+import com.jetbrains.fus.reporting.serialization.toStringAnyMap
 import fr.socolin.awesomeLogViewer.core.core.session.LogEntryTimeInfo
-import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsEventTelemetryData
-import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsExceptionTelemetryData
-import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsMessageTelemetryData
-import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsMetricTelemetryData
-import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsPageViewTelemetryData
-import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsRemoteDependencyTelemetryData
-import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsRequestTelemetryData
-import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsTelemetryData
-import java.lang.reflect.Type
+import fr.socolin.awesomeLogViewer.module.applicationInsights.data.*
 import java.time.Duration
 import java.time.Instant
 import java.time.format.DateTimeFormatter
@@ -86,8 +78,9 @@ class ApplicationInsightsLogEntryFactory {
             if (telemetryData == null) {
                 return null
             }
-            val mapType: Type = object : TypeToken<Map<String?, String?>?>() {}.type
-            val tags: Map<String, String> = gson.fromJson(jsonObject.get("tags"), mapType)
+
+            jsonObject.get("tags").toStringAnyMap()
+            val tags: Map<String, String> = jsonElementToMap(jsonObject.get("tags"))
 
             val parentId = tags["ai.operation.parentId"]
             val id = telemetryData.id
@@ -108,6 +101,17 @@ class ApplicationInsightsLogEntryFactory {
                 id,
                 parentId
             )
+        }
+
+        fun jsonElementToMap(jsonElement: com.google.gson.JsonElement): Map<String, String> {
+            val map = mutableMapOf<String, String>();
+
+            if (jsonElement.isJsonObject) {
+                jsonElement.asJsonObject.entrySet().forEach {
+                    map[it.key] = it.value.asString;
+                }
+            }
+            return map;
         }
     }
 }

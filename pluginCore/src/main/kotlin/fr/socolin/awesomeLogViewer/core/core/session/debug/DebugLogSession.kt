@@ -9,7 +9,7 @@ import fr.socolin.awesomeLogViewer.core.core.settings.storage.GlobalPluginSettin
 class DebugLogSession(
     logProcessor: LogProcessor,
     project: Project,
-    private val getUi : () -> RunnerLayoutUi,
+    private val getUi : () -> RunnerLayoutUi?,
 ) : LogSession(project, GlobalPluginSettingsStorageService.Companion.getInstance(), logProcessor,) {
     override fun getRunnerLayoutUi(): RunnerLayoutUi? {
         return getUi.invoke()
