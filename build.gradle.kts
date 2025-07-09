@@ -41,7 +41,16 @@ val runRider by intellijPlatformTesting.runIde.registering {
     type = IntelliJPlatformType.Rider
     version = libs.versions.riderSdk
 }
-
+// https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-testing-extension.html
+val runRiderDemoStand by intellijPlatformTesting.runIde.registering {
+    type = IntelliJPlatformType.Rider
+    version = libs.versions.riderSdk
+    tasks {
+        runIde {
+            jvmArgs("-Didea.plugins.host=https://master.demo.marketplace.intellij.net/")
+        }
+    }
+}
 val runIdeaUltimate by intellijPlatformTesting.runIde.registering {
     type = IntelliJPlatformType.IntellijIdeaUltimate
     version = libs.versions.ideaSdk
