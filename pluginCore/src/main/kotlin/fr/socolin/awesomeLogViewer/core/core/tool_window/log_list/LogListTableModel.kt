@@ -92,6 +92,15 @@ class LogListTableModel(val logSession: LogSession) : AbstractTableModel() {
                 createCellRenderer = { logSession -> ColorBarRenderer() },
             ) { it },
             ColumnDefinition(
+                "severity",
+                "Severity",
+                LogEntryDisplay::class.java,
+                minWidth = { -> CellFontHelper.Companion.getIdealColumnSize(" Inf ") },
+                preferredWidth = { -> CellFontHelper.Companion.getIdealColumnSize(" Warning ") },
+                maxWidth = { -> CellFontHelper.Companion.getIdealColumnSize(" Warning ") },
+                createCellRenderer = { SeverityCellRenderer(it) },
+            ) { it },
+            ColumnDefinition(
                 "message",
                 "Message",
                 LogEntryDisplay::class.java,

@@ -1,16 +1,13 @@
 package fr.socolin.awesomeLogViewer.module.simpleConsole
 
+import fr.socolin.awesomeLogViewer.core.core.session.*
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogPropertyModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogSectionModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.LogEntryRenderModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.ResultCodeRenderModel
+import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.SeverityRenderModel
 import fr.socolin.awesomeLogViewer.core.core.utilities.GenericSeverityLevel
-import fr.socolin.awesomeLogViewer.core.core.session.FilterValueDefinition
-import fr.socolin.awesomeLogViewer.core.core.session.LogEntry
-import fr.socolin.awesomeLogViewer.core.core.session.LogEntryTimeInfo
-import fr.socolin.awesomeLogViewer.core.core.session.LogSession
-import fr.socolin.awesomeLogViewer.core.core.session.SessionFilter
 
 class SimpleConsoleLogEntry(
     val logProcessor: SimpleConsoleLogProcessor,
@@ -29,26 +26,9 @@ class SimpleConsoleLogEntry(
         val severity = properties["severity"]?.lowercase()
 
         if (logSession.pluginSettings.state.colorLogBasedOnSeverity.value) {
-            renderModel.mainLabel.foreground = when (severity) {
-                "vrb" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Trace]
-                "trace" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Trace]
-                "dbug" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Debug]
-                "dbg" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Debug]
-                "debug" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Debug]
-                "info" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Info]
-                "inf" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Info]
-                "information" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Info]
-                "warn" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Warn]
-                "warning" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Warn]
-                "error" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Error]
-                "fail" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Error]
-                "err" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Error]
-                "severe" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Error]
-                "crit" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Critical]
-                "critical" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Critical]
-                "fatal" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Critical]
-                "ftl" -> logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Critical]
-                else -> null
+            val genericSeverityLevel = getGenericSeverity(severity)
+            if (genericSeverityLevel != null) {
+                renderModel.mainLabel.foreground = logSession.pluginSettings.state.colorPerSeverity[genericSeverityLevel]
             }
         }
     }
@@ -57,6 +37,39 @@ class SimpleConsoleLogEntry(
         logSession: LogSession,
         renderModel: ResultCodeRenderModel
     ) {
+    }
+
+    override fun updateSeverityRenderModel(
+        logSession: LogSession,
+        renderModel: SeverityRenderModel
+    ) {
+        val severityLevel = properties["severity"]
+        renderModel.severity = getGenericSeverity(severityLevel)
+        renderModel.text = severityLevel
+    }
+
+    private fun getGenericSeverity(
+        severity: String?
+    ): GenericSeverityLevel? = when (severity?.lowercase()) {
+        "vrb" -> GenericSeverityLevel.Trace
+        "trace" -> GenericSeverityLevel.Trace
+        "dbug" -> GenericSeverityLevel.Debug
+        "dbg" -> GenericSeverityLevel.Debug
+        "debug" -> GenericSeverityLevel.Debug
+        "info" -> GenericSeverityLevel.Info
+        "inf" -> GenericSeverityLevel.Info
+        "information" -> GenericSeverityLevel.Info
+        "warn" -> GenericSeverityLevel.Warn
+        "warning" -> GenericSeverityLevel.Warn
+        "error" -> GenericSeverityLevel.Error
+        "fail" -> GenericSeverityLevel.Error
+        "err" -> GenericSeverityLevel.Error
+        "severe" -> GenericSeverityLevel.Error
+        "crit" -> GenericSeverityLevel.Critical
+        "critical" -> GenericSeverityLevel.Critical
+        "fatal" -> GenericSeverityLevel.Critical
+        "ftl" -> GenericSeverityLevel.Critical
+        else -> null
     }
 
     override fun getFilteringParameters(): List<FilterValueDefinition> {

@@ -3,6 +3,7 @@ package fr.socolin.awesomeLogViewer.core.core.session
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.LogEntryRenderModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.ResultCodeRenderModel
+import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.SeverityRenderModel
 import java.awt.Color
 import java.time.Duration
 import java.time.Instant
@@ -34,6 +35,8 @@ abstract class LogEntry(
 
     abstract fun updateResultCodeRenderModel(logSession: LogSession, renderModel: ResultCodeRenderModel)
 
+    abstract fun updateSeverityRenderModel(logSession: LogSession, renderModel: SeverityRenderModel)
+
     abstract fun getFormattedRenderModel(): FormattedLogModel
 
     abstract fun getFormattedRawLog(): String
@@ -62,6 +65,12 @@ class PendingLogEntry(
     override fun updateResultCodeRenderModel(
         logSession: LogSession,
         renderModel: ResultCodeRenderModel
+    ) {
+    }
+
+    override fun updateSeverityRenderModel(
+        logSession: LogSession,
+        renderModel: SeverityRenderModel
     ) {
     }
 

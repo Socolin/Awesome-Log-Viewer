@@ -15,6 +15,7 @@ import fr.socolin.awesomeLogViewer.core.core.session.LogEntry
 import fr.socolin.awesomeLogViewer.core.core.session.LogEntryTimeInfo
 import fr.socolin.awesomeLogViewer.core.core.session.LogSession
 import fr.socolin.awesomeLogViewer.core.core.session.SessionFilter
+import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.SeverityRenderModel
 import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.ActivityKind
 import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.ActivityStatusCode
 import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.OpenTelemetryLogRecord
@@ -140,6 +141,24 @@ class OpenTelemetryLogEntry(
                     renderModel.foreground = logSession.pluginSettings.state.colorPerSeverity[GenericSeverityLevel.Warn]
             }
         }
+    }
+
+    override fun updateSeverityRenderModel(
+        logSession: LogSession,
+        renderModel: SeverityRenderModel
+    ) {
+        val severityLevel = getSeverity()
+        renderModel.severity = when (severityLevel) {
+            OpenTelemetrySeverity.Trace -> GenericSeverityLevel.Trace
+            OpenTelemetrySeverity.Debug -> GenericSeverityLevel.Debug
+            OpenTelemetrySeverity.Info -> GenericSeverityLevel.Info
+            OpenTelemetrySeverity.Warn -> GenericSeverityLevel.Warn
+            OpenTelemetrySeverity.Error -> GenericSeverityLevel.Error
+            OpenTelemetrySeverity.Fatal -> GenericSeverityLevel.Critical
+            OpenTelemetrySeverity.Unspecified -> null
+        }
+        if (severityLevel != OpenTelemetrySeverity.Unspecified)
+            renderModel.text = severityLevel.toString()
     }
 
     override fun getFormattedRenderModel(): FormattedLogModel {

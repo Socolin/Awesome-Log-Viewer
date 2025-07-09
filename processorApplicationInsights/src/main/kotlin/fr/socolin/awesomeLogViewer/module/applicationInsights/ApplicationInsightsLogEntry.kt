@@ -19,6 +19,7 @@ import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLog
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogSectionModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.addProperties
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.addPropertyIfSet
+import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.SeverityRenderModel
 import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsEventTelemetryData
 import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsExceptionTelemetryData
 import fr.socolin.awesomeLogViewer.module.applicationInsights.data.ApplicationInsightsMessageTelemetryData
@@ -158,6 +159,23 @@ class ApplicationInsightsLogEntry(
         renderModel.mainLabel.bold = when (severityLevel) {
             ApplicationInsightsLogSeverityLevel.CRITICAL -> true
             else -> false
+        }
+    }
+
+    override fun updateSeverityRenderModel(
+        logSession: LogSession,
+        renderModel: SeverityRenderModel
+    ) {
+        val severityLevel = data.getSeverityLevel()
+        if (severityLevel != null) {
+            renderModel.severity = when (severityLevel) {
+                ApplicationInsightsLogSeverityLevel.TRACE -> GenericSeverityLevel.Debug
+                ApplicationInsightsLogSeverityLevel.INFO -> GenericSeverityLevel.Info
+                ApplicationInsightsLogSeverityLevel.WARNING -> GenericSeverityLevel.Warn
+                ApplicationInsightsLogSeverityLevel.ERROR -> GenericSeverityLevel.Error
+                ApplicationInsightsLogSeverityLevel.CRITICAL -> GenericSeverityLevel.Critical
+            }
+            renderModel.text = severityLevel.toString()
         }
     }
 

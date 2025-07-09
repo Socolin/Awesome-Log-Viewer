@@ -79,6 +79,7 @@ abstract class LogSession(
         return logProcessor.supportNesting()
     }
 
+
     fun getRawLogLanguage(): Language? = logProcessor.getRawLogLanguage()
     fun getVisibleLogAt(index: Int) = logContainer.getVisibleLogAt(index)
     fun clearLogs() = logContainer.clearLogs()

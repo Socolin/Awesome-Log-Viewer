@@ -3,6 +3,8 @@ package fr.socolin.awesomeLogViewer.core.core.settings.ui
 import com.intellij.icons.AllIcons
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.editor.ex.util.EditorUtil
+import com.intellij.openapi.observable.properties.AtomicBooleanProperty
+import com.intellij.openapi.observable.util.not
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.ColorPanel
@@ -10,12 +12,14 @@ import com.intellij.ui.JBColor
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.dsl.builder.*
+import com.intellij.ui.layout.ComponentPredicate
 import com.intellij.util.ui.JBUI
+import com.jetbrains.rd.util.reactive.Property
 import fr.socolin.awesomeLogViewer.core.core.CoreBundle
 import fr.socolin.awesomeLogViewer.core.core.settings.storage.GlobalPluginSettingsState
 import fr.socolin.awesomeLogViewer.core.core.utilities.GenericSeverityLevel
-import fr.socolin.awesomeLogViewer.core.core.utilities.PluginIcons
 import java.awt.Font
+import kotlin.properties.ObservableProperty
 
 class GlobalPluginProjectSettingsComponent {
     private lateinit var panel: DialogPanel
@@ -31,6 +35,7 @@ class GlobalPluginProjectSettingsComponent {
     }
 
     fun getPanel(): DialogPanel {
+        val activateLicenseRequested = AtomicBooleanProperty(false)
         panel = panel {
             group(CoreBundle.Companion.message("settings.logs.group")) {
                 row {

@@ -3,6 +3,7 @@ package fr.socolin.awesomeLogViewer.core.core.session
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.LogEntryRenderModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.ResultCodeRenderModel
+import fr.socolin.awesomeLogViewer.core.core.tool_window.log_list.renderer.SeverityRenderModel
 import java.awt.Color
 
 open class LogEntryDisplay(
@@ -16,6 +17,7 @@ open class LogEntryDisplay(
 
     fun updateRenderModel(logSession: LogSession, renderModel: LogEntryRenderModel) = logEntry.updateRenderModel(logSession, renderModel)
     fun updateResultCodeRenderModel(logSession: LogSession, renderModel: ResultCodeRenderModel) = logEntry.updateResultCodeRenderModel(logSession, renderModel)
+    fun updateSeverityRenderModel(logSession: LogSession, renderModel: SeverityRenderModel) = logEntry.updateSeverityRenderModel(logSession, renderModel)
     fun getBarColor(): Color? = logEntry.getBarColor()
     fun getFormattedRenderModel(): FormattedLogModel = logEntry.getFormattedRenderModel()
 
