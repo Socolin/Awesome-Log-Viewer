@@ -24,8 +24,8 @@ private static final long serialVersionUID = 0L;
   private EntityRef() {
     schemaUrl_ = "";
     type_ = "";
-    idKeys_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-    descriptionKeys_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    idKeys_ = com.google.protobuf.LazyStringArrayList.emptyList();
+    descriptionKeys_ = com.google.protobuf.LazyStringArrayList.emptyList();
   }
 
   @java.lang.Override
@@ -150,7 +150,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
       schemaUrl_ = s;
@@ -177,7 +177,7 @@ private static final long serialVersionUID = 0L;
       getSchemaUrlBytes() {
     java.lang.Object ref = schemaUrl_;
     if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       schemaUrl_ = b;
@@ -205,7 +205,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+      com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
       type_ = s;
@@ -227,7 +227,7 @@ private static final long serialVersionUID = 0L;
       getTypeBytes() {
     java.lang.Object ref = type_;
     if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
+      com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       type_ = b;
@@ -605,9 +605,9 @@ private static final long serialVersionUID = 0L;
 
       type_ = "";
 
-      idKeys_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      idKeys_ = com.google.protobuf.LazyStringArrayList.emptyList();
       bitField0_ = (bitField0_ & ~0x00000001);
-      descriptionKeys_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      descriptionKeys_ = com.google.protobuf.LazyStringArrayList.emptyList();
       bitField0_ = (bitField0_ & ~0x00000002);
       return this;
     }
@@ -801,7 +801,7 @@ private static final long serialVersionUID = 0L;
         getSchemaUrlBytes() {
       java.lang.Object ref = schemaUrl_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         schemaUrl_ = b;
@@ -831,7 +831,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-  
+
       schemaUrl_ = value;
       onChanged();
       return this;
@@ -852,7 +852,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearSchemaUrl() {
-      
+
       schemaUrl_ = getDefaultInstance().getSchemaUrl();
       onChanged();
       return this;
@@ -879,7 +879,7 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-      
+
       schemaUrl_ = value;
       onChanged();
       return this;
@@ -922,7 +922,7 @@ private static final long serialVersionUID = 0L;
         getTypeBytes() {
       java.lang.Object ref = type_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         type_ = b;
@@ -947,7 +947,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-  
+
       type_ = value;
       onChanged();
       return this;
@@ -963,7 +963,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearType() {
-      
+
       type_ = getDefaultInstance().getType();
       onChanged();
       return this;
@@ -985,13 +985,13 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-      
+
       type_ = value;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.LazyStringList idKeys_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private com.google.protobuf.LazyStringList idKeys_ = com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensureIdKeysIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
         idKeys_ = new com.google.protobuf.LazyStringArrayList(idKeys_);
@@ -1127,7 +1127,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearIdKeys() {
-      idKeys_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      idKeys_ = com.google.protobuf.LazyStringArrayList.emptyList();
       bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
@@ -1155,7 +1155,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.LazyStringList descriptionKeys_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private com.google.protobuf.LazyStringList descriptionKeys_ = com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensureDescriptionKeysIsMutable() {
       if (!((bitField0_ & 0x00000002) != 0)) {
         descriptionKeys_ = new com.google.protobuf.LazyStringArrayList(descriptionKeys_);
@@ -1299,7 +1299,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearDescriptionKeys() {
-      descriptionKeys_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      descriptionKeys_ = com.google.protobuf.LazyStringArrayList.emptyList();
       bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;

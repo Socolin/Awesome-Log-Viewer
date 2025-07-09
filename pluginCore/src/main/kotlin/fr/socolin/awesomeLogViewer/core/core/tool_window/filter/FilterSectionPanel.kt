@@ -133,7 +133,6 @@ class FilterSectionPanel(
             templatePresentation.selectedIcon = selectedIcon
             val shortcut = getMnemonicAsShortcut(this)
             if (shortcut != null) {
-                shortcutSet = shortcut
                 registerCustomShortcutSet(shortcut, component)
             }
         }
