@@ -5,7 +5,7 @@ plugins {
 
 dependencies {
     intellijPlatform {
-        bundledPlugins("com.intellij.modules.json")
+        compatiblePlugin("com.intellij.modules.json")
     }
 
     testImplementation(kotlin("test"))

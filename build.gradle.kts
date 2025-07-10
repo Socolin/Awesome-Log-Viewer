@@ -88,6 +88,13 @@ intellijPlatform {
             )
         }
     }
+
+    pluginVerification {
+        ides {
+            recommended()
+            ide(IntelliJPlatformType.Rider, libs.versions.riderSdk.get(), useInstaller = false)
+        }
+    }
 }
 
 tasks {
@@ -113,10 +120,6 @@ tasks {
                 Changelog.OutputType.HTML
             )
         })
-    }
-
-    prepareTestSandbox {
-        disabledPlugins.add("intellij.platform.ijent.impl") // TODO[#51]: Get rid of this after migration to 2025.1
     }
 
     runIde {
