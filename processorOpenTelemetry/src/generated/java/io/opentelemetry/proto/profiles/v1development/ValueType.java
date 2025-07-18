@@ -105,7 +105,7 @@ private static final long serialVersionUID = 0L;
   private int typeStrindex_;
   /**
    * <pre>
-   * Index into string table.
+   * Index into ProfilesDictionary.string_table.
    * </pre>
    *
    * <code>int32 type_strindex = 1;</code>
@@ -120,7 +120,7 @@ private static final long serialVersionUID = 0L;
   private int unitStrindex_;
   /**
    * <pre>
-   * Index into string table.
+   * Index into ProfilesDictionary.string_table.
    * </pre>
    *
    * <code>int32 unit_strindex = 2;</code>
@@ -492,7 +492,7 @@ private static final long serialVersionUID = 0L;
     private int typeStrindex_ ;
     /**
      * <pre>
-     * Index into string table.
+     * Index into ProfilesDictionary.string_table.
      * </pre>
      *
      * <code>int32 type_strindex = 1;</code>
@@ -504,7 +504,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Index into string table.
+     * Index into ProfilesDictionary.string_table.
      * </pre>
      *
      * <code>int32 type_strindex = 1;</code>
@@ -519,7 +519,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Index into string table.
+     * Index into ProfilesDictionary.string_table.
      * </pre>
      *
      * <code>int32 type_strindex = 1;</code>
@@ -535,7 +535,7 @@ private static final long serialVersionUID = 0L;
     private int unitStrindex_ ;
     /**
      * <pre>
-     * Index into string table.
+     * Index into ProfilesDictionary.string_table.
      * </pre>
      *
      * <code>int32 unit_strindex = 2;</code>
@@ -547,7 +547,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Index into string table.
+     * Index into ProfilesDictionary.string_table.
      * </pre>
      *
      * <code>int32 unit_strindex = 2;</code>
@@ -562,7 +562,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Index into string table.
+     * Index into ProfilesDictionary.string_table.
      * </pre>
      *
      * <code>int32 unit_strindex = 2;</code>

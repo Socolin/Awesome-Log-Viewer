@@ -70,4 +70,31 @@ public interface ExportProfilesServiceRequestOrBuilder extends
    */
   io.opentelemetry.proto.profiles.v1development.ResourceProfilesOrBuilder getResourceProfilesOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * The reference table containing all data shared by profiles across the message being sent.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   * @return Whether the dictionary field is set.
+   */
+  boolean hasDictionary();
+  /**
+   * <pre>
+   * The reference table containing all data shared by profiles across the message being sent.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   * @return The dictionary.
+   */
+  io.opentelemetry.proto.profiles.v1development.ProfilesDictionary getDictionary();
+  /**
+   * <pre>
+   * The reference table containing all data shared by profiles across the message being sent.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   */
+  io.opentelemetry.proto.profiles.v1development.ProfilesDictionaryOrBuilder getDictionaryOrBuilder();
 }

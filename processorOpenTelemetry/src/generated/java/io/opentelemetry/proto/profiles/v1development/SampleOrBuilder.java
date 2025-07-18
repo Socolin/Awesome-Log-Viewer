@@ -30,51 +30,36 @@ public interface SampleOrBuilder extends
 
   /**
    * <pre>
-   * The type and unit of each value is defined by the corresponding
-   * entry in Profile.sample_type. All samples must have the same
-   * number of values, the same as the length of Profile.sample_type.
-   * When aggregating multiple samples into a single sample, the
-   * result has a list of values that is the element-wise sum of the
-   * lists of the originals.
+   * The type and unit of each value is defined by Profile.sample_type.
    * </pre>
    *
-   * <code>repeated int64 value = 3;</code>
-   * @return A list containing the value.
+   * <code>repeated int64 values = 3;</code>
+   * @return A list containing the values.
    */
-  java.util.List<java.lang.Long> getValueList();
+  java.util.List<java.lang.Long> getValuesList();
   /**
    * <pre>
-   * The type and unit of each value is defined by the corresponding
-   * entry in Profile.sample_type. All samples must have the same
-   * number of values, the same as the length of Profile.sample_type.
-   * When aggregating multiple samples into a single sample, the
-   * result has a list of values that is the element-wise sum of the
-   * lists of the originals.
+   * The type and unit of each value is defined by Profile.sample_type.
    * </pre>
    *
-   * <code>repeated int64 value = 3;</code>
-   * @return The count of value.
+   * <code>repeated int64 values = 3;</code>
+   * @return The count of values.
    */
-  int getValueCount();
+  int getValuesCount();
   /**
    * <pre>
-   * The type and unit of each value is defined by the corresponding
-   * entry in Profile.sample_type. All samples must have the same
-   * number of values, the same as the length of Profile.sample_type.
-   * When aggregating multiple samples into a single sample, the
-   * result has a list of values that is the element-wise sum of the
-   * lists of the originals.
+   * The type and unit of each value is defined by Profile.sample_type.
    * </pre>
    *
-   * <code>repeated int64 value = 3;</code>
+   * <code>repeated int64 values = 3;</code>
    * @param index The index of the element to return.
-   * @return The value at the given index.
+   * @return The values at the given index.
    */
-  long getValue(int index);
+  long getValues(int index);
 
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 4;</code>
@@ -83,7 +68,7 @@ public interface SampleOrBuilder extends
   java.util.List<java.lang.Integer> getAttributeIndicesList();
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 4;</code>
@@ -92,7 +77,7 @@ public interface SampleOrBuilder extends
   int getAttributeIndicesCount();
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 4;</code>
@@ -103,27 +88,19 @@ public interface SampleOrBuilder extends
 
   /**
    * <pre>
-   * Reference to link in Profile.link_table. [optional]
+   * Reference to link in ProfilesDictionary.link_table. [optional]
+   * It can be unset / set to 0 if no link exists, as link_table[0] is always a 'null' default value.
    * </pre>
    *
-   * <code>optional int32 link_index = 5;</code>
-   * @return Whether the linkIndex field is set.
-   */
-  boolean hasLinkIndex();
-  /**
-   * <pre>
-   * Reference to link in Profile.link_table. [optional]
-   * </pre>
-   *
-   * <code>optional int32 link_index = 5;</code>
+   * <code>int32 link_index = 5;</code>
    * @return The linkIndex.
    */
   int getLinkIndex();
 
   /**
    * <pre>
-   * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-   * to fall within the Profile's time range. [optional]
+   * Timestamps associated with Sample represented in nanoseconds. These
+   * timestamps should fall within the Profile's time range.
    * </pre>
    *
    * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -132,8 +109,8 @@ public interface SampleOrBuilder extends
   java.util.List<java.lang.Long> getTimestampsUnixNanoList();
   /**
    * <pre>
-   * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-   * to fall within the Profile's time range. [optional]
+   * Timestamps associated with Sample represented in nanoseconds. These
+   * timestamps should fall within the Profile's time range.
    * </pre>
    *
    * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -142,8 +119,8 @@ public interface SampleOrBuilder extends
   int getTimestampsUnixNanoCount();
   /**
    * <pre>
-   * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-   * to fall within the Profile's time range. [optional]
+   * Timestamps associated with Sample represented in nanoseconds. These
+   * timestamps should fall within the Profile's time range.
    * </pre>
    *
    * <code>repeated uint64 timestamps_unix_nano = 6;</code>

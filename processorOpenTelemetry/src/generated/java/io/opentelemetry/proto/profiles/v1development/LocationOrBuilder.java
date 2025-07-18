@@ -9,23 +9,12 @@ public interface LocationOrBuilder extends
 
   /**
    * <pre>
-   * Reference to mapping in Profile.mapping_table.
-   * It can be unset if the mapping is unknown or not applicable for
-   * this profile type.
+   * Reference to mapping in ProfilesDictionary.mapping_table.
+   * It can be unset / set to 0 if the mapping is unknown or not applicable for
+   * this profile type, as mapping_table[0] is always a 'null' default mapping.
    * </pre>
    *
-   * <code>optional int32 mapping_index = 1;</code>
-   * @return Whether the mappingIndex field is set.
-   */
-  boolean hasMappingIndex();
-  /**
-   * <pre>
-   * Reference to mapping in Profile.mapping_table.
-   * It can be unset if the mapping is unknown or not applicable for
-   * this profile type.
-   * </pre>
-   *
-   * <code>optional int32 mapping_index = 1;</code>
+   * <code>int32 mapping_index = 1;</code>
    * @return The mappingIndex.
    */
   int getMappingIndex();
@@ -129,7 +118,7 @@ public interface LocationOrBuilder extends
 
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -138,7 +127,7 @@ public interface LocationOrBuilder extends
   java.util.List<java.lang.Integer> getAttributeIndicesList();
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -147,7 +136,7 @@ public interface LocationOrBuilder extends
   int getAttributeIndicesCount();
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>

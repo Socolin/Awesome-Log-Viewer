@@ -9,7 +9,7 @@ public interface LineOrBuilder extends
 
   /**
    * <pre>
-   * Reference to function in Profile.function_table.
+   * Reference to function in ProfilesDictionary.function_table.
    * </pre>
    *
    * <code>int32 function_index = 1;</code>

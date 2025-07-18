@@ -70,6 +70,19 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(io.opentelemetry.proto.profiles.v1development.ResourceProfiles.parser(), extensionRegistry));
             break;
           }
+          case 18: {
+            io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.Builder subBuilder = null;
+            if (dictionary_ != null) {
+              subBuilder = dictionary_.toBuilder();
+            }
+            dictionary_ = input.readMessage(io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(dictionary_);
+              dictionary_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -110,10 +123,12 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -125,10 +140,12 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -141,10 +158,12 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -156,10 +175,12 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -171,10 +192,12 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -183,6 +206,44 @@ private static final long serialVersionUID = 0L;
   public io.opentelemetry.proto.profiles.v1development.ResourceProfilesOrBuilder getResourceProfilesOrBuilder(
       int index) {
     return resourceProfiles_.get(index);
+  }
+
+  public static final int DICTIONARY_FIELD_NUMBER = 2;
+  private io.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary_;
+  /**
+   * <pre>
+   * One instance of ProfilesDictionary
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   * @return Whether the dictionary field is set.
+   */
+  @java.lang.Override
+  public boolean hasDictionary() {
+    return dictionary_ != null;
+  }
+  /**
+   * <pre>
+   * One instance of ProfilesDictionary
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   * @return The dictionary.
+   */
+  @java.lang.Override
+  public io.opentelemetry.proto.profiles.v1development.ProfilesDictionary getDictionary() {
+    return dictionary_ == null ? io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.getDefaultInstance() : dictionary_;
+  }
+  /**
+   * <pre>
+   * One instance of ProfilesDictionary
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   */
+  @java.lang.Override
+  public io.opentelemetry.proto.profiles.v1development.ProfilesDictionaryOrBuilder getDictionaryOrBuilder() {
+    return getDictionary();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -202,6 +263,9 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < resourceProfiles_.size(); i++) {
       output.writeMessage(1, resourceProfiles_.get(i));
     }
+    if (dictionary_ != null) {
+      output.writeMessage(2, getDictionary());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -214,6 +278,10 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < resourceProfiles_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, resourceProfiles_.get(i));
+    }
+    if (dictionary_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getDictionary());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -232,6 +300,11 @@ private static final long serialVersionUID = 0L;
 
     if (!getResourceProfilesList()
         .equals(other.getResourceProfilesList())) return false;
+    if (hasDictionary() != other.hasDictionary()) return false;
+    if (hasDictionary()) {
+      if (!getDictionary()
+          .equals(other.getDictionary())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -246,6 +319,10 @@ private static final long serialVersionUID = 0L;
     if (getResourceProfilesCount() > 0) {
       hash = (37 * hash) + RESOURCE_PROFILES_FIELD_NUMBER;
       hash = (53 * hash) + getResourceProfilesList().hashCode();
+    }
+    if (hasDictionary()) {
+      hash = (37 * hash) + DICTIONARY_FIELD_NUMBER;
+      hash = (53 * hash) + getDictionary().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -398,6 +475,12 @@ private static final long serialVersionUID = 0L;
       } else {
         resourceProfilesBuilder_.clear();
       }
+      if (dictionaryBuilder_ == null) {
+        dictionary_ = null;
+      } else {
+        dictionary_ = null;
+        dictionaryBuilder_ = null;
+      }
       return this;
     }
 
@@ -433,6 +516,11 @@ private static final long serialVersionUID = 0L;
         result.resourceProfiles_ = resourceProfiles_;
       } else {
         result.resourceProfiles_ = resourceProfilesBuilder_.build();
+      }
+      if (dictionaryBuilder_ == null) {
+        result.dictionary_ = dictionary_;
+      } else {
+        result.dictionary_ = dictionaryBuilder_.build();
       }
       onBuilt();
       return result;
@@ -508,6 +596,9 @@ private static final long serialVersionUID = 0L;
           }
         }
       }
+      if (other.hasDictionary()) {
+        mergeDictionary(other.getDictionary());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -553,10 +644,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -571,10 +664,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -589,10 +684,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -607,10 +704,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -632,10 +731,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -654,10 +755,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -678,10 +781,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -703,10 +808,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -725,10 +832,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -747,10 +856,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -770,10 +881,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -791,10 +904,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -812,10 +927,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -827,10 +944,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -845,10 +964,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -864,10 +985,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -879,10 +1002,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -895,10 +1020,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * An array of ResourceProfiles.
-     * For data coming from a single resource this array will typically contain
-     * one element. Intermediary nodes that receive data from multiple origins
-     * typically batch the data before forwarding further and in that case this
-     * array will contain multiple elements.
+     * For data coming from an SDK profiler, this array will typically contain one
+     * element. Host-level profilers will usually create one ResourceProfile per
+     * container, as well as one additional ResourceProfile grouping all samples
+     * from non-containerized processes.
+     * Other resource groupings are possible as well and clarified via
+     * Resource.attributes and semantic conventions.
      * </pre>
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -920,6 +1047,161 @@ private static final long serialVersionUID = 0L;
         resourceProfiles_ = null;
       }
       return resourceProfilesBuilder_;
+    }
+
+    private io.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opentelemetry.proto.profiles.v1development.ProfilesDictionary, io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.Builder, io.opentelemetry.proto.profiles.v1development.ProfilesDictionaryOrBuilder> dictionaryBuilder_;
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     * @return Whether the dictionary field is set.
+     */
+    public boolean hasDictionary() {
+      return dictionaryBuilder_ != null || dictionary_ != null;
+    }
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     * @return The dictionary.
+     */
+    public io.opentelemetry.proto.profiles.v1development.ProfilesDictionary getDictionary() {
+      if (dictionaryBuilder_ == null) {
+        return dictionary_ == null ? io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.getDefaultInstance() : dictionary_;
+      } else {
+        return dictionaryBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     */
+    public Builder setDictionary(io.opentelemetry.proto.profiles.v1development.ProfilesDictionary value) {
+      if (dictionaryBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        dictionary_ = value;
+        onChanged();
+      } else {
+        dictionaryBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     */
+    public Builder setDictionary(
+        io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.Builder builderForValue) {
+      if (dictionaryBuilder_ == null) {
+        dictionary_ = builderForValue.build();
+        onChanged();
+      } else {
+        dictionaryBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     */
+    public Builder mergeDictionary(io.opentelemetry.proto.profiles.v1development.ProfilesDictionary value) {
+      if (dictionaryBuilder_ == null) {
+        if (dictionary_ != null) {
+          dictionary_ =
+            io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.newBuilder(dictionary_).mergeFrom(value).buildPartial();
+        } else {
+          dictionary_ = value;
+        }
+        onChanged();
+      } else {
+        dictionaryBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     */
+    public Builder clearDictionary() {
+      if (dictionaryBuilder_ == null) {
+        dictionary_ = null;
+        onChanged();
+      } else {
+        dictionary_ = null;
+        dictionaryBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     */
+    public io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.Builder getDictionaryBuilder() {
+      
+      onChanged();
+      return getDictionaryFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     */
+    public io.opentelemetry.proto.profiles.v1development.ProfilesDictionaryOrBuilder getDictionaryOrBuilder() {
+      if (dictionaryBuilder_ != null) {
+        return dictionaryBuilder_.getMessageOrBuilder();
+      } else {
+        return dictionary_ == null ?
+            io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.getDefaultInstance() : dictionary_;
+      }
+    }
+    /**
+     * <pre>
+     * One instance of ProfilesDictionary
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opentelemetry.proto.profiles.v1development.ProfilesDictionary, io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.Builder, io.opentelemetry.proto.profiles.v1development.ProfilesDictionaryOrBuilder> 
+        getDictionaryFieldBuilder() {
+      if (dictionaryBuilder_ == null) {
+        dictionaryBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.opentelemetry.proto.profiles.v1development.ProfilesDictionary, io.opentelemetry.proto.profiles.v1development.ProfilesDictionary.Builder, io.opentelemetry.proto.profiles.v1development.ProfilesDictionaryOrBuilder>(
+                getDictionary(),
+                getParentForChildren(),
+                isClean());
+        dictionary_ = null;
+      }
+      return dictionaryBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

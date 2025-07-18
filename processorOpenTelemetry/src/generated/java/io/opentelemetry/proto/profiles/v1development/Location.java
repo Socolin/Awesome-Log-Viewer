@@ -56,7 +56,7 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 8: {
-            bitField0_ |= 0x00000001;
+
             mappingIndex_ = input.readInt32();
             break;
           }
@@ -66,9 +66,9 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 26: {
-            if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
               line_ = new java.util.ArrayList<io.opentelemetry.proto.profiles.v1development.Line>();
-              mutable_bitField0_ |= 0x00000002;
+              mutable_bitField0_ |= 0x00000001;
             }
             line_.add(
                 input.readMessage(io.opentelemetry.proto.profiles.v1development.Line.parser(), extensionRegistry));
@@ -80,9 +80,9 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 40: {
-            if (!((mutable_bitField0_ & 0x00000004) != 0)) {
+            if (!((mutable_bitField0_ & 0x00000002) != 0)) {
               attributeIndices_ = newIntList();
-              mutable_bitField0_ |= 0x00000004;
+              mutable_bitField0_ |= 0x00000002;
             }
             attributeIndices_.addInt(input.readInt32());
             break;
@@ -90,9 +90,9 @@ private static final long serialVersionUID = 0L;
           case 42: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000004) != 0) && input.getBytesUntilLimit() > 0) {
+            if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
               attributeIndices_ = newIntList();
-              mutable_bitField0_ |= 0x00000004;
+              mutable_bitField0_ |= 0x00000002;
             }
             while (input.getBytesUntilLimit() > 0) {
               attributeIndices_.addInt(input.readInt32());
@@ -115,10 +115,10 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000002) != 0)) {
+      if (((mutable_bitField0_ & 0x00000001) != 0)) {
         line_ = java.util.Collections.unmodifiableList(line_);
       }
-      if (((mutable_bitField0_ & 0x00000004) != 0)) {
+      if (((mutable_bitField0_ & 0x00000002) != 0)) {
         attributeIndices_.makeImmutable(); // C
       }
       this.unknownFields = unknownFields.build();
@@ -138,31 +138,16 @@ private static final long serialVersionUID = 0L;
             io.opentelemetry.proto.profiles.v1development.Location.class, io.opentelemetry.proto.profiles.v1development.Location.Builder.class);
   }
 
-  private int bitField0_;
   public static final int MAPPING_INDEX_FIELD_NUMBER = 1;
   private int mappingIndex_;
   /**
    * <pre>
-   * Reference to mapping in Profile.mapping_table.
-   * It can be unset if the mapping is unknown or not applicable for
-   * this profile type.
+   * Reference to mapping in ProfilesDictionary.mapping_table.
+   * It can be unset / set to 0 if the mapping is unknown or not applicable for
+   * this profile type, as mapping_table[0] is always a 'null' default mapping.
    * </pre>
    *
-   * <code>optional int32 mapping_index = 1;</code>
-   * @return Whether the mappingIndex field is set.
-   */
-  @java.lang.Override
-  public boolean hasMappingIndex() {
-    return ((bitField0_ & 0x00000001) != 0);
-  }
-  /**
-   * <pre>
-   * Reference to mapping in Profile.mapping_table.
-   * It can be unset if the mapping is unknown or not applicable for
-   * this profile type.
-   * </pre>
-   *
-   * <code>optional int32 mapping_index = 1;</code>
+   * <code>int32 mapping_index = 1;</code>
    * @return The mappingIndex.
    */
   @java.lang.Override
@@ -297,7 +282,7 @@ private static final long serialVersionUID = 0L;
   private com.google.protobuf.Internal.IntList attributeIndices_;
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -310,7 +295,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -321,7 +306,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -348,7 +333,7 @@ private static final long serialVersionUID = 0L;
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     getSerializedSize();
-    if (((bitField0_ & 0x00000001) != 0)) {
+    if (mappingIndex_ != 0) {
       output.writeInt32(1, mappingIndex_);
     }
     if (address_ != 0L) {
@@ -376,7 +361,7 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (((bitField0_ & 0x00000001) != 0)) {
+    if (mappingIndex_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, mappingIndex_);
     }
@@ -421,11 +406,8 @@ private static final long serialVersionUID = 0L;
     }
     io.opentelemetry.proto.profiles.v1development.Location other = (io.opentelemetry.proto.profiles.v1development.Location) obj;
 
-    if (hasMappingIndex() != other.hasMappingIndex()) return false;
-    if (hasMappingIndex()) {
-      if (getMappingIndex()
-          != other.getMappingIndex()) return false;
-    }
+    if (getMappingIndex()
+        != other.getMappingIndex()) return false;
     if (getAddress()
         != other.getAddress()) return false;
     if (!getLineList()
@@ -445,10 +427,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasMappingIndex()) {
-      hash = (37 * hash) + MAPPING_INDEX_FIELD_NUMBER;
-      hash = (53 * hash) + getMappingIndex();
-    }
+    hash = (37 * hash) + MAPPING_INDEX_FIELD_NUMBER;
+    hash = (53 * hash) + getMappingIndex();
     hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getAddress());
@@ -602,19 +582,19 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       mappingIndex_ = 0;
-      bitField0_ = (bitField0_ & ~0x00000001);
+
       address_ = 0L;
 
       if (lineBuilder_ == null) {
         line_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
       } else {
         lineBuilder_.clear();
       }
       isFolded_ = false;
 
       attributeIndices_ = emptyIntList();
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000002);
       return this;
     }
 
@@ -642,28 +622,23 @@ private static final long serialVersionUID = 0L;
     public io.opentelemetry.proto.profiles.v1development.Location buildPartial() {
       io.opentelemetry.proto.profiles.v1development.Location result = new io.opentelemetry.proto.profiles.v1development.Location(this);
       int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
-      if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.mappingIndex_ = mappingIndex_;
-        to_bitField0_ |= 0x00000001;
-      }
+      result.mappingIndex_ = mappingIndex_;
       result.address_ = address_;
       if (lineBuilder_ == null) {
-        if (((bitField0_ & 0x00000002) != 0)) {
+        if (((bitField0_ & 0x00000001) != 0)) {
           line_ = java.util.Collections.unmodifiableList(line_);
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         }
         result.line_ = line_;
       } else {
         result.line_ = lineBuilder_.build();
       }
       result.isFolded_ = isFolded_;
-      if (((bitField0_ & 0x00000004) != 0)) {
+      if (((bitField0_ & 0x00000002) != 0)) {
         attributeIndices_.makeImmutable();
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
       }
       result.attributeIndices_ = attributeIndices_;
-      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -712,7 +687,7 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.opentelemetry.proto.profiles.v1development.Location other) {
       if (other == io.opentelemetry.proto.profiles.v1development.Location.getDefaultInstance()) return this;
-      if (other.hasMappingIndex()) {
+      if (other.getMappingIndex() != 0) {
         setMappingIndex(other.getMappingIndex());
       }
       if (other.getAddress() != 0L) {
@@ -722,7 +697,7 @@ private static final long serialVersionUID = 0L;
         if (!other.line_.isEmpty()) {
           if (line_.isEmpty()) {
             line_ = other.line_;
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           } else {
             ensureLineIsMutable();
             line_.addAll(other.line_);
@@ -735,7 +710,7 @@ private static final long serialVersionUID = 0L;
             lineBuilder_.dispose();
             lineBuilder_ = null;
             line_ = other.line_;
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
             lineBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getLineFieldBuilder() : null;
@@ -750,7 +725,7 @@ private static final long serialVersionUID = 0L;
       if (!other.attributeIndices_.isEmpty()) {
         if (attributeIndices_.isEmpty()) {
           attributeIndices_ = other.attributeIndices_;
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
           ensureAttributeIndicesIsMutable();
           attributeIndices_.addAll(other.attributeIndices_);
@@ -790,26 +765,12 @@ private static final long serialVersionUID = 0L;
     private int mappingIndex_ ;
     /**
      * <pre>
-     * Reference to mapping in Profile.mapping_table.
-     * It can be unset if the mapping is unknown or not applicable for
-     * this profile type.
+     * Reference to mapping in ProfilesDictionary.mapping_table.
+     * It can be unset / set to 0 if the mapping is unknown or not applicable for
+     * this profile type, as mapping_table[0] is always a 'null' default mapping.
      * </pre>
      *
-     * <code>optional int32 mapping_index = 1;</code>
-     * @return Whether the mappingIndex field is set.
-     */
-    @java.lang.Override
-    public boolean hasMappingIndex() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
-    /**
-     * <pre>
-     * Reference to mapping in Profile.mapping_table.
-     * It can be unset if the mapping is unknown or not applicable for
-     * this profile type.
-     * </pre>
-     *
-     * <code>optional int32 mapping_index = 1;</code>
+     * <code>int32 mapping_index = 1;</code>
      * @return The mappingIndex.
      */
     @java.lang.Override
@@ -818,33 +779,33 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Reference to mapping in Profile.mapping_table.
-     * It can be unset if the mapping is unknown or not applicable for
-     * this profile type.
+     * Reference to mapping in ProfilesDictionary.mapping_table.
+     * It can be unset / set to 0 if the mapping is unknown or not applicable for
+     * this profile type, as mapping_table[0] is always a 'null' default mapping.
      * </pre>
      *
-     * <code>optional int32 mapping_index = 1;</code>
+     * <code>int32 mapping_index = 1;</code>
      * @param value The mappingIndex to set.
      * @return This builder for chaining.
      */
     public Builder setMappingIndex(int value) {
-      bitField0_ |= 0x00000001;
+      
       mappingIndex_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * Reference to mapping in Profile.mapping_table.
-     * It can be unset if the mapping is unknown or not applicable for
-     * this profile type.
+     * Reference to mapping in ProfilesDictionary.mapping_table.
+     * It can be unset / set to 0 if the mapping is unknown or not applicable for
+     * this profile type, as mapping_table[0] is always a 'null' default mapping.
      * </pre>
      *
-     * <code>optional int32 mapping_index = 1;</code>
+     * <code>int32 mapping_index = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearMappingIndex() {
-      bitField0_ = (bitField0_ & ~0x00000001);
+      
       mappingIndex_ = 0;
       onChanged();
       return this;
@@ -908,9 +869,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<io.opentelemetry.proto.profiles.v1development.Line> line_ =
       java.util.Collections.emptyList();
     private void ensureLineIsMutable() {
-      if (!((bitField0_ & 0x00000002) != 0)) {
+      if (!((bitField0_ & 0x00000001) != 0)) {
         line_ = new java.util.ArrayList<io.opentelemetry.proto.profiles.v1development.Line>(line_);
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
        }
     }
 
@@ -1159,7 +1120,7 @@ private static final long serialVersionUID = 0L;
     public Builder clearLine() {
       if (lineBuilder_ == null) {
         line_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
       } else {
         lineBuilder_.clear();
@@ -1299,7 +1260,7 @@ private static final long serialVersionUID = 0L;
         lineBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             io.opentelemetry.proto.profiles.v1development.Line, io.opentelemetry.proto.profiles.v1development.Line.Builder, io.opentelemetry.proto.profiles.v1development.LineOrBuilder>(
                 line_,
-                ((bitField0_ & 0x00000002) != 0),
+                ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),
                 isClean());
         line_ = null;
@@ -1364,14 +1325,14 @@ private static final long serialVersionUID = 0L;
 
     private com.google.protobuf.Internal.IntList attributeIndices_ = emptyIntList();
     private void ensureAttributeIndicesIsMutable() {
-      if (!((bitField0_ & 0x00000004) != 0)) {
+      if (!((bitField0_ & 0x00000002) != 0)) {
         attributeIndices_ = mutableCopy(attributeIndices_);
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
        }
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1379,12 +1340,12 @@ private static final long serialVersionUID = 0L;
      */
     public java.util.List<java.lang.Integer>
         getAttributeIndicesList() {
-      return ((bitField0_ & 0x00000004) != 0) ?
+      return ((bitField0_ & 0x00000002) != 0) ?
                java.util.Collections.unmodifiableList(attributeIndices_) : attributeIndices_;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1395,7 +1356,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1407,7 +1368,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1424,7 +1385,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1439,7 +1400,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1456,7 +1417,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1464,7 +1425,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearAttributeIndices() {
       attributeIndices_ = emptyIntList();
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;
     }

@@ -51,7 +51,7 @@ public interface MappingOrBuilder extends
 
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -60,7 +60,7 @@ public interface MappingOrBuilder extends
   java.util.List<java.lang.Integer> getAttributeIndicesList();
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -69,7 +69,7 @@ public interface MappingOrBuilder extends
   int getAttributeIndicesCount();
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>

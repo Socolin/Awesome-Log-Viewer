@@ -15,6 +15,11 @@ public final class ProfilesProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_opentelemetry_proto_profiles_v1development_ProfilesDictionary_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_opentelemetry_proto_profiles_v1development_ProfilesDictionary_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_opentelemetry_proto_profiles_v1development_ProfilesData_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -87,78 +92,81 @@ public final class ProfilesProto {
       "ment/profiles.proto\022*opentelemetry.proto" +
       ".profiles.v1development\032*opentelemetry/p" +
       "roto/common/v1/common.proto\032.opentelemet" +
-      "ry/proto/resource/v1/resource.proto\"g\n\014P" +
-      "rofilesData\022W\n\021resource_profiles\030\001 \003(\0132<" +
+      "ry/proto/resource/v1/resource.proto\"\356\003\n\022" +
+      "ProfilesDictionary\022J\n\rmapping_table\030\001 \003(" +
+      "\01323.opentelemetry.proto.profiles.v1devel" +
+      "opment.Mapping\022L\n\016location_table\030\002 \003(\01324" +
       ".opentelemetry.proto.profiles.v1developm" +
-      "ent.ResourceProfiles\"\276\001\n\020ResourceProfile" +
-      "s\022;\n\010resource\030\001 \001(\0132).opentelemetry.prot" +
-      "o.resource.v1.Resource\022Q\n\016scope_profiles" +
-      "\030\002 \003(\01329.opentelemetry.proto.profiles.v1" +
-      "development.ScopeProfiles\022\022\n\nschema_url\030" +
-      "\003 \001(\tJ\006\010\350\007\020\351\007\"\256\001\n\rScopeProfiles\022B\n\005scope" +
-      "\030\001 \001(\01323.opentelemetry.proto.common.v1.I" +
-      "nstrumentationScope\022E\n\010profiles\030\002 \003(\01323." +
-      "opentelemetry.proto.profiles.v1developme" +
-      "nt.Profile\022\022\n\nschema_url\030\003 \001(\t\"\340\007\n\007Profi" +
-      "le\022J\n\013sample_type\030\001 \003(\01325.opentelemetry." +
-      "proto.profiles.v1development.ValueType\022B" +
-      "\n\006sample\030\002 \003(\01322.opentelemetry.proto.pro" +
-      "files.v1development.Sample\022J\n\rmapping_ta" +
-      "ble\030\003 \003(\01323.opentelemetry.proto.profiles" +
-      ".v1development.Mapping\022L\n\016location_table" +
-      "\030\004 \003(\01324.opentelemetry.proto.profiles.v1" +
-      "development.Location\022\030\n\020location_indices" +
-      "\030\005 \003(\005\022L\n\016function_table\030\006 \003(\01324.opentel" +
-      "emetry.proto.profiles.v1development.Func" +
-      "tion\022@\n\017attribute_table\030\007 \003(\0132\'.opentele" +
-      "metry.proto.common.v1.KeyValue\022R\n\017attrib" +
-      "ute_units\030\010 \003(\01329.opentelemetry.proto.pr" +
-      "ofiles.v1development.AttributeUnit\022D\n\nli" +
-      "nk_table\030\t \003(\01320.opentelemetry.proto.pro" +
-      "files.v1development.Link\022\024\n\014string_table" +
-      "\030\n \003(\t\022\022\n\ntime_nanos\030\013 \001(\003\022\026\n\016duration_n" +
-      "anos\030\014 \001(\003\022J\n\013period_type\030\r \001(\01325.opente" +
-      "lemetry.proto.profiles.v1development.Val" +
-      "ueType\022\016\n\006period\030\016 \001(\003\022\032\n\022comment_strind" +
-      "ices\030\017 \003(\005\022!\n\031default_sample_type_index\030" +
-      "\020 \001(\005\022\022\n\nprofile_id\030\021 \001(\014\022 \n\030dropped_att" +
-      "ributes_count\030\023 \001(\r\022\037\n\027original_payload_" +
-      "format\030\024 \001(\t\022\030\n\020original_payload\030\025 \001(\014\022\031" +
-      "\n\021attribute_indices\030\026 \003(\005\"F\n\rAttributeUn" +
-      "it\022\036\n\026attribute_key_strindex\030\001 \001(\005\022\025\n\run" +
-      "it_strindex\030\002 \001(\005\")\n\004Link\022\020\n\010trace_id\030\001 " +
-      "\001(\014\022\017\n\007span_id\030\002 \001(\014\"\236\001\n\tValueType\022\025\n\rty" +
-      "pe_strindex\030\001 \001(\005\022\025\n\runit_strindex\030\002 \001(\005" +
-      "\022c\n\027aggregation_temporality\030\003 \001(\0162B.open" +
+      "ent.Location\022L\n\016function_table\030\003 \003(\01324.o" +
+      "pentelemetry.proto.profiles.v1developmen" +
+      "t.Function\022D\n\nlink_table\030\004 \003(\01320.opentel" +
+      "emetry.proto.profiles.v1development.Link" +
+      "\022\024\n\014string_table\030\005 \003(\t\022@\n\017attribute_tabl" +
+      "e\030\006 \003(\0132\'.opentelemetry.proto.common.v1." +
+      "KeyValue\022R\n\017attribute_units\030\007 \003(\01329.open" +
       "telemetry.proto.profiles.v1development.A" +
-      "ggregationTemporality\"\261\001\n\006Sample\022\035\n\025loca" +
-      "tions_start_index\030\001 \001(\005\022\030\n\020locations_len" +
-      "gth\030\002 \001(\005\022\r\n\005value\030\003 \003(\003\022\031\n\021attribute_in" +
-      "dices\030\004 \003(\005\022\027\n\nlink_index\030\005 \001(\005H\000\210\001\001\022\034\n\024" +
-      "timestamps_unix_nano\030\006 \003(\004B\r\n\013_link_inde" +
-      "x\"\343\001\n\007Mapping\022\024\n\014memory_start\030\001 \001(\004\022\024\n\014m" +
-      "emory_limit\030\002 \001(\004\022\023\n\013file_offset\030\003 \001(\004\022\031" +
-      "\n\021filename_strindex\030\004 \001(\005\022\031\n\021attribute_i" +
-      "ndices\030\005 \003(\005\022\025\n\rhas_functions\030\006 \001(\010\022\025\n\rh" +
-      "as_filenames\030\007 \001(\010\022\030\n\020has_line_numbers\030\010" +
-      " \001(\010\022\031\n\021has_inline_frames\030\t \001(\010\"\267\001\n\010Loca" +
-      "tion\022\032\n\rmapping_index\030\001 \001(\005H\000\210\001\001\022\017\n\007addr" +
-      "ess\030\002 \001(\004\022>\n\004line\030\003 \003(\01320.opentelemetry." +
-      "proto.profiles.v1development.Line\022\021\n\tis_" +
-      "folded\030\004 \001(\010\022\031\n\021attribute_indices\030\005 \003(\005B" +
-      "\020\n\016_mapping_index\"<\n\004Line\022\026\n\016function_in" +
-      "dex\030\001 \001(\005\022\014\n\004line\030\002 \001(\003\022\016\n\006column\030\003 \001(\003\"" +
-      "n\n\010Function\022\025\n\rname_strindex\030\001 \001(\005\022\034\n\024sy" +
-      "stem_name_strindex\030\002 \001(\005\022\031\n\021filename_str" +
-      "index\030\003 \001(\005\022\022\n\nstart_line\030\004 \001(\003*\214\001\n\026Aggr" +
-      "egationTemporality\022\'\n#AGGREGATION_TEMPOR" +
-      "ALITY_UNSPECIFIED\020\000\022!\n\035AGGREGATION_TEMPO" +
-      "RALITY_DELTA\020\001\022&\n\"AGGREGATION_TEMPORALIT" +
-      "Y_CUMULATIVE\020\002B\244\001\n-io.opentelemetry.prot" +
-      "o.profiles.v1developmentB\rProfilesProtoP" +
-      "\001Z5go.opentelemetry.io/proto/otlp/profil" +
-      "es/v1development\252\002*OpenTelemetry.Proto.P" +
-      "rofiles.V1Developmentb\006proto3"
+      "ttributeUnit\"\273\001\n\014ProfilesData\022W\n\021resourc" +
+      "e_profiles\030\001 \003(\0132<.opentelemetry.proto.p" +
+      "rofiles.v1development.ResourceProfiles\022R" +
+      "\n\ndictionary\030\002 \001(\0132>.opentelemetry.proto" +
+      ".profiles.v1development.ProfilesDictiona" +
+      "ry\"\276\001\n\020ResourceProfiles\022;\n\010resource\030\001 \001(" +
+      "\0132).opentelemetry.proto.resource.v1.Reso" +
+      "urce\022Q\n\016scope_profiles\030\002 \003(\01329.opentelem" +
+      "etry.proto.profiles.v1development.ScopeP" +
+      "rofiles\022\022\n\nschema_url\030\003 \001(\tJ\006\010\350\007\020\351\007\"\202\002\n\r" +
+      "ScopeProfiles\022B\n\005scope\030\001 \001(\01323.opentelem" +
+      "etry.proto.common.v1.InstrumentationScop" +
+      "e\022E\n\010profiles\030\002 \003(\01323.opentelemetry.prot" +
+      "o.profiles.v1development.Profile\022\022\n\nsche" +
+      "ma_url\030\003 \001(\t\022R\n\023default_sample_type\030\004 \001(" +
+      "\01325.opentelemetry.proto.profiles.v1devel" +
+      "opment.ValueType\"\343\003\n\007Profile\022J\n\013sample_t" +
+      "ype\030\001 \001(\01325.opentelemetry.proto.profiles" +
+      ".v1development.ValueType\022B\n\006sample\030\002 \003(\013" +
+      "22.opentelemetry.proto.profiles.v1develo" +
+      "pment.Sample\022\030\n\020location_indices\030\003 \003(\005\022\022" +
+      "\n\ntime_nanos\030\004 \001(\003\022\026\n\016duration_nanos\030\005 \001" +
+      "(\003\022J\n\013period_type\030\006 \001(\01325.opentelemetry." +
+      "proto.profiles.v1development.ValueType\022\016" +
+      "\n\006period\030\007 \001(\003\022\032\n\022comment_strindices\030\010 \003" +
+      "(\005\022\022\n\nprofile_id\030\t \001(\014\022 \n\030dropped_attrib" +
+      "utes_count\030\n \001(\r\022\037\n\027original_payload_for" +
+      "mat\030\013 \001(\t\022\030\n\020original_payload\030\014 \001(\014\022\031\n\021a" +
+      "ttribute_indices\030\r \003(\005\"F\n\rAttributeUnit\022" +
+      "\036\n\026attribute_key_strindex\030\001 \001(\005\022\025\n\runit_" +
+      "strindex\030\002 \001(\005\")\n\004Link\022\020\n\010trace_id\030\001 \001(\014" +
+      "\022\017\n\007span_id\030\002 \001(\014\"\236\001\n\tValueType\022\025\n\rtype_" +
+      "strindex\030\001 \001(\005\022\025\n\runit_strindex\030\002 \001(\005\022c\n" +
+      "\027aggregation_temporality\030\003 \001(\0162B.opentel" +
+      "emetry.proto.profiles.v1development.Aggr" +
+      "egationTemporality\"\236\001\n\006Sample\022\035\n\025locatio" +
+      "ns_start_index\030\001 \001(\005\022\030\n\020locations_length" +
+      "\030\002 \001(\005\022\016\n\006values\030\003 \003(\003\022\031\n\021attribute_indi" +
+      "ces\030\004 \003(\005\022\022\n\nlink_index\030\005 \001(\005\022\034\n\024timesta" +
+      "mps_unix_nano\030\006 \003(\004\"\343\001\n\007Mapping\022\024\n\014memor" +
+      "y_start\030\001 \001(\004\022\024\n\014memory_limit\030\002 \001(\004\022\023\n\013f" +
+      "ile_offset\030\003 \001(\004\022\031\n\021filename_strindex\030\004 " +
+      "\001(\005\022\031\n\021attribute_indices\030\005 \003(\005\022\025\n\rhas_fu" +
+      "nctions\030\006 \001(\010\022\025\n\rhas_filenames\030\007 \001(\010\022\030\n\020" +
+      "has_line_numbers\030\010 \001(\010\022\031\n\021has_inline_fra" +
+      "mes\030\t \001(\010\"\240\001\n\010Location\022\025\n\rmapping_index\030" +
+      "\001 \001(\005\022\017\n\007address\030\002 \001(\004\022>\n\004line\030\003 \003(\01320.o" +
+      "pentelemetry.proto.profiles.v1developmen" +
+      "t.Line\022\021\n\tis_folded\030\004 \001(\010\022\031\n\021attribute_i" +
+      "ndices\030\005 \003(\005\"<\n\004Line\022\026\n\016function_index\030\001" +
+      " \001(\005\022\014\n\004line\030\002 \001(\003\022\016\n\006column\030\003 \001(\003\"n\n\010Fu" +
+      "nction\022\025\n\rname_strindex\030\001 \001(\005\022\034\n\024system_" +
+      "name_strindex\030\002 \001(\005\022\031\n\021filename_strindex" +
+      "\030\003 \001(\005\022\022\n\nstart_line\030\004 \001(\003*\214\001\n\026Aggregati" +
+      "onTemporality\022\'\n#AGGREGATION_TEMPORALITY" +
+      "_UNSPECIFIED\020\000\022!\n\035AGGREGATION_TEMPORALIT" +
+      "Y_DELTA\020\001\022&\n\"AGGREGATION_TEMPORALITY_CUM" +
+      "ULATIVE\020\002B\244\001\n-io.opentelemetry.proto.pro" +
+      "files.v1developmentB\rProfilesProtoP\001Z5go" +
+      ".opentelemetry.io/proto/otlp/profiles/v1" +
+      "development\252\002*OpenTelemetry.Proto.Profil" +
+      "es.V1Developmentb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -166,74 +174,80 @@ public final class ProfilesProto {
           io.opentelemetry.proto.common.v1.CommonProto.getDescriptor(),
           io.opentelemetry.proto.resource.v1.ResourceProto.getDescriptor(),
         });
-    internal_static_opentelemetry_proto_profiles_v1development_ProfilesData_descriptor =
+    internal_static_opentelemetry_proto_profiles_v1development_ProfilesDictionary_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_opentelemetry_proto_profiles_v1development_ProfilesDictionary_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_opentelemetry_proto_profiles_v1development_ProfilesDictionary_descriptor,
+        new java.lang.String[] { "MappingTable", "LocationTable", "FunctionTable", "LinkTable", "StringTable", "AttributeTable", "AttributeUnits", });
+    internal_static_opentelemetry_proto_profiles_v1development_ProfilesData_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_opentelemetry_proto_profiles_v1development_ProfilesData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_ProfilesData_descriptor,
-        new java.lang.String[] { "ResourceProfiles", });
+        new java.lang.String[] { "ResourceProfiles", "Dictionary", });
     internal_static_opentelemetry_proto_profiles_v1development_ResourceProfiles_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_opentelemetry_proto_profiles_v1development_ResourceProfiles_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_ResourceProfiles_descriptor,
         new java.lang.String[] { "Resource", "ScopeProfiles", "SchemaUrl", });
     internal_static_opentelemetry_proto_profiles_v1development_ScopeProfiles_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_opentelemetry_proto_profiles_v1development_ScopeProfiles_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_ScopeProfiles_descriptor,
-        new java.lang.String[] { "Scope", "Profiles", "SchemaUrl", });
+        new java.lang.String[] { "Scope", "Profiles", "SchemaUrl", "DefaultSampleType", });
     internal_static_opentelemetry_proto_profiles_v1development_Profile_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_opentelemetry_proto_profiles_v1development_Profile_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_Profile_descriptor,
-        new java.lang.String[] { "SampleType", "Sample", "MappingTable", "LocationTable", "LocationIndices", "FunctionTable", "AttributeTable", "AttributeUnits", "LinkTable", "StringTable", "TimeNanos", "DurationNanos", "PeriodType", "Period", "CommentStrindices", "DefaultSampleTypeIndex", "ProfileId", "DroppedAttributesCount", "OriginalPayloadFormat", "OriginalPayload", "AttributeIndices", });
+        new java.lang.String[] { "SampleType", "Sample", "LocationIndices", "TimeNanos", "DurationNanos", "PeriodType", "Period", "CommentStrindices", "ProfileId", "DroppedAttributesCount", "OriginalPayloadFormat", "OriginalPayload", "AttributeIndices", });
     internal_static_opentelemetry_proto_profiles_v1development_AttributeUnit_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_opentelemetry_proto_profiles_v1development_AttributeUnit_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_AttributeUnit_descriptor,
         new java.lang.String[] { "AttributeKeyStrindex", "UnitStrindex", });
     internal_static_opentelemetry_proto_profiles_v1development_Link_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_opentelemetry_proto_profiles_v1development_Link_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_Link_descriptor,
         new java.lang.String[] { "TraceId", "SpanId", });
     internal_static_opentelemetry_proto_profiles_v1development_ValueType_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_opentelemetry_proto_profiles_v1development_ValueType_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_ValueType_descriptor,
         new java.lang.String[] { "TypeStrindex", "UnitStrindex", "AggregationTemporality", });
     internal_static_opentelemetry_proto_profiles_v1development_Sample_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_opentelemetry_proto_profiles_v1development_Sample_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_Sample_descriptor,
-        new java.lang.String[] { "LocationsStartIndex", "LocationsLength", "Value", "AttributeIndices", "LinkIndex", "TimestampsUnixNano", "LinkIndex", });
+        new java.lang.String[] { "LocationsStartIndex", "LocationsLength", "Values", "AttributeIndices", "LinkIndex", "TimestampsUnixNano", });
     internal_static_opentelemetry_proto_profiles_v1development_Mapping_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_opentelemetry_proto_profiles_v1development_Mapping_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_Mapping_descriptor,
         new java.lang.String[] { "MemoryStart", "MemoryLimit", "FileOffset", "FilenameStrindex", "AttributeIndices", "HasFunctions", "HasFilenames", "HasLineNumbers", "HasInlineFrames", });
     internal_static_opentelemetry_proto_profiles_v1development_Location_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_opentelemetry_proto_profiles_v1development_Location_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_Location_descriptor,
-        new java.lang.String[] { "MappingIndex", "Address", "Line", "IsFolded", "AttributeIndices", "MappingIndex", });
+        new java.lang.String[] { "MappingIndex", "Address", "Line", "IsFolded", "AttributeIndices", });
     internal_static_opentelemetry_proto_profiles_v1development_Line_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_opentelemetry_proto_profiles_v1development_Line_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_Line_descriptor,
         new java.lang.String[] { "FunctionIndex", "Line", "Column", });
     internal_static_opentelemetry_proto_profiles_v1development_Function_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_opentelemetry_proto_profiles_v1development_Function_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_profiles_v1development_Function_descriptor,

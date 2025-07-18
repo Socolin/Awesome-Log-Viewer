@@ -111,4 +111,34 @@ public interface ScopeProfilesOrBuilder extends
    */
   com.google.protobuf.ByteString
       getSchemaUrlBytes();
+
+  /**
+   * <pre>
+   * The preferred type and unit of Samples in at least one Profile.
+   * See Profile.sample_type for possible values.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+   * @return Whether the defaultSampleType field is set.
+   */
+  boolean hasDefaultSampleType();
+  /**
+   * <pre>
+   * The preferred type and unit of Samples in at least one Profile.
+   * See Profile.sample_type for possible values.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+   * @return The defaultSampleType.
+   */
+  io.opentelemetry.proto.profiles.v1development.ValueType getDefaultSampleType();
+  /**
+   * <pre>
+   * The preferred type and unit of Samples in at least one Profile.
+   * See Profile.sample_type for possible values.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+   */
+  io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder getDefaultSampleTypeOrBuilder();
 }

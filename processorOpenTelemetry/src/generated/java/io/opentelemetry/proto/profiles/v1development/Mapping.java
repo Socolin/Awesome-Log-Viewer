@@ -217,7 +217,7 @@ private static final long serialVersionUID = 0L;
   private com.google.protobuf.Internal.IntList attributeIndices_;
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -230,7 +230,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -241,7 +241,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 5;</code>
@@ -968,7 +968,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -981,7 +981,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -992,7 +992,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1004,7 +1004,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1021,7 +1021,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1036,7 +1036,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>
@@ -1053,7 +1053,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 5;</code>

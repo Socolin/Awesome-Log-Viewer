@@ -9,82 +9,42 @@ public interface ProfileOrBuilder extends
 
   /**
    * <pre>
-   * A description of the samples associated with each Sample.value.
-   * For a cpu profile this might be:
-   *   [["cpu","nanoseconds"]] or [["wall","seconds"]] or [["syscall","count"]]
+   * The type and unit of all Sample.values in this profile.
+   * For a cpu or off-cpu profile this might be:
+   *   ["cpu","nanoseconds"] or ["off_cpu","nanoseconds"]
    * For a heap profile, this might be:
-   *   [["allocations","count"], ["space","bytes"]],
-   * If one of the values represents the number of events represented
-   * by the sample, by convention it should be at index 0 and use
-   * sample_type.unit == "count".
+   *   ["allocated_objects","count"] or ["allocated_space","bytes"],
    * </pre>
    *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.ValueType sample_type = 1;</code>
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType sample_type = 1;</code>
+   * @return Whether the sampleType field is set.
    */
-  java.util.List<io.opentelemetry.proto.profiles.v1development.ValueType> 
-      getSampleTypeList();
+  boolean hasSampleType();
   /**
    * <pre>
-   * A description of the samples associated with each Sample.value.
-   * For a cpu profile this might be:
-   *   [["cpu","nanoseconds"]] or [["wall","seconds"]] or [["syscall","count"]]
+   * The type and unit of all Sample.values in this profile.
+   * For a cpu or off-cpu profile this might be:
+   *   ["cpu","nanoseconds"] or ["off_cpu","nanoseconds"]
    * For a heap profile, this might be:
-   *   [["allocations","count"], ["space","bytes"]],
-   * If one of the values represents the number of events represented
-   * by the sample, by convention it should be at index 0 and use
-   * sample_type.unit == "count".
+   *   ["allocated_objects","count"] or ["allocated_space","bytes"],
    * </pre>
    *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.ValueType sample_type = 1;</code>
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType sample_type = 1;</code>
+   * @return The sampleType.
    */
-  io.opentelemetry.proto.profiles.v1development.ValueType getSampleType(int index);
+  io.opentelemetry.proto.profiles.v1development.ValueType getSampleType();
   /**
    * <pre>
-   * A description of the samples associated with each Sample.value.
-   * For a cpu profile this might be:
-   *   [["cpu","nanoseconds"]] or [["wall","seconds"]] or [["syscall","count"]]
+   * The type and unit of all Sample.values in this profile.
+   * For a cpu or off-cpu profile this might be:
+   *   ["cpu","nanoseconds"] or ["off_cpu","nanoseconds"]
    * For a heap profile, this might be:
-   *   [["allocations","count"], ["space","bytes"]],
-   * If one of the values represents the number of events represented
-   * by the sample, by convention it should be at index 0 and use
-   * sample_type.unit == "count".
+   *   ["allocated_objects","count"] or ["allocated_space","bytes"],
    * </pre>
    *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.ValueType sample_type = 1;</code>
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType sample_type = 1;</code>
    */
-  int getSampleTypeCount();
-  /**
-   * <pre>
-   * A description of the samples associated with each Sample.value.
-   * For a cpu profile this might be:
-   *   [["cpu","nanoseconds"]] or [["wall","seconds"]] or [["syscall","count"]]
-   * For a heap profile, this might be:
-   *   [["allocations","count"], ["space","bytes"]],
-   * If one of the values represents the number of events represented
-   * by the sample, by convention it should be at index 0 and use
-   * sample_type.unit == "count".
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.ValueType sample_type = 1;</code>
-   */
-  java.util.List<? extends io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder> 
-      getSampleTypeOrBuilderList();
-  /**
-   * <pre>
-   * A description of the samples associated with each Sample.value.
-   * For a cpu profile this might be:
-   *   [["cpu","nanoseconds"]] or [["wall","seconds"]] or [["syscall","count"]]
-   * For a heap profile, this might be:
-   *   [["allocations","count"], ["space","bytes"]],
-   * If one of the values represents the number of events represented
-   * by the sample, by convention it should be at index 0 and use
-   * sample_type.unit == "count".
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.ValueType sample_type = 1;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder getSampleTypeOrBuilder(
-      int index);
+  io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder getSampleTypeOrBuilder();
 
   /**
    * <pre>
@@ -132,131 +92,28 @@ public interface ProfileOrBuilder extends
 
   /**
    * <pre>
-   * Mapping from address ranges to the image/binary/library mapped
-   * into that address range.  mapping[0] will be the main binary.
-   * If multiple binaries contribute to the Profile and no main
-   * binary can be identified, mapping[0] has no special meaning.
+   * References to locations in ProfilesDictionary.location_table.
    * </pre>
    *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 3;</code>
-   */
-  java.util.List<io.opentelemetry.proto.profiles.v1development.Mapping> 
-      getMappingTableList();
-  /**
-   * <pre>
-   * Mapping from address ranges to the image/binary/library mapped
-   * into that address range.  mapping[0] will be the main binary.
-   * If multiple binaries contribute to the Profile and no main
-   * binary can be identified, mapping[0] has no special meaning.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 3;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.Mapping getMappingTable(int index);
-  /**
-   * <pre>
-   * Mapping from address ranges to the image/binary/library mapped
-   * into that address range.  mapping[0] will be the main binary.
-   * If multiple binaries contribute to the Profile and no main
-   * binary can be identified, mapping[0] has no special meaning.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 3;</code>
-   */
-  int getMappingTableCount();
-  /**
-   * <pre>
-   * Mapping from address ranges to the image/binary/library mapped
-   * into that address range.  mapping[0] will be the main binary.
-   * If multiple binaries contribute to the Profile and no main
-   * binary can be identified, mapping[0] has no special meaning.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 3;</code>
-   */
-  java.util.List<? extends io.opentelemetry.proto.profiles.v1development.MappingOrBuilder> 
-      getMappingTableOrBuilderList();
-  /**
-   * <pre>
-   * Mapping from address ranges to the image/binary/library mapped
-   * into that address range.  mapping[0] will be the main binary.
-   * If multiple binaries contribute to the Profile and no main
-   * binary can be identified, mapping[0] has no special meaning.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 3;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.MappingOrBuilder getMappingTableOrBuilder(
-      int index);
-
-  /**
-   * <pre>
-   * Locations referenced by samples via location_indices.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Location location_table = 4;</code>
-   */
-  java.util.List<io.opentelemetry.proto.profiles.v1development.Location> 
-      getLocationTableList();
-  /**
-   * <pre>
-   * Locations referenced by samples via location_indices.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Location location_table = 4;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.Location getLocationTable(int index);
-  /**
-   * <pre>
-   * Locations referenced by samples via location_indices.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Location location_table = 4;</code>
-   */
-  int getLocationTableCount();
-  /**
-   * <pre>
-   * Locations referenced by samples via location_indices.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Location location_table = 4;</code>
-   */
-  java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LocationOrBuilder> 
-      getLocationTableOrBuilderList();
-  /**
-   * <pre>
-   * Locations referenced by samples via location_indices.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Location location_table = 4;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.LocationOrBuilder getLocationTableOrBuilder(
-      int index);
-
-  /**
-   * <pre>
-   * Array of locations referenced by samples.
-   * </pre>
-   *
-   * <code>repeated int32 location_indices = 5;</code>
+   * <code>repeated int32 location_indices = 3;</code>
    * @return A list containing the locationIndices.
    */
   java.util.List<java.lang.Integer> getLocationIndicesList();
   /**
    * <pre>
-   * Array of locations referenced by samples.
+   * References to locations in ProfilesDictionary.location_table.
    * </pre>
    *
-   * <code>repeated int32 location_indices = 5;</code>
+   * <code>repeated int32 location_indices = 3;</code>
    * @return The count of locationIndices.
    */
   int getLocationIndicesCount();
   /**
    * <pre>
-   * Array of locations referenced by samples.
+   * References to locations in ProfilesDictionary.location_table.
    * </pre>
    *
-   * <code>repeated int32 location_indices = 5;</code>
+   * <code>repeated int32 location_indices = 3;</code>
    * @param index The index of the element to return.
    * @return The locationIndices at the given index.
    */
@@ -264,231 +121,10 @@ public interface ProfileOrBuilder extends
 
   /**
    * <pre>
-   * Functions referenced by locations.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Function function_table = 6;</code>
-   */
-  java.util.List<io.opentelemetry.proto.profiles.v1development.Function> 
-      getFunctionTableList();
-  /**
-   * <pre>
-   * Functions referenced by locations.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Function function_table = 6;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.Function getFunctionTable(int index);
-  /**
-   * <pre>
-   * Functions referenced by locations.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Function function_table = 6;</code>
-   */
-  int getFunctionTableCount();
-  /**
-   * <pre>
-   * Functions referenced by locations.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Function function_table = 6;</code>
-   */
-  java.util.List<? extends io.opentelemetry.proto.profiles.v1development.FunctionOrBuilder> 
-      getFunctionTableOrBuilderList();
-  /**
-   * <pre>
-   * Functions referenced by locations.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Function function_table = 6;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.FunctionOrBuilder getFunctionTableOrBuilder(
-      int index);
-
-  /**
-   * <pre>
-   * Lookup table for attributes.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.common.v1.KeyValue attribute_table = 7;</code>
-   */
-  java.util.List<io.opentelemetry.proto.common.v1.KeyValue> 
-      getAttributeTableList();
-  /**
-   * <pre>
-   * Lookup table for attributes.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.common.v1.KeyValue attribute_table = 7;</code>
-   */
-  io.opentelemetry.proto.common.v1.KeyValue getAttributeTable(int index);
-  /**
-   * <pre>
-   * Lookup table for attributes.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.common.v1.KeyValue attribute_table = 7;</code>
-   */
-  int getAttributeTableCount();
-  /**
-   * <pre>
-   * Lookup table for attributes.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.common.v1.KeyValue attribute_table = 7;</code>
-   */
-  java.util.List<? extends io.opentelemetry.proto.common.v1.KeyValueOrBuilder> 
-      getAttributeTableOrBuilderList();
-  /**
-   * <pre>
-   * Lookup table for attributes.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.common.v1.KeyValue attribute_table = 7;</code>
-   */
-  io.opentelemetry.proto.common.v1.KeyValueOrBuilder getAttributeTableOrBuilder(
-      int index);
-
-  /**
-   * <pre>
-   * Represents a mapping between Attribute Keys and Units.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.AttributeUnit attribute_units = 8;</code>
-   */
-  java.util.List<io.opentelemetry.proto.profiles.v1development.AttributeUnit> 
-      getAttributeUnitsList();
-  /**
-   * <pre>
-   * Represents a mapping between Attribute Keys and Units.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.AttributeUnit attribute_units = 8;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.AttributeUnit getAttributeUnits(int index);
-  /**
-   * <pre>
-   * Represents a mapping between Attribute Keys and Units.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.AttributeUnit attribute_units = 8;</code>
-   */
-  int getAttributeUnitsCount();
-  /**
-   * <pre>
-   * Represents a mapping between Attribute Keys and Units.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.AttributeUnit attribute_units = 8;</code>
-   */
-  java.util.List<? extends io.opentelemetry.proto.profiles.v1development.AttributeUnitOrBuilder> 
-      getAttributeUnitsOrBuilderList();
-  /**
-   * <pre>
-   * Represents a mapping between Attribute Keys and Units.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.AttributeUnit attribute_units = 8;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.AttributeUnitOrBuilder getAttributeUnitsOrBuilder(
-      int index);
-
-  /**
-   * <pre>
-   * Lookup table for links.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Link link_table = 9;</code>
-   */
-  java.util.List<io.opentelemetry.proto.profiles.v1development.Link> 
-      getLinkTableList();
-  /**
-   * <pre>
-   * Lookup table for links.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Link link_table = 9;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.Link getLinkTable(int index);
-  /**
-   * <pre>
-   * Lookup table for links.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Link link_table = 9;</code>
-   */
-  int getLinkTableCount();
-  /**
-   * <pre>
-   * Lookup table for links.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Link link_table = 9;</code>
-   */
-  java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LinkOrBuilder> 
-      getLinkTableOrBuilderList();
-  /**
-   * <pre>
-   * Lookup table for links.
-   * </pre>
-   *
-   * <code>repeated .opentelemetry.proto.profiles.v1development.Link link_table = 9;</code>
-   */
-  io.opentelemetry.proto.profiles.v1development.LinkOrBuilder getLinkTableOrBuilder(
-      int index);
-
-  /**
-   * <pre>
-   * A common table for strings referenced by various messages.
-   * string_table[0] must always be "".
-   * </pre>
-   *
-   * <code>repeated string string_table = 10;</code>
-   * @return A list containing the stringTable.
-   */
-  java.util.List<java.lang.String>
-      getStringTableList();
-  /**
-   * <pre>
-   * A common table for strings referenced by various messages.
-   * string_table[0] must always be "".
-   * </pre>
-   *
-   * <code>repeated string string_table = 10;</code>
-   * @return The count of stringTable.
-   */
-  int getStringTableCount();
-  /**
-   * <pre>
-   * A common table for strings referenced by various messages.
-   * string_table[0] must always be "".
-   * </pre>
-   *
-   * <code>repeated string string_table = 10;</code>
-   * @param index The index of the element to return.
-   * @return The stringTable at the given index.
-   */
-  java.lang.String getStringTable(int index);
-  /**
-   * <pre>
-   * A common table for strings referenced by various messages.
-   * string_table[0] must always be "".
-   * </pre>
-   *
-   * <code>repeated string string_table = 10;</code>
-   * @param index The index of the value to return.
-   * @return The bytes of the stringTable at the given index.
-   */
-  com.google.protobuf.ByteString
-      getStringTableBytes(int index);
-
-  /**
-   * <pre>
    * Time of collection (UTC) represented as nanoseconds past the epoch.
    * </pre>
    *
-   * <code>int64 time_nanos = 11;</code>
+   * <code>int64 time_nanos = 4;</code>
    * @return The timeNanos.
    */
   long getTimeNanos();
@@ -498,7 +134,7 @@ public interface ProfileOrBuilder extends
    * Duration of the profile, if a duration makes sense.
    * </pre>
    *
-   * <code>int64 duration_nanos = 12;</code>
+   * <code>int64 duration_nanos = 5;</code>
    * @return The durationNanos.
    */
   long getDurationNanos();
@@ -509,7 +145,7 @@ public interface ProfileOrBuilder extends
    * e.g [ "cpu","cycles" ] or [ "heap","bytes" ]
    * </pre>
    *
-   * <code>.opentelemetry.proto.profiles.v1development.ValueType period_type = 13;</code>
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType period_type = 6;</code>
    * @return Whether the periodType field is set.
    */
   boolean hasPeriodType();
@@ -519,7 +155,7 @@ public interface ProfileOrBuilder extends
    * e.g [ "cpu","cycles" ] or [ "heap","bytes" ]
    * </pre>
    *
-   * <code>.opentelemetry.proto.profiles.v1development.ValueType period_type = 13;</code>
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType period_type = 6;</code>
    * @return The periodType.
    */
   io.opentelemetry.proto.profiles.v1development.ValueType getPeriodType();
@@ -529,7 +165,7 @@ public interface ProfileOrBuilder extends
    * e.g [ "cpu","cycles" ] or [ "heap","bytes" ]
    * </pre>
    *
-   * <code>.opentelemetry.proto.profiles.v1development.ValueType period_type = 13;</code>
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType period_type = 6;</code>
    */
   io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder getPeriodTypeOrBuilder();
 
@@ -538,7 +174,7 @@ public interface ProfileOrBuilder extends
    * The number of events between sampled occurrences.
    * </pre>
    *
-   * <code>int64 period = 14;</code>
+   * <code>int64 period = 7;</code>
    * @return The period.
    */
   long getPeriod();
@@ -552,7 +188,7 @@ public interface ProfileOrBuilder extends
    * is cleaned.
    * </pre>
    *
-   * <code>repeated int32 comment_strindices = 15;</code>
+   * <code>repeated int32 comment_strindices = 8;</code>
    * @return A list containing the commentStrindices.
    */
   java.util.List<java.lang.Integer> getCommentStrindicesList();
@@ -565,7 +201,7 @@ public interface ProfileOrBuilder extends
    * is cleaned.
    * </pre>
    *
-   * <code>repeated int32 comment_strindices = 15;</code>
+   * <code>repeated int32 comment_strindices = 8;</code>
    * @return The count of commentStrindices.
    */
   int getCommentStrindicesCount();
@@ -578,7 +214,7 @@ public interface ProfileOrBuilder extends
    * is cleaned.
    * </pre>
    *
-   * <code>repeated int32 comment_strindices = 15;</code>
+   * <code>repeated int32 comment_strindices = 8;</code>
    * @param index The index of the element to return.
    * @return The commentStrindices at the given index.
    */
@@ -586,22 +222,15 @@ public interface ProfileOrBuilder extends
 
   /**
    * <pre>
-   * Index into the sample_type array to the default sample type.
-   * </pre>
-   *
-   * <code>int32 default_sample_type_index = 16;</code>
-   * @return The defaultSampleTypeIndex.
-   */
-  int getDefaultSampleTypeIndex();
-
-  /**
-   * <pre>
    * A globally unique identifier for a profile. The ID is a 16-byte array. An ID with
-   * all zeroes is considered invalid.
-   * This field is required.
+   * all zeroes is considered invalid. It may be used for deduplication and signal
+   * correlation purposes. It is acceptable to treat two profiles with different values
+   * in this field as not equal, even if they represented the same object at an earlier
+   * time.
+   * This field is optional; an ID may be assigned to an ID-less profile in a later step.
    * </pre>
    *
-   * <code>bytes profile_id = 17;</code>
+   * <code>bytes profile_id = 9;</code>
    * @return The profileId.
    */
   com.google.protobuf.ByteString getProfileId();
@@ -613,7 +242,7 @@ public interface ProfileOrBuilder extends
    * attributes. If this value is 0, then no attributes were dropped.
    * </pre>
    *
-   * <code>uint32 dropped_attributes_count = 19;</code>
+   * <code>uint32 dropped_attributes_count = 10;</code>
    * @return The droppedAttributesCount.
    */
   int getDroppedAttributesCount();
@@ -623,7 +252,7 @@ public interface ProfileOrBuilder extends
    * Specifies format of the original payload. Common values are defined in semantic conventions. [required if original_payload is present]
    * </pre>
    *
-   * <code>string original_payload_format = 20;</code>
+   * <code>string original_payload_format = 11;</code>
    * @return The originalPayloadFormat.
    */
   java.lang.String getOriginalPayloadFormat();
@@ -632,7 +261,7 @@ public interface ProfileOrBuilder extends
    * Specifies format of the original payload. Common values are defined in semantic conventions. [required if original_payload is present]
    * </pre>
    *
-   * <code>string original_payload_format = 20;</code>
+   * <code>string original_payload_format = 11;</code>
    * @return The bytes for originalPayloadFormat.
    */
   com.google.protobuf.ByteString
@@ -648,7 +277,7 @@ public interface ProfileOrBuilder extends
    * of this message as far as is practicable.
    * </pre>
    *
-   * <code>bytes original_payload = 21;</code>
+   * <code>bytes original_payload = 12;</code>
    * @return The originalPayload.
    */
   com.google.protobuf.ByteString getOriginalPayload();
@@ -668,7 +297,7 @@ public interface ProfileOrBuilder extends
    * attribute with the same key).
    * </pre>
    *
-   * <code>repeated int32 attribute_indices = 22;</code>
+   * <code>repeated int32 attribute_indices = 13;</code>
    * @return A list containing the attributeIndices.
    */
   java.util.List<java.lang.Integer> getAttributeIndicesList();
@@ -687,7 +316,7 @@ public interface ProfileOrBuilder extends
    * attribute with the same key).
    * </pre>
    *
-   * <code>repeated int32 attribute_indices = 22;</code>
+   * <code>repeated int32 attribute_indices = 13;</code>
    * @return The count of attributeIndices.
    */
   int getAttributeIndicesCount();
@@ -706,7 +335,7 @@ public interface ProfileOrBuilder extends
    * attribute with the same key).
    * </pre>
    *
-   * <code>repeated int32 attribute_indices = 22;</code>
+   * <code>repeated int32 attribute_indices = 13;</code>
    * @param index The index of the element to return.
    * @return The attributeIndices at the given index.
    */

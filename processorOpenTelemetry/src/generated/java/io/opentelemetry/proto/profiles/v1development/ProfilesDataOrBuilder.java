@@ -10,10 +10,12 @@ public interface ProfilesDataOrBuilder extends
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -23,10 +25,12 @@ public interface ProfilesDataOrBuilder extends
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -35,10 +39,12 @@ public interface ProfilesDataOrBuilder extends
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -47,10 +53,12 @@ public interface ProfilesDataOrBuilder extends
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
@@ -60,14 +68,43 @@ public interface ProfilesDataOrBuilder extends
   /**
    * <pre>
    * An array of ResourceProfiles.
-   * For data coming from a single resource this array will typically contain
-   * one element. Intermediary nodes that receive data from multiple origins
-   * typically batch the data before forwarding further and in that case this
-   * array will contain multiple elements.
+   * For data coming from an SDK profiler, this array will typically contain one
+   * element. Host-level profilers will usually create one ResourceProfile per
+   * container, as well as one additional ResourceProfile grouping all samples
+   * from non-containerized processes.
+   * Other resource groupings are possible as well and clarified via
+   * Resource.attributes and semantic conventions.
    * </pre>
    *
    * <code>repeated .opentelemetry.proto.profiles.v1development.ResourceProfiles resource_profiles = 1;</code>
    */
   io.opentelemetry.proto.profiles.v1development.ResourceProfilesOrBuilder getResourceProfilesOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * One instance of ProfilesDictionary
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   * @return Whether the dictionary field is set.
+   */
+  boolean hasDictionary();
+  /**
+   * <pre>
+   * One instance of ProfilesDictionary
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   * @return The dictionary.
+   */
+  io.opentelemetry.proto.profiles.v1development.ProfilesDictionary getDictionary();
+  /**
+   * <pre>
+   * One instance of ProfilesDictionary
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ProfilesDictionary dictionary = 2;</code>
+   */
+  io.opentelemetry.proto.profiles.v1development.ProfilesDictionaryOrBuilder getDictionaryOrBuilder();
 }

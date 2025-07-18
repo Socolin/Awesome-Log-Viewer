@@ -5,10 +5,23 @@ package io.opentelemetry.proto.profiles.v1development;
 
 /**
  * <pre>
- * Each Sample records values encountered in some program
- * context. The program context is typically a stack trace, perhaps
- * augmented with auxiliary information like the thread-id, some
- * indicator of a higher level request being handled etc.
+ * Each Sample records values encountered in some program context. The program
+ * context is typically a stack trace, perhaps augmented with auxiliary
+ * information like the thread-id, some indicator of a higher level request
+ * being handled etc.
+ * A Sample MUST have have at least one values or timestamps_unix_nano entry. If
+ * both fields are populated, they MUST contain the same number of elements, and
+ * the elements at the same index MUST refer to the same event.
+ * Examples of different ways of representing a sample with the total value of 10:
+ * Report of a stacktrace at 10 timestamps (consumers must assume the value is 1 for each point):
+ *    values: []
+ *    timestamps_unix_nano: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ * Report of a stacktrace with an aggregated value without timestamps:
+ *   values: [10]
+ *    timestamps_unix_nano: []
+ * Report of a stacktrace at 4 timestamps where each point records a specific value:
+ *    values: [2, 2, 3, 3]
+ *    timestamps_unix_nano: [1, 2, 3, 4]
  * </pre>
  *
  * Protobuf type {@code opentelemetry.proto.profiles.v1development.Sample}
@@ -23,7 +36,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Sample() {
-    value_ = emptyLongList();
+    values_ = emptyLongList();
     attributeIndices_ = emptyIntList();
     timestampsUnixNano_ = emptyLongList();
   }
@@ -71,21 +84,21 @@ private static final long serialVersionUID = 0L;
           }
           case 24: {
             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              value_ = newLongList();
+              values_ = newLongList();
               mutable_bitField0_ |= 0x00000001;
             }
-            value_.addLong(input.readInt64());
+            values_.addLong(input.readInt64());
             break;
           }
           case 26: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
             if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-              value_ = newLongList();
+              values_ = newLongList();
               mutable_bitField0_ |= 0x00000001;
             }
             while (input.getBytesUntilLimit() > 0) {
-              value_.addLong(input.readInt64());
+              values_.addLong(input.readInt64());
             }
             input.popLimit(limit);
             break;
@@ -112,14 +125,14 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 40: {
-            bitField0_ |= 0x00000001;
+
             linkIndex_ = input.readInt32();
             break;
           }
           case 48: {
-            if (!((mutable_bitField0_ & 0x00000008) != 0)) {
+            if (!((mutable_bitField0_ & 0x00000004) != 0)) {
               timestampsUnixNano_ = newLongList();
-              mutable_bitField0_ |= 0x00000008;
+              mutable_bitField0_ |= 0x00000004;
             }
             timestampsUnixNano_.addLong(input.readUInt64());
             break;
@@ -127,9 +140,9 @@ private static final long serialVersionUID = 0L;
           case 50: {
             int length = input.readRawVarint32();
             int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000008) != 0) && input.getBytesUntilLimit() > 0) {
+            if (!((mutable_bitField0_ & 0x00000004) != 0) && input.getBytesUntilLimit() > 0) {
               timestampsUnixNano_ = newLongList();
-              mutable_bitField0_ |= 0x00000008;
+              mutable_bitField0_ |= 0x00000004;
             }
             while (input.getBytesUntilLimit() > 0) {
               timestampsUnixNano_.addLong(input.readUInt64());
@@ -153,12 +166,12 @@ private static final long serialVersionUID = 0L;
           e).setUnfinishedMessage(this);
     } finally {
       if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        value_.makeImmutable(); // C
+        values_.makeImmutable(); // C
       }
       if (((mutable_bitField0_ & 0x00000002) != 0)) {
         attributeIndices_.makeImmutable(); // C
       }
-      if (((mutable_bitField0_ & 0x00000008) != 0)) {
+      if (((mutable_bitField0_ & 0x00000004) != 0)) {
         timestampsUnixNano_.makeImmutable(); // C
       }
       this.unknownFields = unknownFields.build();
@@ -178,7 +191,6 @@ private static final long serialVersionUID = 0L;
             io.opentelemetry.proto.profiles.v1development.Sample.class, io.opentelemetry.proto.profiles.v1development.Sample.Builder.class);
   }
 
-  private int bitField0_;
   public static final int LOCATIONS_START_INDEX_FIELD_NUMBER = 1;
   private int locationsStartIndex_;
   /**
@@ -210,66 +222,51 @@ private static final long serialVersionUID = 0L;
     return locationsLength_;
   }
 
-  public static final int VALUE_FIELD_NUMBER = 3;
-  private com.google.protobuf.Internal.LongList value_;
+  public static final int VALUES_FIELD_NUMBER = 3;
+  private com.google.protobuf.Internal.LongList values_;
   /**
    * <pre>
-   * The type and unit of each value is defined by the corresponding
-   * entry in Profile.sample_type. All samples must have the same
-   * number of values, the same as the length of Profile.sample_type.
-   * When aggregating multiple samples into a single sample, the
-   * result has a list of values that is the element-wise sum of the
-   * lists of the originals.
+   * The type and unit of each value is defined by Profile.sample_type.
    * </pre>
    *
-   * <code>repeated int64 value = 3;</code>
-   * @return A list containing the value.
+   * <code>repeated int64 values = 3;</code>
+   * @return A list containing the values.
    */
   @java.lang.Override
   public java.util.List<java.lang.Long>
-      getValueList() {
-    return value_;
+      getValuesList() {
+    return values_;
   }
   /**
    * <pre>
-   * The type and unit of each value is defined by the corresponding
-   * entry in Profile.sample_type. All samples must have the same
-   * number of values, the same as the length of Profile.sample_type.
-   * When aggregating multiple samples into a single sample, the
-   * result has a list of values that is the element-wise sum of the
-   * lists of the originals.
+   * The type and unit of each value is defined by Profile.sample_type.
    * </pre>
    *
-   * <code>repeated int64 value = 3;</code>
-   * @return The count of value.
+   * <code>repeated int64 values = 3;</code>
+   * @return The count of values.
    */
-  public int getValueCount() {
-    return value_.size();
+  public int getValuesCount() {
+    return values_.size();
   }
   /**
    * <pre>
-   * The type and unit of each value is defined by the corresponding
-   * entry in Profile.sample_type. All samples must have the same
-   * number of values, the same as the length of Profile.sample_type.
-   * When aggregating multiple samples into a single sample, the
-   * result has a list of values that is the element-wise sum of the
-   * lists of the originals.
+   * The type and unit of each value is defined by Profile.sample_type.
    * </pre>
    *
-   * <code>repeated int64 value = 3;</code>
+   * <code>repeated int64 values = 3;</code>
    * @param index The index of the element to return.
-   * @return The value at the given index.
+   * @return The values at the given index.
    */
-  public long getValue(int index) {
-    return value_.getLong(index);
+  public long getValues(int index) {
+    return values_.getLong(index);
   }
-  private int valueMemoizedSerializedSize = -1;
+  private int valuesMemoizedSerializedSize = -1;
 
   public static final int ATTRIBUTE_INDICES_FIELD_NUMBER = 4;
   private com.google.protobuf.Internal.IntList attributeIndices_;
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 4;</code>
@@ -282,7 +279,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 4;</code>
@@ -293,7 +290,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * References to attributes in Profile.attribute_table. [optional]
+   * References to attributes in ProfilesDictionary.attribute_table. [optional]
    * </pre>
    *
    * <code>repeated int32 attribute_indices = 4;</code>
@@ -309,22 +306,11 @@ private static final long serialVersionUID = 0L;
   private int linkIndex_;
   /**
    * <pre>
-   * Reference to link in Profile.link_table. [optional]
+   * Reference to link in ProfilesDictionary.link_table. [optional]
+   * It can be unset / set to 0 if no link exists, as link_table[0] is always a 'null' default value.
    * </pre>
    *
-   * <code>optional int32 link_index = 5;</code>
-   * @return Whether the linkIndex field is set.
-   */
-  @java.lang.Override
-  public boolean hasLinkIndex() {
-    return ((bitField0_ & 0x00000001) != 0);
-  }
-  /**
-   * <pre>
-   * Reference to link in Profile.link_table. [optional]
-   * </pre>
-   *
-   * <code>optional int32 link_index = 5;</code>
+   * <code>int32 link_index = 5;</code>
    * @return The linkIndex.
    */
   @java.lang.Override
@@ -336,8 +322,8 @@ private static final long serialVersionUID = 0L;
   private com.google.protobuf.Internal.LongList timestampsUnixNano_;
   /**
    * <pre>
-   * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-   * to fall within the Profile's time range. [optional]
+   * Timestamps associated with Sample represented in nanoseconds. These
+   * timestamps should fall within the Profile's time range.
    * </pre>
    *
    * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -350,8 +336,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-   * to fall within the Profile's time range. [optional]
+   * Timestamps associated with Sample represented in nanoseconds. These
+   * timestamps should fall within the Profile's time range.
    * </pre>
    *
    * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -362,8 +348,8 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-   * to fall within the Profile's time range. [optional]
+   * Timestamps associated with Sample represented in nanoseconds. These
+   * timestamps should fall within the Profile's time range.
    * </pre>
    *
    * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -396,12 +382,12 @@ private static final long serialVersionUID = 0L;
     if (locationsLength_ != 0) {
       output.writeInt32(2, locationsLength_);
     }
-    if (getValueList().size() > 0) {
+    if (getValuesList().size() > 0) {
       output.writeUInt32NoTag(26);
-      output.writeUInt32NoTag(valueMemoizedSerializedSize);
+      output.writeUInt32NoTag(valuesMemoizedSerializedSize);
     }
-    for (int i = 0; i < value_.size(); i++) {
-      output.writeInt64NoTag(value_.getLong(i));
+    for (int i = 0; i < values_.size(); i++) {
+      output.writeInt64NoTag(values_.getLong(i));
     }
     if (getAttributeIndicesList().size() > 0) {
       output.writeUInt32NoTag(34);
@@ -410,7 +396,7 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < attributeIndices_.size(); i++) {
       output.writeInt32NoTag(attributeIndices_.getInt(i));
     }
-    if (((bitField0_ & 0x00000001) != 0)) {
+    if (linkIndex_ != 0) {
       output.writeInt32(5, linkIndex_);
     }
     if (getTimestampsUnixNanoList().size() > 0) {
@@ -439,17 +425,17 @@ private static final long serialVersionUID = 0L;
     }
     {
       int dataSize = 0;
-      for (int i = 0; i < value_.size(); i++) {
+      for (int i = 0; i < values_.size(); i++) {
         dataSize += com.google.protobuf.CodedOutputStream
-          .computeInt64SizeNoTag(value_.getLong(i));
+          .computeInt64SizeNoTag(values_.getLong(i));
       }
       size += dataSize;
-      if (!getValueList().isEmpty()) {
+      if (!getValuesList().isEmpty()) {
         size += 1;
         size += com.google.protobuf.CodedOutputStream
             .computeInt32SizeNoTag(dataSize);
       }
-      valueMemoizedSerializedSize = dataSize;
+      valuesMemoizedSerializedSize = dataSize;
     }
     {
       int dataSize = 0;
@@ -465,7 +451,7 @@ private static final long serialVersionUID = 0L;
       }
       attributeIndicesMemoizedSerializedSize = dataSize;
     }
-    if (((bitField0_ & 0x00000001) != 0)) {
+    if (linkIndex_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(5, linkIndex_);
     }
@@ -502,15 +488,12 @@ private static final long serialVersionUID = 0L;
         != other.getLocationsStartIndex()) return false;
     if (getLocationsLength()
         != other.getLocationsLength()) return false;
-    if (!getValueList()
-        .equals(other.getValueList())) return false;
+    if (!getValuesList()
+        .equals(other.getValuesList())) return false;
     if (!getAttributeIndicesList()
         .equals(other.getAttributeIndicesList())) return false;
-    if (hasLinkIndex() != other.hasLinkIndex()) return false;
-    if (hasLinkIndex()) {
-      if (getLinkIndex()
-          != other.getLinkIndex()) return false;
-    }
+    if (getLinkIndex()
+        != other.getLinkIndex()) return false;
     if (!getTimestampsUnixNanoList()
         .equals(other.getTimestampsUnixNanoList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
@@ -528,18 +511,16 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getLocationsStartIndex();
     hash = (37 * hash) + LOCATIONS_LENGTH_FIELD_NUMBER;
     hash = (53 * hash) + getLocationsLength();
-    if (getValueCount() > 0) {
-      hash = (37 * hash) + VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getValueList().hashCode();
+    if (getValuesCount() > 0) {
+      hash = (37 * hash) + VALUES_FIELD_NUMBER;
+      hash = (53 * hash) + getValuesList().hashCode();
     }
     if (getAttributeIndicesCount() > 0) {
       hash = (37 * hash) + ATTRIBUTE_INDICES_FIELD_NUMBER;
       hash = (53 * hash) + getAttributeIndicesList().hashCode();
     }
-    if (hasLinkIndex()) {
-      hash = (37 * hash) + LINK_INDEX_FIELD_NUMBER;
-      hash = (53 * hash) + getLinkIndex();
-    }
+    hash = (37 * hash) + LINK_INDEX_FIELD_NUMBER;
+    hash = (53 * hash) + getLinkIndex();
     if (getTimestampsUnixNanoCount() > 0) {
       hash = (37 * hash) + TIMESTAMPS_UNIX_NANO_FIELD_NUMBER;
       hash = (53 * hash) + getTimestampsUnixNanoList().hashCode();
@@ -641,10 +622,23 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Each Sample records values encountered in some program
-   * context. The program context is typically a stack trace, perhaps
-   * augmented with auxiliary information like the thread-id, some
-   * indicator of a higher level request being handled etc.
+   * Each Sample records values encountered in some program context. The program
+   * context is typically a stack trace, perhaps augmented with auxiliary
+   * information like the thread-id, some indicator of a higher level request
+   * being handled etc.
+   * A Sample MUST have have at least one values or timestamps_unix_nano entry. If
+   * both fields are populated, they MUST contain the same number of elements, and
+   * the elements at the same index MUST refer to the same event.
+   * Examples of different ways of representing a sample with the total value of 10:
+   * Report of a stacktrace at 10 timestamps (consumers must assume the value is 1 for each point):
+   *    values: []
+   *    timestamps_unix_nano: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+   * Report of a stacktrace with an aggregated value without timestamps:
+   *   values: [10]
+   *    timestamps_unix_nano: []
+   * Report of a stacktrace at 4 timestamps where each point records a specific value:
+   *    values: [2, 2, 3, 3]
+   *    timestamps_unix_nano: [1, 2, 3, 4]
    * </pre>
    *
    * Protobuf type {@code opentelemetry.proto.profiles.v1development.Sample}
@@ -688,14 +682,14 @@ private static final long serialVersionUID = 0L;
 
       locationsLength_ = 0;
 
-      value_ = emptyLongList();
+      values_ = emptyLongList();
       bitField0_ = (bitField0_ & ~0x00000001);
       attributeIndices_ = emptyIntList();
       bitField0_ = (bitField0_ & ~0x00000002);
       linkIndex_ = 0;
-      bitField0_ = (bitField0_ & ~0x00000004);
+
       timestampsUnixNano_ = emptyLongList();
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000004);
       return this;
     }
 
@@ -723,29 +717,24 @@ private static final long serialVersionUID = 0L;
     public io.opentelemetry.proto.profiles.v1development.Sample buildPartial() {
       io.opentelemetry.proto.profiles.v1development.Sample result = new io.opentelemetry.proto.profiles.v1development.Sample(this);
       int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
       result.locationsStartIndex_ = locationsStartIndex_;
       result.locationsLength_ = locationsLength_;
       if (((bitField0_ & 0x00000001) != 0)) {
-        value_.makeImmutable();
+        values_.makeImmutable();
         bitField0_ = (bitField0_ & ~0x00000001);
       }
-      result.value_ = value_;
+      result.values_ = values_;
       if (((bitField0_ & 0x00000002) != 0)) {
         attributeIndices_.makeImmutable();
         bitField0_ = (bitField0_ & ~0x00000002);
       }
       result.attributeIndices_ = attributeIndices_;
-      if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.linkIndex_ = linkIndex_;
-        to_bitField0_ |= 0x00000001;
-      }
-      if (((bitField0_ & 0x00000008) != 0)) {
+      result.linkIndex_ = linkIndex_;
+      if (((bitField0_ & 0x00000004) != 0)) {
         timestampsUnixNano_.makeImmutable();
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
       }
       result.timestampsUnixNano_ = timestampsUnixNano_;
-      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -800,13 +789,13 @@ private static final long serialVersionUID = 0L;
       if (other.getLocationsLength() != 0) {
         setLocationsLength(other.getLocationsLength());
       }
-      if (!other.value_.isEmpty()) {
-        if (value_.isEmpty()) {
-          value_ = other.value_;
+      if (!other.values_.isEmpty()) {
+        if (values_.isEmpty()) {
+          values_ = other.values_;
           bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          ensureValueIsMutable();
-          value_.addAll(other.value_);
+          ensureValuesIsMutable();
+          values_.addAll(other.values_);
         }
         onChanged();
       }
@@ -820,13 +809,13 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       }
-      if (other.hasLinkIndex()) {
+      if (other.getLinkIndex() != 0) {
         setLinkIndex(other.getLinkIndex());
       }
       if (!other.timestampsUnixNano_.isEmpty()) {
         if (timestampsUnixNano_.isEmpty()) {
           timestampsUnixNano_ = other.timestampsUnixNano_;
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
           ensureTimestampsUnixNanoIsMutable();
           timestampsUnixNano_.addAll(other.timestampsUnixNano_);
@@ -952,143 +941,108 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.Internal.LongList value_ = emptyLongList();
-    private void ensureValueIsMutable() {
+    private com.google.protobuf.Internal.LongList values_ = emptyLongList();
+    private void ensureValuesIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        value_ = mutableCopy(value_);
+        values_ = mutableCopy(values_);
         bitField0_ |= 0x00000001;
        }
     }
     /**
      * <pre>
-     * The type and unit of each value is defined by the corresponding
-     * entry in Profile.sample_type. All samples must have the same
-     * number of values, the same as the length of Profile.sample_type.
-     * When aggregating multiple samples into a single sample, the
-     * result has a list of values that is the element-wise sum of the
-     * lists of the originals.
+     * The type and unit of each value is defined by Profile.sample_type.
      * </pre>
      *
-     * <code>repeated int64 value = 3;</code>
-     * @return A list containing the value.
+     * <code>repeated int64 values = 3;</code>
+     * @return A list containing the values.
      */
     public java.util.List<java.lang.Long>
-        getValueList() {
+        getValuesList() {
       return ((bitField0_ & 0x00000001) != 0) ?
-               java.util.Collections.unmodifiableList(value_) : value_;
+               java.util.Collections.unmodifiableList(values_) : values_;
     }
     /**
      * <pre>
-     * The type and unit of each value is defined by the corresponding
-     * entry in Profile.sample_type. All samples must have the same
-     * number of values, the same as the length of Profile.sample_type.
-     * When aggregating multiple samples into a single sample, the
-     * result has a list of values that is the element-wise sum of the
-     * lists of the originals.
+     * The type and unit of each value is defined by Profile.sample_type.
      * </pre>
      *
-     * <code>repeated int64 value = 3;</code>
-     * @return The count of value.
+     * <code>repeated int64 values = 3;</code>
+     * @return The count of values.
      */
-    public int getValueCount() {
-      return value_.size();
+    public int getValuesCount() {
+      return values_.size();
     }
     /**
      * <pre>
-     * The type and unit of each value is defined by the corresponding
-     * entry in Profile.sample_type. All samples must have the same
-     * number of values, the same as the length of Profile.sample_type.
-     * When aggregating multiple samples into a single sample, the
-     * result has a list of values that is the element-wise sum of the
-     * lists of the originals.
+     * The type and unit of each value is defined by Profile.sample_type.
      * </pre>
      *
-     * <code>repeated int64 value = 3;</code>
+     * <code>repeated int64 values = 3;</code>
      * @param index The index of the element to return.
-     * @return The value at the given index.
+     * @return The values at the given index.
      */
-    public long getValue(int index) {
-      return value_.getLong(index);
+    public long getValues(int index) {
+      return values_.getLong(index);
     }
     /**
      * <pre>
-     * The type and unit of each value is defined by the corresponding
-     * entry in Profile.sample_type. All samples must have the same
-     * number of values, the same as the length of Profile.sample_type.
-     * When aggregating multiple samples into a single sample, the
-     * result has a list of values that is the element-wise sum of the
-     * lists of the originals.
+     * The type and unit of each value is defined by Profile.sample_type.
      * </pre>
      *
-     * <code>repeated int64 value = 3;</code>
+     * <code>repeated int64 values = 3;</code>
      * @param index The index to set the value at.
-     * @param value The value to set.
+     * @param value The values to set.
      * @return This builder for chaining.
      */
-    public Builder setValue(
+    public Builder setValues(
         int index, long value) {
-      ensureValueIsMutable();
-      value_.setLong(index, value);
+      ensureValuesIsMutable();
+      values_.setLong(index, value);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The type and unit of each value is defined by the corresponding
-     * entry in Profile.sample_type. All samples must have the same
-     * number of values, the same as the length of Profile.sample_type.
-     * When aggregating multiple samples into a single sample, the
-     * result has a list of values that is the element-wise sum of the
-     * lists of the originals.
+     * The type and unit of each value is defined by Profile.sample_type.
      * </pre>
      *
-     * <code>repeated int64 value = 3;</code>
-     * @param value The value to add.
+     * <code>repeated int64 values = 3;</code>
+     * @param value The values to add.
      * @return This builder for chaining.
      */
-    public Builder addValue(long value) {
-      ensureValueIsMutable();
-      value_.addLong(value);
+    public Builder addValues(long value) {
+      ensureValuesIsMutable();
+      values_.addLong(value);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The type and unit of each value is defined by the corresponding
-     * entry in Profile.sample_type. All samples must have the same
-     * number of values, the same as the length of Profile.sample_type.
-     * When aggregating multiple samples into a single sample, the
-     * result has a list of values that is the element-wise sum of the
-     * lists of the originals.
+     * The type and unit of each value is defined by Profile.sample_type.
      * </pre>
      *
-     * <code>repeated int64 value = 3;</code>
-     * @param values The value to add.
+     * <code>repeated int64 values = 3;</code>
+     * @param values The values to add.
      * @return This builder for chaining.
      */
-    public Builder addAllValue(
+    public Builder addAllValues(
         java.lang.Iterable<? extends java.lang.Long> values) {
-      ensureValueIsMutable();
+      ensureValuesIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, value_);
+          values, values_);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The type and unit of each value is defined by the corresponding
-     * entry in Profile.sample_type. All samples must have the same
-     * number of values, the same as the length of Profile.sample_type.
-     * When aggregating multiple samples into a single sample, the
-     * result has a list of values that is the element-wise sum of the
-     * lists of the originals.
+     * The type and unit of each value is defined by Profile.sample_type.
      * </pre>
      *
-     * <code>repeated int64 value = 3;</code>
+     * <code>repeated int64 values = 3;</code>
      * @return This builder for chaining.
      */
-    public Builder clearValue() {
-      value_ = emptyLongList();
+    public Builder clearValues() {
+      values_ = emptyLongList();
       bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
@@ -1103,7 +1057,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 4;</code>
@@ -1116,7 +1070,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 4;</code>
@@ -1127,7 +1081,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 4;</code>
@@ -1139,7 +1093,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 4;</code>
@@ -1156,7 +1110,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 4;</code>
@@ -1171,7 +1125,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 4;</code>
@@ -1188,7 +1142,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * References to attributes in Profile.attribute_table. [optional]
+     * References to attributes in ProfilesDictionary.attribute_table. [optional]
      * </pre>
      *
      * <code>repeated int32 attribute_indices = 4;</code>
@@ -1204,22 +1158,11 @@ private static final long serialVersionUID = 0L;
     private int linkIndex_ ;
     /**
      * <pre>
-     * Reference to link in Profile.link_table. [optional]
+     * Reference to link in ProfilesDictionary.link_table. [optional]
+     * It can be unset / set to 0 if no link exists, as link_table[0] is always a 'null' default value.
      * </pre>
      *
-     * <code>optional int32 link_index = 5;</code>
-     * @return Whether the linkIndex field is set.
-     */
-    @java.lang.Override
-    public boolean hasLinkIndex() {
-      return ((bitField0_ & 0x00000004) != 0);
-    }
-    /**
-     * <pre>
-     * Reference to link in Profile.link_table. [optional]
-     * </pre>
-     *
-     * <code>optional int32 link_index = 5;</code>
+     * <code>int32 link_index = 5;</code>
      * @return The linkIndex.
      */
     @java.lang.Override
@@ -1228,29 +1171,31 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Reference to link in Profile.link_table. [optional]
+     * Reference to link in ProfilesDictionary.link_table. [optional]
+     * It can be unset / set to 0 if no link exists, as link_table[0] is always a 'null' default value.
      * </pre>
      *
-     * <code>optional int32 link_index = 5;</code>
+     * <code>int32 link_index = 5;</code>
      * @param value The linkIndex to set.
      * @return This builder for chaining.
      */
     public Builder setLinkIndex(int value) {
-      bitField0_ |= 0x00000004;
+      
       linkIndex_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * Reference to link in Profile.link_table. [optional]
+     * Reference to link in ProfilesDictionary.link_table. [optional]
+     * It can be unset / set to 0 if no link exists, as link_table[0] is always a 'null' default value.
      * </pre>
      *
-     * <code>optional int32 link_index = 5;</code>
+     * <code>int32 link_index = 5;</code>
      * @return This builder for chaining.
      */
     public Builder clearLinkIndex() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      
       linkIndex_ = 0;
       onChanged();
       return this;
@@ -1258,15 +1203,15 @@ private static final long serialVersionUID = 0L;
 
     private com.google.protobuf.Internal.LongList timestampsUnixNano_ = emptyLongList();
     private void ensureTimestampsUnixNanoIsMutable() {
-      if (!((bitField0_ & 0x00000008) != 0)) {
+      if (!((bitField0_ & 0x00000004) != 0)) {
         timestampsUnixNano_ = mutableCopy(timestampsUnixNano_);
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
        }
     }
     /**
      * <pre>
-     * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-     * to fall within the Profile's time range. [optional]
+     * Timestamps associated with Sample represented in nanoseconds. These
+     * timestamps should fall within the Profile's time range.
      * </pre>
      *
      * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -1274,13 +1219,13 @@ private static final long serialVersionUID = 0L;
      */
     public java.util.List<java.lang.Long>
         getTimestampsUnixNanoList() {
-      return ((bitField0_ & 0x00000008) != 0) ?
+      return ((bitField0_ & 0x00000004) != 0) ?
                java.util.Collections.unmodifiableList(timestampsUnixNano_) : timestampsUnixNano_;
     }
     /**
      * <pre>
-     * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-     * to fall within the Profile's time range. [optional]
+     * Timestamps associated with Sample represented in nanoseconds. These
+     * timestamps should fall within the Profile's time range.
      * </pre>
      *
      * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -1291,8 +1236,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-     * to fall within the Profile's time range. [optional]
+     * Timestamps associated with Sample represented in nanoseconds. These
+     * timestamps should fall within the Profile's time range.
      * </pre>
      *
      * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -1304,8 +1249,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-     * to fall within the Profile's time range. [optional]
+     * Timestamps associated with Sample represented in nanoseconds. These
+     * timestamps should fall within the Profile's time range.
      * </pre>
      *
      * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -1322,8 +1267,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-     * to fall within the Profile's time range. [optional]
+     * Timestamps associated with Sample represented in nanoseconds. These
+     * timestamps should fall within the Profile's time range.
      * </pre>
      *
      * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -1338,8 +1283,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-     * to fall within the Profile's time range. [optional]
+     * Timestamps associated with Sample represented in nanoseconds. These
+     * timestamps should fall within the Profile's time range.
      * </pre>
      *
      * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -1356,8 +1301,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Timestamps associated with Sample represented in nanoseconds. These timestamps are expected
-     * to fall within the Profile's time range. [optional]
+     * Timestamps associated with Sample represented in nanoseconds. These
+     * timestamps should fall within the Profile's time range.
      * </pre>
      *
      * <code>repeated uint64 timestamps_unix_nano = 6;</code>
@@ -1365,7 +1310,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearTimestampsUnixNano() {
       timestampsUnixNano_ = emptyLongList();
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }

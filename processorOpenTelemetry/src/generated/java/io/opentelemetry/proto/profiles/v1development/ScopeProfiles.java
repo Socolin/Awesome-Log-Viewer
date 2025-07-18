@@ -83,6 +83,19 @@ private static final long serialVersionUID = 0L;
             schemaUrl_ = s;
             break;
           }
+          case 34: {
+            io.opentelemetry.proto.profiles.v1development.ValueType.Builder subBuilder = null;
+            if (defaultSampleType_ != null) {
+              subBuilder = defaultSampleType_.toBuilder();
+            }
+            defaultSampleType_ = input.readMessage(io.opentelemetry.proto.profiles.v1development.ValueType.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(defaultSampleType_);
+              defaultSampleType_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -276,6 +289,47 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int DEFAULT_SAMPLE_TYPE_FIELD_NUMBER = 4;
+  private io.opentelemetry.proto.profiles.v1development.ValueType defaultSampleType_;
+  /**
+   * <pre>
+   * The preferred type and unit of Samples in at least one Profile.
+   * See Profile.sample_type for possible values.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+   * @return Whether the defaultSampleType field is set.
+   */
+  @java.lang.Override
+  public boolean hasDefaultSampleType() {
+    return defaultSampleType_ != null;
+  }
+  /**
+   * <pre>
+   * The preferred type and unit of Samples in at least one Profile.
+   * See Profile.sample_type for possible values.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+   * @return The defaultSampleType.
+   */
+  @java.lang.Override
+  public io.opentelemetry.proto.profiles.v1development.ValueType getDefaultSampleType() {
+    return defaultSampleType_ == null ? io.opentelemetry.proto.profiles.v1development.ValueType.getDefaultInstance() : defaultSampleType_;
+  }
+  /**
+   * <pre>
+   * The preferred type and unit of Samples in at least one Profile.
+   * See Profile.sample_type for possible values.
+   * </pre>
+   *
+   * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+   */
+  @java.lang.Override
+  public io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder getDefaultSampleTypeOrBuilder() {
+    return getDefaultSampleType();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -299,6 +353,9 @@ private static final long serialVersionUID = 0L;
     if (!getSchemaUrlBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, schemaUrl_);
     }
+    if (defaultSampleType_ != null) {
+      output.writeMessage(4, getDefaultSampleType());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -318,6 +375,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!getSchemaUrlBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, schemaUrl_);
+    }
+    if (defaultSampleType_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getDefaultSampleType());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -343,6 +404,11 @@ private static final long serialVersionUID = 0L;
         .equals(other.getProfilesList())) return false;
     if (!getSchemaUrl()
         .equals(other.getSchemaUrl())) return false;
+    if (hasDefaultSampleType() != other.hasDefaultSampleType()) return false;
+    if (hasDefaultSampleType()) {
+      if (!getDefaultSampleType()
+          .equals(other.getDefaultSampleType())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -364,6 +430,10 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + SCHEMA_URL_FIELD_NUMBER;
     hash = (53 * hash) + getSchemaUrl().hashCode();
+    if (hasDefaultSampleType()) {
+      hash = (37 * hash) + DEFAULT_SAMPLE_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getDefaultSampleType().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -516,6 +586,12 @@ private static final long serialVersionUID = 0L;
       }
       schemaUrl_ = "";
 
+      if (defaultSampleTypeBuilder_ == null) {
+        defaultSampleType_ = null;
+      } else {
+        defaultSampleType_ = null;
+        defaultSampleTypeBuilder_ = null;
+      }
       return this;
     }
 
@@ -558,6 +634,11 @@ private static final long serialVersionUID = 0L;
         result.profiles_ = profilesBuilder_.build();
       }
       result.schemaUrl_ = schemaUrl_;
+      if (defaultSampleTypeBuilder_ == null) {
+        result.defaultSampleType_ = defaultSampleType_;
+      } else {
+        result.defaultSampleType_ = defaultSampleTypeBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -638,6 +719,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getSchemaUrl().isEmpty()) {
         schemaUrl_ = other.schemaUrl_;
         onChanged();
+      }
+      if (other.hasDefaultSampleType()) {
+        mergeDefaultSampleType(other.getDefaultSampleType());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1268,6 +1352,170 @@ private static final long serialVersionUID = 0L;
       schemaUrl_ = value;
       onChanged();
       return this;
+    }
+
+    private io.opentelemetry.proto.profiles.v1development.ValueType defaultSampleType_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opentelemetry.proto.profiles.v1development.ValueType, io.opentelemetry.proto.profiles.v1development.ValueType.Builder, io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder> defaultSampleTypeBuilder_;
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     * @return Whether the defaultSampleType field is set.
+     */
+    public boolean hasDefaultSampleType() {
+      return defaultSampleTypeBuilder_ != null || defaultSampleType_ != null;
+    }
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     * @return The defaultSampleType.
+     */
+    public io.opentelemetry.proto.profiles.v1development.ValueType getDefaultSampleType() {
+      if (defaultSampleTypeBuilder_ == null) {
+        return defaultSampleType_ == null ? io.opentelemetry.proto.profiles.v1development.ValueType.getDefaultInstance() : defaultSampleType_;
+      } else {
+        return defaultSampleTypeBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     */
+    public Builder setDefaultSampleType(io.opentelemetry.proto.profiles.v1development.ValueType value) {
+      if (defaultSampleTypeBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        defaultSampleType_ = value;
+        onChanged();
+      } else {
+        defaultSampleTypeBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     */
+    public Builder setDefaultSampleType(
+        io.opentelemetry.proto.profiles.v1development.ValueType.Builder builderForValue) {
+      if (defaultSampleTypeBuilder_ == null) {
+        defaultSampleType_ = builderForValue.build();
+        onChanged();
+      } else {
+        defaultSampleTypeBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     */
+    public Builder mergeDefaultSampleType(io.opentelemetry.proto.profiles.v1development.ValueType value) {
+      if (defaultSampleTypeBuilder_ == null) {
+        if (defaultSampleType_ != null) {
+          defaultSampleType_ =
+            io.opentelemetry.proto.profiles.v1development.ValueType.newBuilder(defaultSampleType_).mergeFrom(value).buildPartial();
+        } else {
+          defaultSampleType_ = value;
+        }
+        onChanged();
+      } else {
+        defaultSampleTypeBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     */
+    public Builder clearDefaultSampleType() {
+      if (defaultSampleTypeBuilder_ == null) {
+        defaultSampleType_ = null;
+        onChanged();
+      } else {
+        defaultSampleType_ = null;
+        defaultSampleTypeBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     */
+    public io.opentelemetry.proto.profiles.v1development.ValueType.Builder getDefaultSampleTypeBuilder() {
+      
+      onChanged();
+      return getDefaultSampleTypeFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     */
+    public io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder getDefaultSampleTypeOrBuilder() {
+      if (defaultSampleTypeBuilder_ != null) {
+        return defaultSampleTypeBuilder_.getMessageOrBuilder();
+      } else {
+        return defaultSampleType_ == null ?
+            io.opentelemetry.proto.profiles.v1development.ValueType.getDefaultInstance() : defaultSampleType_;
+      }
+    }
+    /**
+     * <pre>
+     * The preferred type and unit of Samples in at least one Profile.
+     * See Profile.sample_type for possible values.
+     * </pre>
+     *
+     * <code>.opentelemetry.proto.profiles.v1development.ValueType default_sample_type = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.opentelemetry.proto.profiles.v1development.ValueType, io.opentelemetry.proto.profiles.v1development.ValueType.Builder, io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder> 
+        getDefaultSampleTypeFieldBuilder() {
+      if (defaultSampleTypeBuilder_ == null) {
+        defaultSampleTypeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.opentelemetry.proto.profiles.v1development.ValueType, io.opentelemetry.proto.profiles.v1development.ValueType.Builder, io.opentelemetry.proto.profiles.v1development.ValueTypeOrBuilder>(
+                getDefaultSampleType(),
+                getParentForChildren(),
+                isClean());
+        defaultSampleType_ = null;
+      }
+      return defaultSampleTypeBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

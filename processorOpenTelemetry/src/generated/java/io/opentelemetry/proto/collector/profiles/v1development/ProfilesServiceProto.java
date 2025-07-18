@@ -42,26 +42,28 @@ public final class ProfilesServiceProto {
       "/v1development/profiles_service.proto\0224o" +
       "pentelemetry.proto.collector.profiles.v1" +
       "development\0329opentelemetry/proto/profile" +
-      "s/v1development/profiles.proto\"w\n\034Export" +
-      "ProfilesServiceRequest\022W\n\021resource_profi" +
-      "les\030\001 \003(\0132<.opentelemetry.proto.profiles" +
-      ".v1development.ResourceProfiles\"\214\001\n\035Expo" +
-      "rtProfilesServiceResponse\022k\n\017partial_suc" +
-      "cess\030\001 \001(\0132R.opentelemetry.proto.collect" +
-      "or.profiles.v1development.ExportProfiles" +
-      "PartialSuccess\"P\n\034ExportProfilesPartialS" +
-      "uccess\022\031\n\021rejected_profiles\030\001 \001(\003\022\025\n\rerr" +
-      "or_message\030\002 \001(\t2\307\001\n\017ProfilesService\022\263\001\n" +
-      "\006Export\022R.opentelemetry.proto.collector." +
-      "profiles.v1development.ExportProfilesSer" +
-      "viceRequest\032S.opentelemetry.proto.collec" +
-      "tor.profiles.v1development.ExportProfile" +
-      "sServiceResponse\"\000B\311\001\n7io.opentelemetry." +
-      "proto.collector.profiles.v1developmentB\024" +
-      "ProfilesServiceProtoP\001Z?go.opentelemetry" +
-      ".io/proto/otlp/collector/profiles/v1deve" +
-      "lopment\252\0024OpenTelemetry.Proto.Collector." +
-      "Profiles.V1Developmentb\006proto3"
+      "s/v1development/profiles.proto\"\313\001\n\034Expor" +
+      "tProfilesServiceRequest\022W\n\021resource_prof" +
+      "iles\030\001 \003(\0132<.opentelemetry.proto.profile" +
+      "s.v1development.ResourceProfiles\022R\n\ndict" +
+      "ionary\030\002 \001(\0132>.opentelemetry.proto.profi" +
+      "les.v1development.ProfilesDictionary\"\214\001\n" +
+      "\035ExportProfilesServiceResponse\022k\n\017partia" +
+      "l_success\030\001 \001(\0132R.opentelemetry.proto.co" +
+      "llector.profiles.v1development.ExportPro" +
+      "filesPartialSuccess\"P\n\034ExportProfilesPar" +
+      "tialSuccess\022\031\n\021rejected_profiles\030\001 \001(\003\022\025" +
+      "\n\rerror_message\030\002 \001(\t2\307\001\n\017ProfilesServic" +
+      "e\022\263\001\n\006Export\022R.opentelemetry.proto.colle" +
+      "ctor.profiles.v1development.ExportProfil" +
+      "esServiceRequest\032S.opentelemetry.proto.c" +
+      "ollector.profiles.v1development.ExportPr" +
+      "ofilesServiceResponse\"\000B\311\001\n7io.opentelem" +
+      "etry.proto.collector.profiles.v1developm" +
+      "entB\024ProfilesServiceProtoP\001Z?go.opentele" +
+      "metry.io/proto/otlp/collector/profiles/v" +
+      "1development\252\0024OpenTelemetry.Proto.Colle" +
+      "ctor.Profiles.V1Developmentb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -73,7 +75,7 @@ public final class ProfilesServiceProto {
     internal_static_opentelemetry_proto_collector_profiles_v1development_ExportProfilesServiceRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_opentelemetry_proto_collector_profiles_v1development_ExportProfilesServiceRequest_descriptor,
-        new java.lang.String[] { "ResourceProfiles", });
+        new java.lang.String[] { "ResourceProfiles", "Dictionary", });
     internal_static_opentelemetry_proto_collector_profiles_v1development_ExportProfilesServiceResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_opentelemetry_proto_collector_profiles_v1development_ExportProfilesServiceResponse_fieldAccessorTable = new

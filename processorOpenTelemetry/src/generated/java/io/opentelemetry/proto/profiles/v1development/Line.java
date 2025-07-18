@@ -103,7 +103,7 @@ private static final long serialVersionUID = 0L;
   private int functionIndex_;
   /**
    * <pre>
-   * Reference to function in Profile.function_table.
+   * Reference to function in ProfilesDictionary.function_table.
    * </pre>
    *
    * <code>int32 function_index = 1;</code>
@@ -489,7 +489,7 @@ private static final long serialVersionUID = 0L;
     private int functionIndex_ ;
     /**
      * <pre>
-     * Reference to function in Profile.function_table.
+     * Reference to function in ProfilesDictionary.function_table.
      * </pre>
      *
      * <code>int32 function_index = 1;</code>
@@ -501,7 +501,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Reference to function in Profile.function_table.
+     * Reference to function in ProfilesDictionary.function_table.
      * </pre>
      *
      * <code>int32 function_index = 1;</code>
@@ -516,7 +516,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Reference to function in Profile.function_table.
+     * Reference to function in ProfilesDictionary.function_table.
      * </pre>
      *
      * <code>int32 function_index = 1;</code>
