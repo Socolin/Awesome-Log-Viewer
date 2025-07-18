@@ -5,7 +5,7 @@ gradleIntelliJPlatform = "2.6.0"
 kotlin = "2.1.20"
 # https://www.jetbrains.com/intellij-repository/snapshots/com/jetbrains/intellij/rider/riderRD/maven-metadata.xml
 # https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/rider/riderRD/maven-metadata.xml
-riderSdk = "2025.2-EAP7-SNAPSHOT"
+riderSdk = "2025.2-EAP8-SNAPSHOT"
 riderSdkPreview = "2025.2-SNAPSHOT"
 # https://d2s4y8xcwt8bet.cloudfront.net/com/jetbrains/intellij/idea/ideaIC/maven-metadata.xml
 ideaSdk = "252.23591.19-EAP-SNAPSHOT"
