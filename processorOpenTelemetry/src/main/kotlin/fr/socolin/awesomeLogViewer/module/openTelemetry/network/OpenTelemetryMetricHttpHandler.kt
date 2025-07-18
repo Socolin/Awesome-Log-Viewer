@@ -1,20 +1,41 @@
 package fr.socolin.awesomeLogViewer.module.openTelemetry.network
 
+import com.jetbrains.rd.util.reactive.Signal
 import fr.socolin.awesomeLogViewer.core.core.session.LogEntry
 import fr.socolin.awesomeLogViewer.module.openTelemetry.OpenTelemetryLogEntry
-import com.jetbrains.rd.util.reactive.Signal
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.HistogramBucket
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.HistogramData
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.MetricPoint
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.MetricType
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.OpenTelemetryMetric
+import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.*
+import io.grpc.stub.StreamObserver
 import io.opentelemetry.proto.collector.metrics.v1.ExportMetricsServiceRequest
+import io.opentelemetry.proto.collector.metrics.v1.ExportMetricsServiceResponse
+import io.opentelemetry.proto.collector.metrics.v1.MetricsServiceGrpc
 import io.opentelemetry.proto.metrics.v1.Metric
+import java.net.URI
 import java.time.Instant
 
-class OpenTelemetryMetricHttpHandler(private val logReceived: Signal<LogEntry>) : BaseOpenTelemetryHttpHandler() {
+class OpenTelemetryMetricHttpHandler(
+    private val logReceived: Signal<LogEntry>,
+    overriddenIngestionEndpoint: URI?,
+) : BaseOpenTelemetryHttpHandler(overriddenIngestionEndpoint) {
+
+    val forwardStub: MetricsServiceGrpc.MetricsServiceStub? = if (forwardChannel != null)
+        MetricsServiceGrpc.newStub(forwardChannel)
+    else
+        null
+
+    val forwardResponseObserver = object : StreamObserver<ExportMetricsServiceResponse> {
+        override fun onNext(value: ExportMetricsServiceResponse?) {
+        }
+
+        override fun onError(t: Throwable?) {
+        }
+
+        override fun onCompleted() {
+        }
+    }
+
     override fun processBytes(bytes: ByteArray) {
         val metricRequest = ExportMetricsServiceRequest.parseFrom(bytes)
+        forwardStub?.export(metricRequest, forwardResponseObserver)
         val resource = metricRequest.getResourceMetrics(0).resource.attributesList.toMap()
         for (resourceMetric in metricRequest.resourceMetricsList) {
             for (scopedMetric in resourceMetric.scopeMetricsList) {
@@ -96,6 +117,10 @@ class OpenTelemetryMetricHttpHandler(private val logReceived: Signal<LogEntry>) 
             for (dataPoint in metric.histogram.dataPointsList) {
                 val buckets = mutableListOf<HistogramBucket>()
                 for (i in 0 until dataPoint.bucketCountsCount) {
+                    if (i >= dataPoint.explicitBoundsList.size)
+                        break
+                    if (i >= dataPoint.bucketCountsList.size)
+                        break
                     buckets.add(HistogramBucket(dataPoint.explicitBoundsList[i], dataPoint.bucketCountsList[i]))
                 }
                 metricPoints.add(

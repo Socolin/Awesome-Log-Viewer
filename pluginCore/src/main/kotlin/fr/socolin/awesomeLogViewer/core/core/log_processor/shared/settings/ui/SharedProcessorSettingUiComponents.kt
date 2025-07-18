@@ -52,6 +52,11 @@ class SharedProcessorSettingUiComponents {
         ) {
             panel.group(CoreBundle.Companion.message("settings.shared.configuration.network.title")) {
                 row {
+                    checkBox(CoreBundle.Companion.message("settings.shared.configuration.network.forward.logs.label"))
+                        .bindSelected(viewModel::forwardLogs)
+                        .comment(CoreBundle.Companion.message("settings.shared.configuration.network.forward.logs.description"), 30)
+                }
+                row {
                     val checkbox = checkBox(CoreBundle.Companion.message("settings.shared.configuration.network.use.random.port.label"))
                         .bindSelected(viewModel::listenToRandomPort)
                     val portTextField = intTextField(1..65535, 1)

@@ -3,6 +3,7 @@ package fr.socolin.awesomeLogViewer.platformSpecificRider.session.run
 import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.execution.process.ProcessInfo
 import com.intellij.execution.process.ProcessListener
+import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.project.Project
 import fr.socolin.awesomeLogViewer.core.core.log_processor.ExecutionMode
 import fr.socolin.awesomeLogViewer.core.core.log_processor.LogProcessorManager
@@ -14,6 +15,8 @@ import com.jetbrains.rider.runtime.DotNetExecutable
 import com.jetbrains.rider.runtime.DotNetRuntime
 import org.jetbrains.concurrency.Promise
 import org.jetbrains.concurrency.resolvedPromise
+
+private val LOG = logger<MyPatchCommandLineExtension>()
 
 class MyPatchCommandLineExtension(
     val project: Project,
@@ -29,7 +32,7 @@ class MyPatchCommandLineExtension(
         val logProcessors = logProcessorManager.createLogProcessors(ExecutionMode.DEBUG)
         for (logProcessor in logProcessors) {
             if (logProcessor is NetworkLogProcessor) {
-                logProcessor.startNetworkCollector()
+                logProcessor.startNetworkCollector(workerRunInfo.commandLine.environment)
             }
             workerRunInfo.commandLine.withEnvironment(logProcessor.getEnvironmentVariables())
         }
@@ -46,10 +49,15 @@ class MyPatchCommandLineExtension(
         val logProcessorManager = LogProcessorManager.getInstance(project)
         val logProcessors = logProcessorManager.createLogProcessors(ExecutionMode.RUN)
         for (logProcessor in logProcessors) {
-            if (logProcessor is NetworkLogProcessor) {
-                logProcessor.startNetworkCollector()
+            try {
+                if (logProcessor is NetworkLogProcessor) {
+                    logProcessor.startNetworkCollector(commandLine.environment)
+                }
+                commandLine.withEnvironment(logProcessor.getEnvironmentVariables())
             }
-            commandLine.withEnvironment(logProcessor.getEnvironmentVariables())
+            catch (e: Throwable) {
+                LOG.error("Failed to configure logProcess: ${logProcessor.definition.getDisplayName()}", e)
+            }
         }
         logProcessorManager.storePreparedProcessors(logProcessors)
         return null

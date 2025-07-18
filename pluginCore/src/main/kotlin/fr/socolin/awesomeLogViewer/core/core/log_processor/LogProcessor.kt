@@ -1,13 +1,13 @@
 package fr.socolin.awesomeLogViewer.core.core.log_processor
 
 import com.intellij.lang.Language
+import com.jetbrains.rd.util.reactive.ISource
+import com.jetbrains.rd.util.reactive.Signal
 import fr.socolin.awesomeLogViewer.core.core.log_processor.shared.settings.storage.ConsoleLogProcessorSettingsState
 import fr.socolin.awesomeLogViewer.core.core.log_processor.shared.settings.storage.LogProcessorSettingsState
 import fr.socolin.awesomeLogViewer.core.core.log_processor.shared.settings.storage.NetworkLogProcessorSettingsState
 import fr.socolin.awesomeLogViewer.core.core.session.FilterSectionDefinition
 import fr.socolin.awesomeLogViewer.core.core.session.LogEntry
-import com.jetbrains.rd.util.reactive.ISource
-import com.jetbrains.rd.util.reactive.Signal
 
 abstract class LogProcessor(
     val definition: LogProcessorDefinition,
@@ -38,5 +38,5 @@ abstract class NetworkLogProcessor(
     val logReceived: ISource<LogEntry>
         get() = notifyLogReceived
 
-    abstract fun startNetworkCollector()
+    abstract fun startNetworkCollector(environment: Map<String, String>)
 }

@@ -1,26 +1,45 @@
 package fr.socolin.awesomeLogViewer.module.openTelemetry.network
 
+import com.jetbrains.rd.util.lifetime.Lifetime
+import com.jetbrains.rd.util.reactive.Signal
 import fr.socolin.awesomeLogViewer.core.core.session.LogEntry
 import fr.socolin.awesomeLogViewer.module.openTelemetry.OpenTelemetryLogEntry
-import com.jetbrains.rd.util.reactive.Signal
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.ActivityEvent
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.ActivityKind
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.ActivityLink
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.ActivityStatusCode
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.ActivityTraceFlags
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.OpenTelemetryTrace
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.Resource
-import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.SpanContext
+import fr.socolin.awesomeLogViewer.module.openTelemetry.signals.*
+import io.grpc.stub.StreamObserver
 import io.opentelemetry.proto.collector.trace.v1.ExportTraceServiceRequest
+import io.opentelemetry.proto.collector.trace.v1.ExportTraceServiceResponse
+import io.opentelemetry.proto.collector.trace.v1.TraceServiceGrpc
 import io.opentelemetry.proto.trace.v1.Span
 import io.opentelemetry.proto.trace.v1.Status
+import java.net.URI
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
-class OpenTelemetryTraceHttpHandler(private val logReceived: Signal<LogEntry>) : BaseOpenTelemetryHttpHandler() {
+class OpenTelemetryTraceHttpHandler(
+    private val logReceived: Signal<LogEntry>,
+    overriddenIngestionEndpoint: URI?
+) : BaseOpenTelemetryHttpHandler(overriddenIngestionEndpoint) {
+
+    val forwardStub: TraceServiceGrpc.TraceServiceStub? = if (forwardChannel != null)
+        TraceServiceGrpc.newStub(forwardChannel)
+    else
+        null
+
+    val forwardResponseObserver = object : StreamObserver<ExportTraceServiceResponse> {
+        override fun onNext(value: ExportTraceServiceResponse?) {
+        }
+
+        override fun onError(t: Throwable?) {
+        }
+
+        override fun onCompleted() {
+        }
+    }
+
     override fun processBytes(bytes: ByteArray) {
         val traceRequest = ExportTraceServiceRequest.parseFrom(bytes)
+        forwardStub?.export(traceRequest, forwardResponseObserver)
         val resource = traceRequest.getResourceSpans(0).resource
         for (resourceSpans in traceRequest.resourceSpansList) {
             for (scopedSpan in resourceSpans.scopeSpansList) {

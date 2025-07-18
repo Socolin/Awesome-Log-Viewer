@@ -15,6 +15,7 @@ import fr.socolin.awesomeLogViewer.module.applicationInsights.settings.storage.A
 import com.sun.net.httpserver.HttpServer
 import java.io.File
 import java.net.InetSocketAddress
+import java.net.URI
 import java.util.concurrent.Executors
 import javax.swing.Icon
 
@@ -24,7 +25,10 @@ class ApplicationInsightsNetworkLogProcessor(
     definition: LogProcessorDefinition,
     private val applicationInsightsSettings: ApplicationInsightsNetworkSettingsState
 ) : NetworkLogProcessor(definition, applicationInsightsSettings) {
+    private var instrumentationKey: String = "12345678-0000-0000-0000-009876543210"
     private var server: HttpServer? = null
+    private var httpLogHandler: ApplicationInsightsHttpHandler? = null
+    private var overriddenIngestionEndpoint: URI? = null
 
     override fun getFilterSectionsDefinitions(): List<FilterSectionDefinition> {
         return listOf(
@@ -37,14 +41,16 @@ class ApplicationInsightsNetworkLogProcessor(
         return JsonLanguage.INSTANCE
     }
 
-    override fun startNetworkCollector() {
+    override fun startNetworkCollector(environment: Map<String, String>) {
         cleanPendingTelemetries()
         try {
             if (this.server == null) {
+                setupLogForwarding(environment)
                 val server = HttpServer.create(InetSocketAddress(applicationInsightsSettings.listenPortNumber.value), 0)
                 server.executor = Executors.newFixedThreadPool(1)
-                server.createContext("/v2/track", ApplicationInsightsHttpHandler(notifyLogReceived))
-                server.createContext("/v2.1/track", ApplicationInsightsHttpHandler(notifyLogReceived))
+                httpLogHandler = ApplicationInsightsHttpHandler(notifyLogReceived, overriddenIngestionEndpoint)
+                server.createContext("/v2/track", httpLogHandler)
+                server.createContext("/v2.1/track", httpLogHandler)
                 server.createContext("/api/profiles/12345678-0000-0000-0000-009876543210/appId", ApplicationInsightsProfileHttpHandler())
                 server.start()
 
@@ -56,9 +62,35 @@ class ApplicationInsightsNetworkLogProcessor(
         return
     }
 
+    private fun setupLogForwarding(environment: Map<String, String>) {
+        if (!applicationInsightsSettings.forwardLogs.value) {
+            return;
+        }
+
+        val connectionString = environment.get("APPLICATIONINSIGHTS_CONNECTION_STRING")
+        if (connectionString == null) {
+            return
+        }
+        val connectionStringParts = connectionString.split(";")
+        val ingestionEndpointConfig = connectionStringParts.firstOrNull { it.startsWith("IngestionEndpoint=") }
+        if (ingestionEndpointConfig == null) {
+            return
+        }
+        val ingestionEndpoint = ingestionEndpointConfig.split("=").getOrNull(1)
+        if (ingestionEndpoint == null) {
+            return
+        }
+        val overriddenInstrumentationKey = connectionStringParts.firstOrNull { it.startsWith("InstrumentationKey=") }?.split("=")?.getOrNull(1)
+        if (overriddenInstrumentationKey != null)
+            instrumentationKey = overriddenInstrumentationKey
+        overriddenIngestionEndpoint = URI(ingestionEndpoint)
+    }
+
     override fun getEnvironmentVariables(): Map<String, String> {
         return applicationInsightsSettings.environmentVariables.mapValues {
-            it.value.replace("\${SERVER_PORT}", server?.address?.port.toString())
+            it.value
+                .replace("\${SERVER_PORT}", server?.address?.port.toString())
+                .replace("\${INSTRUMENTATION_KEY}", instrumentationKey)
         }
     }
 
@@ -103,6 +135,7 @@ class ApplicationInsightsNetworkLogProcessor(
     }
 
     override fun dispose() {
+        httpLogHandler?.dispose()
         server?.stop(0)
         server = null
     }

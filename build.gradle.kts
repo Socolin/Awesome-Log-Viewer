@@ -43,6 +43,9 @@ val runRider by intellijPlatformTesting.runIde.registering {
     task {
         jvmArgs("-Drider.backend.dotnet.runtime.path=/home/socolin/.dotnet/dotnet")
     }
+    plugins {
+        plugin("com.jetbrains.opentelemetry", "0.0.7")
+    }
 }
 // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-testing-extension.html
 val runRiderDemoStand by intellijPlatformTesting.runIde.registering {

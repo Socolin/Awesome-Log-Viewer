@@ -22,7 +22,7 @@ class MyRunConfigurationExtension : RunConfigurationExtension() {
             val logProcessors = logProcessorManager.createLogProcessors(ExecutionMode.DEBUG)
             for (logProcessor in logProcessors) {
                 if (logProcessor is NetworkLogProcessor) {
-                    logProcessor.startNetworkCollector()
+                    logProcessor.startNetworkCollector(params.env)
                 }
                 params.env.putAll(logProcessor.getEnvironmentVariables())
             }

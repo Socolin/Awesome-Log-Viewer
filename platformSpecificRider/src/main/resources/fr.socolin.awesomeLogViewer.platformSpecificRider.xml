@@ -5,7 +5,7 @@
     </dependencies>
 
     <extensions defaultExtensionNs="com.intellij">
-        <rider.patchCommandLine implementation="fr.socolin.awesomeLogViewer.platformSpecificRider.session.run.MyPatchCommandLineExtension"/>
+        <rider.patchCommandLine implementation="fr.socolin.awesomeLogViewer.platformSpecificRider.session.run.MyPatchCommandLineExtension" order="last" />
     </extensions>
 
     <projectListeners>
@@ -16,3 +16,5 @@
     </projectListeners>
 
 </idea-plugin>
+
+

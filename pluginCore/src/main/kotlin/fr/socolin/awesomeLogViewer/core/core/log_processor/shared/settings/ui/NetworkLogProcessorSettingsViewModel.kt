@@ -6,11 +6,13 @@ open class NetworkLogProcessorSettingsViewModel<T : NetworkLogProcessorSettingsS
     LogProcessorSettingsViewModel<T>() {
     var listenToRandomPort: Boolean = true
     var listenPortNumber: Int = 0
+    var forwardLogs: Boolean = true
 
     override fun updateModel(settings: T) {
         super.updateModel(settings)
         listenPortNumber = settings.listenPortNumber.value
         listenToRandomPort = settings.listenPortNumber.value == 0
+        forwardLogs = settings.forwardLogs.value
     }
 
     override fun settingsEquals(settings: T): Boolean {
@@ -19,11 +21,13 @@ open class NetworkLogProcessorSettingsViewModel<T : NetworkLogProcessorSettingsS
         } else {
             if (listenPortNumber != settings.listenPortNumber.value) return false
         }
+        if (forwardLogs != settings.forwardLogs.value) return false
         return super.settingsEquals(settings)
     }
 
     override fun applyChangesTo(settings: T) {
         super.applyChangesTo(settings)
         settings.listenPortNumber.value = if (listenToRandomPort) 0 else listenPortNumber
+        settings.forwardLogs.value = forwardLogs
     }
 }

@@ -31,7 +31,8 @@ class MyProgramExecutionListener(
         for (logProcessor in logProcessors) {
             val session = OutputLogSession(logProcessor, env)
             if (logProcessor is NetworkLogProcessor) {
-                logProcessor.startNetworkCollector()
+                // FIXME: We cannot access environment variable here, maybe not needed
+                logProcessor.startNetworkCollector(emptyMap())
                 logProcessor.logReceived.advise(session.lifetime, session::addLogLine)
             }
             if (logProcessor is ConsoleLogProcessor) {

@@ -41,7 +41,7 @@ class ApplicationInsightsNetworkSettingsState : NetworkLogProcessorSettingsState
     val environmentVariables = mutableMapOf(
         Pair(
             "APPLICATIONINSIGHTS_CONNECTION_STRING",
-            "InstrumentationKey=12345678-0000-0000-0000-009876543210;IngestionEndpoint=http://localhost:\${SERVER_PORT}/"
+            "InstrumentationKey=\${INSTRUMENTATION_KEY};IngestionEndpoint=http://localhost:\${SERVER_PORT}/"
         ),
         Pair(
             "APPINSIGHTS_DEVELOPER_MODE",

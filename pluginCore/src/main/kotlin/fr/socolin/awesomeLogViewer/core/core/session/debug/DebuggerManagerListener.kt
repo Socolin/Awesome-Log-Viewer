@@ -23,7 +23,8 @@ class DebuggerManagerListener(
         for (logProcessor in logProcessorManager.getOrCreateLogProcessors(ExecutionMode.DEBUG)) {
             val session = DebugLogSession(logProcessor, project) { debugProcess.session.ui }
             if (logProcessor is NetworkLogProcessor) {
-                logProcessor.startNetworkCollector()
+                // FIXME: We cannot access environment variable here
+                logProcessor.startNetworkCollector(emptyMap())
                 logProcessor.logReceived.advise(session.lifetime, session::addLogLine)
             }
             if (logProcessor is ConsoleLogProcessor) {

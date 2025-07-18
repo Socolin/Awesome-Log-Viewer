@@ -38,8 +38,12 @@ abstract class NetworkLogProcessorSettingsState : LogProcessorSettingsState() {
     @OptionTag("LISTEN_PORT_NUMBER", converter = IntPropertyConverter::class)
     val listenPortNumber = Property(0)
 
+    @OptionTag("FORWARD_LOGS", converter = BooleanPropertyConverter::class)
+    val forwardLogs = Property(true)
+
     override fun registerProperties() {
         super.registerProperties()
         incrementTrackerWhenPropertyChanges(listenPortNumber)
+        incrementTrackerWhenPropertyChanges(forwardLogs)
     }
 }

@@ -6,6 +6,11 @@ plugins {
 
 dependencies {
     compileOnly(project(":pluginCore"))
+    implementation(platform("io.grpc:grpc-bom:1.73.0"))
+    implementation("io.grpc:grpc-netty-shaded")
+    implementation("io.grpc:grpc-protobuf")
+    // https://mvnrepository.com/artifact/io.grpc/grpc-kotlin-stub
+    implementation("io.grpc:grpc-kotlin-stub:1.4.3")
 }
 
 tasks.withType<ProcessResources> {

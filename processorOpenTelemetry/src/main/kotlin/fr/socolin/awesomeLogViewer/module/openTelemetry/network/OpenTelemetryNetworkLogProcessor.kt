@@ -1,10 +1,14 @@
 package fr.socolin.awesomeLogViewer.module.openTelemetry.network
 
 import com.intellij.lang.Language
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.fileTypes.PlainTextLanguage
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.IconLoader.getIcon
+import com.sun.net.httpserver.HttpExchange
+import com.sun.net.httpserver.HttpHandler
+import com.sun.net.httpserver.HttpServer
 import fr.socolin.awesomeLogViewer.core.core.log_processor.ExecutionMode
 import fr.socolin.awesomeLogViewer.core.core.log_processor.LogProcessor
 import fr.socolin.awesomeLogViewer.core.core.log_processor.LogProcessorDefinition
@@ -12,11 +16,11 @@ import fr.socolin.awesomeLogViewer.core.core.log_processor.NetworkLogProcessor
 import fr.socolin.awesomeLogViewer.core.core.session.FilterSectionDefinition
 import fr.socolin.awesomeLogViewer.module.openTelemetry.settings.storage.OpenTelemetryNetworkSettingsState
 import fr.socolin.awesomeLogViewer.module.openTelemetry.settings.storage.OpenTelemetrySettingsStorageService
-import com.sun.net.httpserver.HttpExchange
-import com.sun.net.httpserver.HttpHandler
-import com.sun.net.httpserver.HttpServer
+import io.grpc.ManagedChannel
+import io.grpc.ManagedChannelBuilder
 import io.opentelemetry.proto.common.v1.KeyValue
 import java.net.InetSocketAddress
+import java.net.URI
 import java.util.concurrent.Executors
 import javax.swing.Icon
 
@@ -27,6 +31,10 @@ class OpenTelemetryNetworkLogProcessor(
     private val openTelemetrySettings: OpenTelemetryNetworkSettingsState
 ) : NetworkLogProcessor(definition, openTelemetrySettings) {
     private var server: HttpServer? = null
+    private var overriddenCollectorEndpoint: URI? = null
+    private var traceHttpHandler: OpenTelemetryTraceHttpHandler? = null
+    private var metricHttpHandler: OpenTelemetryMetricHttpHandler? = null
+    private var logHttpHandler: OpenTelemetryLogHttpHandler? = null
 
     override fun getFilterSectionsDefinitions(): List<FilterSectionDefinition> {
         return listOf(
@@ -40,18 +48,29 @@ class OpenTelemetryNetworkLogProcessor(
     }
 
     override fun dispose() {
+        traceHttpHandler?.dispose()
+        traceHttpHandler = null
+        metricHttpHandler?.dispose()
+        metricHttpHandler = null
+        logHttpHandler?.dispose()
+        logHttpHandler = null
         server?.stop(0)
         server = null
     }
 
-    override fun startNetworkCollector() {
+    override fun startNetworkCollector(environment: Map<String, String>) {
         try {
             if (this.server == null) {
+                setupLogForwarding(environment)
+
                 val server = HttpServer.create(InetSocketAddress(openTelemetrySettings.listenPortNumber.value), 0)
                 server.executor = Executors.newFixedThreadPool(1)
-                server.createContext("/v1/traces", OpenTelemetryTraceHttpHandler(notifyLogReceived))
-                server.createContext("/v1/metrics", OpenTelemetryMetricHttpHandler(notifyLogReceived))
-                server.createContext("/v1/logs", OpenTelemetryLogHttpHandler(notifyLogReceived))
+                traceHttpHandler = OpenTelemetryTraceHttpHandler(notifyLogReceived, overriddenCollectorEndpoint)
+                metricHttpHandler = OpenTelemetryMetricHttpHandler(notifyLogReceived, overriddenCollectorEndpoint)
+                logHttpHandler = OpenTelemetryLogHttpHandler(notifyLogReceived, overriddenCollectorEndpoint)
+                server.createContext("/v1/traces", traceHttpHandler)
+                server.createContext("/v1/metrics", metricHttpHandler)
+                server.createContext("/v1/logs", logHttpHandler)
                 server.start()
 
                 this.server = server
@@ -59,6 +78,18 @@ class OpenTelemetryNetworkLogProcessor(
         } catch (e: Exception) {
             LOG.error("Failed to start Open Telemetry server", e)
         }
+    }
+
+    private fun setupLogForwarding(environment: Map<String, String>) {
+        if (!openTelemetrySettings.forwardLogs.value) {
+            return;
+        }
+
+        val collectorEndpoint = environment["OTEL_EXPORTER_OTLP_ENDPOINT"]
+        if (collectorEndpoint == null) {
+            return
+        }
+        overriddenCollectorEndpoint = URI(collectorEndpoint)
     }
 
     override fun getEnvironmentVariables(): Map<String, String> {
@@ -94,7 +125,20 @@ class OpenTelemetryNetworkLogProcessor(
     }
 }
 
-abstract class BaseOpenTelemetryHttpHandler() : HttpHandler {
+abstract class BaseOpenTelemetryHttpHandler(
+    overriddenIngestionEndpoint: URI?,
+) : HttpHandler, Disposable {
+    protected val forwardChannel: ManagedChannel? = if (overriddenIngestionEndpoint != null)
+        ManagedChannelBuilder.forAddress(overriddenIngestionEndpoint.host, overriddenIngestionEndpoint.port)
+            .usePlaintext()
+            .build()
+    else
+        null
+
+    override fun dispose() {
+        forwardChannel?.shutdownNow()
+    }
+
     override fun handle(exchange: HttpExchange?) {
         if (exchange == null) return
 
