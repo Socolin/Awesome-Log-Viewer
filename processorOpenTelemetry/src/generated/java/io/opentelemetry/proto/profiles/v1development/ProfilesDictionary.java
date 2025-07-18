@@ -25,7 +25,7 @@ private static final long serialVersionUID = 0L;
     locationTable_ = java.util.Collections.emptyList();
     functionTable_ = java.util.Collections.emptyList();
     linkTable_ = java.util.Collections.emptyList();
-    stringTable_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    stringTable_ = com.google.protobuf.LazyStringArrayList.emptyList();
     attributeTable_ = java.util.Collections.emptyList();
     attributeUnits_ = java.util.Collections.emptyList();
   }
@@ -204,7 +204,7 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 1;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.MappingOrBuilder> 
+  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.MappingOrBuilder>
       getMappingTableOrBuilderList() {
     return mappingTable_;
   }
@@ -273,7 +273,7 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opentelemetry.proto.profiles.v1development.Location location_table = 2;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LocationOrBuilder> 
+  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LocationOrBuilder>
       getLocationTableOrBuilderList() {
     return locationTable_;
   }
@@ -333,7 +333,7 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opentelemetry.proto.profiles.v1development.Function function_table = 3;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.FunctionOrBuilder> 
+  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.FunctionOrBuilder>
       getFunctionTableOrBuilderList() {
     return functionTable_;
   }
@@ -397,7 +397,7 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opentelemetry.proto.profiles.v1development.Link link_table = 4;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LinkOrBuilder> 
+  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LinkOrBuilder>
       getLinkTableOrBuilderList() {
     return linkTable_;
   }
@@ -518,7 +518,7 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opentelemetry.proto.common.v1.KeyValue attribute_table = 6;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opentelemetry.proto.common.v1.KeyValueOrBuilder> 
+  public java.util.List<? extends io.opentelemetry.proto.common.v1.KeyValueOrBuilder>
       getAttributeTableOrBuilderList() {
     return attributeTable_;
   }
@@ -578,7 +578,7 @@ private static final long serialVersionUID = 0L;
    * <code>repeated .opentelemetry.proto.profiles.v1development.AttributeUnit attribute_units = 7;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.AttributeUnitOrBuilder> 
+  public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.AttributeUnitOrBuilder>
       getAttributeUnitsOrBuilderList() {
     return attributeUnits_;
   }
@@ -929,7 +929,7 @@ private static final long serialVersionUID = 0L;
       } else {
         linkTableBuilder_.clear();
       }
-      stringTable_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      stringTable_ = com.google.protobuf.LazyStringArrayList.emptyList();
       bitField0_ = (bitField0_ & ~0x00000010);
       if (attributeTableBuilder_ == null) {
         attributeTable_ = java.util.Collections.emptyList();
@@ -1095,7 +1095,7 @@ private static final long serialVersionUID = 0L;
             mappingTableBuilder_ = null;
             mappingTable_ = other.mappingTable_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            mappingTableBuilder_ = 
+            mappingTableBuilder_ =
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getMappingTableFieldBuilder() : null;
           } else {
@@ -1121,7 +1121,7 @@ private static final long serialVersionUID = 0L;
             locationTableBuilder_ = null;
             locationTable_ = other.locationTable_;
             bitField0_ = (bitField0_ & ~0x00000002);
-            locationTableBuilder_ = 
+            locationTableBuilder_ =
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getLocationTableFieldBuilder() : null;
           } else {
@@ -1147,7 +1147,7 @@ private static final long serialVersionUID = 0L;
             functionTableBuilder_ = null;
             functionTable_ = other.functionTable_;
             bitField0_ = (bitField0_ & ~0x00000004);
-            functionTableBuilder_ = 
+            functionTableBuilder_ =
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getFunctionTableFieldBuilder() : null;
           } else {
@@ -1173,7 +1173,7 @@ private static final long serialVersionUID = 0L;
             linkTableBuilder_ = null;
             linkTable_ = other.linkTable_;
             bitField0_ = (bitField0_ & ~0x00000008);
-            linkTableBuilder_ = 
+            linkTableBuilder_ =
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getLinkTableFieldBuilder() : null;
           } else {
@@ -1209,7 +1209,7 @@ private static final long serialVersionUID = 0L;
             attributeTableBuilder_ = null;
             attributeTable_ = other.attributeTable_;
             bitField0_ = (bitField0_ & ~0x00000020);
-            attributeTableBuilder_ = 
+            attributeTableBuilder_ =
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getAttributeTableFieldBuilder() : null;
           } else {
@@ -1235,7 +1235,7 @@ private static final long serialVersionUID = 0L;
             attributeUnitsBuilder_ = null;
             attributeUnits_ = other.attributeUnits_;
             bitField0_ = (bitField0_ & ~0x00000040);
-            attributeUnitsBuilder_ = 
+            attributeUnitsBuilder_ =
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getAttributeUnitsFieldBuilder() : null;
           } else {
@@ -1573,7 +1573,7 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 1;</code>
      */
-    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.MappingOrBuilder> 
+    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.MappingOrBuilder>
          getMappingTableOrBuilderList() {
       if (mappingTableBuilder_ != null) {
         return mappingTableBuilder_.getMessageOrBuilderList();
@@ -1620,12 +1620,12 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.Mapping mapping_table = 1;</code>
      */
-    public java.util.List<io.opentelemetry.proto.profiles.v1development.Mapping.Builder> 
+    public java.util.List<io.opentelemetry.proto.profiles.v1development.Mapping.Builder>
          getMappingTableBuilderList() {
       return getMappingTableFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opentelemetry.proto.profiles.v1development.Mapping, io.opentelemetry.proto.profiles.v1development.Mapping.Builder, io.opentelemetry.proto.profiles.v1development.MappingOrBuilder> 
+        io.opentelemetry.proto.profiles.v1development.Mapping, io.opentelemetry.proto.profiles.v1development.Mapping.Builder, io.opentelemetry.proto.profiles.v1development.MappingOrBuilder>
         getMappingTableFieldBuilder() {
       if (mappingTableBuilder_ == null) {
         mappingTableBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -1894,7 +1894,7 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.Location location_table = 2;</code>
      */
-    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LocationOrBuilder> 
+    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LocationOrBuilder>
          getLocationTableOrBuilderList() {
       if (locationTableBuilder_ != null) {
         return locationTableBuilder_.getMessageOrBuilderList();
@@ -1932,12 +1932,12 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.Location location_table = 2;</code>
      */
-    public java.util.List<io.opentelemetry.proto.profiles.v1development.Location.Builder> 
+    public java.util.List<io.opentelemetry.proto.profiles.v1development.Location.Builder>
          getLocationTableBuilderList() {
       return getLocationTableFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opentelemetry.proto.profiles.v1development.Location, io.opentelemetry.proto.profiles.v1development.Location.Builder, io.opentelemetry.proto.profiles.v1development.LocationOrBuilder> 
+        io.opentelemetry.proto.profiles.v1development.Location, io.opentelemetry.proto.profiles.v1development.Location.Builder, io.opentelemetry.proto.profiles.v1development.LocationOrBuilder>
         getLocationTableFieldBuilder() {
       if (locationTableBuilder_ == null) {
         locationTableBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -2206,7 +2206,7 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.Function function_table = 3;</code>
      */
-    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.FunctionOrBuilder> 
+    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.FunctionOrBuilder>
          getFunctionTableOrBuilderList() {
       if (functionTableBuilder_ != null) {
         return functionTableBuilder_.getMessageOrBuilderList();
@@ -2244,12 +2244,12 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.Function function_table = 3;</code>
      */
-    public java.util.List<io.opentelemetry.proto.profiles.v1development.Function.Builder> 
+    public java.util.List<io.opentelemetry.proto.profiles.v1development.Function.Builder>
          getFunctionTableBuilderList() {
       return getFunctionTableFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opentelemetry.proto.profiles.v1development.Function, io.opentelemetry.proto.profiles.v1development.Function.Builder, io.opentelemetry.proto.profiles.v1development.FunctionOrBuilder> 
+        io.opentelemetry.proto.profiles.v1development.Function, io.opentelemetry.proto.profiles.v1development.Function.Builder, io.opentelemetry.proto.profiles.v1development.FunctionOrBuilder>
         getFunctionTableFieldBuilder() {
       if (functionTableBuilder_ == null) {
         functionTableBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -2548,7 +2548,7 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.Link link_table = 4;</code>
      */
-    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LinkOrBuilder> 
+    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.LinkOrBuilder>
          getLinkTableOrBuilderList() {
       if (linkTableBuilder_ != null) {
         return linkTableBuilder_.getMessageOrBuilderList();
@@ -2592,12 +2592,12 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.Link link_table = 4;</code>
      */
-    public java.util.List<io.opentelemetry.proto.profiles.v1development.Link.Builder> 
+    public java.util.List<io.opentelemetry.proto.profiles.v1development.Link.Builder>
          getLinkTableBuilderList() {
       return getLinkTableFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opentelemetry.proto.profiles.v1development.Link, io.opentelemetry.proto.profiles.v1development.Link.Builder, io.opentelemetry.proto.profiles.v1development.LinkOrBuilder> 
+        io.opentelemetry.proto.profiles.v1development.Link, io.opentelemetry.proto.profiles.v1development.Link.Builder, io.opentelemetry.proto.profiles.v1development.LinkOrBuilder>
         getLinkTableFieldBuilder() {
       if (linkTableBuilder_ == null) {
         linkTableBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -2611,7 +2611,7 @@ private static final long serialVersionUID = 0L;
       return linkTableBuilder_;
     }
 
-    private com.google.protobuf.LazyStringList stringTable_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    private com.google.protobuf.LazyStringList stringTable_ = com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensureStringTableIsMutable() {
       if (!((bitField0_ & 0x00000010) != 0)) {
         stringTable_ = new com.google.protobuf.LazyStringArrayList(stringTable_);
@@ -2739,7 +2739,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearStringTable() {
-      stringTable_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      stringTable_ = com.google.protobuf.LazyStringArrayList.emptyList();
       bitField0_ = (bitField0_ & ~0x00000010);
       onChanged();
       return this;
@@ -3021,7 +3021,7 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.common.v1.KeyValue attribute_table = 6;</code>
      */
-    public java.util.List<? extends io.opentelemetry.proto.common.v1.KeyValueOrBuilder> 
+    public java.util.List<? extends io.opentelemetry.proto.common.v1.KeyValueOrBuilder>
          getAttributeTableOrBuilderList() {
       if (attributeTableBuilder_ != null) {
         return attributeTableBuilder_.getMessageOrBuilderList();
@@ -3059,12 +3059,12 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.common.v1.KeyValue attribute_table = 6;</code>
      */
-    public java.util.List<io.opentelemetry.proto.common.v1.KeyValue.Builder> 
+    public java.util.List<io.opentelemetry.proto.common.v1.KeyValue.Builder>
          getAttributeTableBuilderList() {
       return getAttributeTableFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opentelemetry.proto.common.v1.KeyValue, io.opentelemetry.proto.common.v1.KeyValue.Builder, io.opentelemetry.proto.common.v1.KeyValueOrBuilder> 
+        io.opentelemetry.proto.common.v1.KeyValue, io.opentelemetry.proto.common.v1.KeyValue.Builder, io.opentelemetry.proto.common.v1.KeyValueOrBuilder>
         getAttributeTableFieldBuilder() {
       if (attributeTableBuilder_ == null) {
         attributeTableBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -3333,7 +3333,7 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.AttributeUnit attribute_units = 7;</code>
      */
-    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.AttributeUnitOrBuilder> 
+    public java.util.List<? extends io.opentelemetry.proto.profiles.v1development.AttributeUnitOrBuilder>
          getAttributeUnitsOrBuilderList() {
       if (attributeUnitsBuilder_ != null) {
         return attributeUnitsBuilder_.getMessageOrBuilderList();
@@ -3371,12 +3371,12 @@ private static final long serialVersionUID = 0L;
      *
      * <code>repeated .opentelemetry.proto.profiles.v1development.AttributeUnit attribute_units = 7;</code>
      */
-    public java.util.List<io.opentelemetry.proto.profiles.v1development.AttributeUnit.Builder> 
+    public java.util.List<io.opentelemetry.proto.profiles.v1development.AttributeUnit.Builder>
          getAttributeUnitsBuilderList() {
       return getAttributeUnitsFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.opentelemetry.proto.profiles.v1development.AttributeUnit, io.opentelemetry.proto.profiles.v1development.AttributeUnit.Builder, io.opentelemetry.proto.profiles.v1development.AttributeUnitOrBuilder> 
+        io.opentelemetry.proto.profiles.v1development.AttributeUnit, io.opentelemetry.proto.profiles.v1development.AttributeUnit.Builder, io.opentelemetry.proto.profiles.v1development.AttributeUnitOrBuilder>
         getAttributeUnitsFieldBuilder() {
       if (attributeUnitsBuilder_ == null) {
         attributeUnitsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
