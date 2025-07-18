@@ -45,10 +45,7 @@ class ApplicationInsightsNetworkLogProcessor(
                 server.executor = Executors.newFixedThreadPool(1)
                 server.createContext("/v2/track", ApplicationInsightsHttpHandler(notifyLogReceived))
                 server.createContext("/v2.1/track", ApplicationInsightsHttpHandler(notifyLogReceived))
-                server.createContext(
-                    "/api/profiles/12345678-0000-0000-0000-009876543210/appId",
-                    ApplicationInsightsProfileHttpHandler(notifyLogReceived)
-                )
+                server.createContext("/api/profiles/12345678-0000-0000-0000-009876543210/appId", ApplicationInsightsProfileHttpHandler())
                 server.start()
 
                 this.server = server
