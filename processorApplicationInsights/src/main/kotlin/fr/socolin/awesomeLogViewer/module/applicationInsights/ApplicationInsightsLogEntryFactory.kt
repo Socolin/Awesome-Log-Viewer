@@ -2,7 +2,6 @@ package fr.socolin.awesomeLogViewer.module.applicationInsights
 
 import com.google.gson.Gson
 import com.google.gson.JsonParser
-import com.jetbrains.fus.reporting.serialization.toStringAnyMap
 import fr.socolin.awesomeLogViewer.core.core.session.LogEntryTimeInfo
 import fr.socolin.awesomeLogViewer.module.applicationInsights.data.*
 import java.time.Duration
@@ -79,7 +78,6 @@ class ApplicationInsightsLogEntryFactory {
                 return null
             }
 
-            jsonObject.get("tags").toStringAnyMap()
             val tags: Map<String, String> = jsonElementToMap(jsonObject.get("tags"))
 
             val parentId = tags["ai.operation.parentId"]
