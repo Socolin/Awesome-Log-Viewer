@@ -111,10 +111,29 @@ class OpenTelemetryLogEntry(
                 val method = signal.tags["http.request.method"] ?: signal.tags["http.method"]
                 val path = signal.tags["url.path"] ?: signal.tags["http.target"]
                 val address = signal.tags["server.address"] ?: signal.tags["http.host"]
-                renderModel.mainLabel.text = "$method $path - $address"
+
+                if (method != null || path != null) {
+                    val parts = mutableListOf<String>()
+                    if (method != null) parts.add(method)
+                    if (path != null) parts.add(path)
+                    if (address != null) parts.add("- $address")
+                    renderModel.mainLabel.text = parts.joinToString(" ")
+                } else {
+                    renderModel.mainLabel.text = signal.displayName
+                }
             } else if (signal.kind == ActivityKind.Client) {
                 renderModel.icon = AllIcons.ToolbarDecorator.Export
-                renderModel.mainLabel.text = signal.tags["http.request.method"] + " " + signal.tags["url.full"]
+                val method = signal.tags["http.request.method"]
+                val url = signal.tags["url.full"]
+
+                if (method != null || url != null) {
+                    val parts = mutableListOf<String>()
+                    if (method != null) parts.add(method)
+                    if (url != null) parts.add(url)
+                    renderModel.mainLabel.text = parts.joinToString(" ")
+                } else {
+                    renderModel.mainLabel.text = signal.displayName
+                }
             } else {
                 renderModel.icon = AllIcons.Toolwindows.ToolWindowHierarchy
                 renderModel.mainLabel.text = signal.displayName
