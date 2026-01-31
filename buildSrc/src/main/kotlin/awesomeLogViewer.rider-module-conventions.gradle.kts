@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        rider(versionCatalogs.named("libs").findVersion("riderSdk").get().requiredVersion, useInstaller = false)
+        rider(versionCatalogs.named("libs").findVersion("riderSdk").get().requiredVersion) {
+            useInstaller = false
+        }
     }
 }

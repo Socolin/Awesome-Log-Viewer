@@ -1,14 +1,15 @@
 [versions]
 # https://github.com/JetBrains/intellij-platform-gradle-plugin/releases
-gradleIntelliJPlatform = "2.6.0"
+gradleIntelliJPlatform = "2.11.0"
 # https://plugins.jetbrains.com/docs/intellij/using-kotlin.html#kotlin-standard-library
-kotlin = "2.1.20"
+kotlin = "2.2.20"
 # https://www.jetbrains.com/intellij-repository/snapshots/com/jetbrains/intellij/rider/riderRD/maven-metadata.xml
 # https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/rider/riderRD/maven-metadata.xml
-riderSdk = "2025.2-EAP8-SNAPSHOT"
-riderSdkPreview = "2025.2-SNAPSHOT"
+riderSdkPreview = "2025.3.1"
+riderSdk = "2025.3.1"
+# https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/maven-metadata.xml
 # https://d2s4y8xcwt8bet.cloudfront.net/com/jetbrains/intellij/idea/ideaIC/maven-metadata.xml
-ideaSdk = "252.23591.19-EAP-SNAPSHOT"
+ideaSdk = "2025.3.1"
 
 [libraries]
 intelliJPlatformModulePlugin = { group = "org.jetbrains.intellij.platform.module", name = "org.jetbrains.intellij.platform.module.gradle.plugin", version.ref = "gradleIntelliJPlatform" }
@@ -17,6 +18,6 @@ intelliJPlatformPlugin = { group = "org.jetbrains.intellij.platform", name = "or
 
 [plugins]
 # https://github.com/JetBrains/gradle-changelog-plugin/releases/tag/v2.2.1
-changelog = "org.jetbrains.changelog:2.2.1"
+changelog = "org.jetbrains.changelog:2.5.0"
 # https://github.com/mfilippov/gradle-jvm-wrapper
-gradleJvmWrapper = "me.filippov.gradle.jvm.wrapper:0.14.0"
+gradleJvmWrapper = "me.filippov.gradle.jvm.wrapper:0.15.0"

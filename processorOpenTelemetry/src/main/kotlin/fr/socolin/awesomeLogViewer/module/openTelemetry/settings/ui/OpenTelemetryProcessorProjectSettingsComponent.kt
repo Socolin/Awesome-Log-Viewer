@@ -76,7 +76,7 @@ class OpenTelemetryProcessorProjectSettingsComponent(
                 group(OpenTelemetryBundle.Companion.message("settings.open.telemetry.network.environment.variables.title")) {
                     row {
                         textArea()
-                            .rows(max(settingViewModel.network.environmentVariables.size, 5))
+                            .rows(maxOf(settingViewModel.network.environmentVariables.size, 5))
                             .resizableColumn()
                             .align(AlignX.FILL)
                             .bindText(

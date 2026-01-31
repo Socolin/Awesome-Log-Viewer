@@ -3,6 +3,7 @@ package fr.socolin.awesomeLogViewer.platformSpecificRider.session.run
 import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.execution.process.ProcessInfo
 import com.intellij.execution.process.ProcessListener
+import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.project.Project
 import fr.socolin.awesomeLogViewer.core.core.log_processor.ExecutionMode
@@ -26,7 +27,8 @@ class MyPatchCommandLineExtension(
         workerRunInfo: WorkerRunInfo,
         processInfo: ProcessInfo?,
         dotNetExecutable: DotNetExecutable?,
-        project: Project
+        project: Project,
+        dataContext: DataContext?
     ): Promise<WorkerRunInfo> {
         val logProcessorManager = LogProcessorManager.getInstance(project)
         val logProcessors = logProcessorManager.createLogProcessors(ExecutionMode.DEBUG)

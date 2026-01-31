@@ -76,7 +76,7 @@ class ApplicationInsightsProcessorProjectSettingsComponent(
             group(ApplicationInsightsBundle.Companion.message("settings.application.insights.network.environment.variables.title")) {
                 row {
                     textArea()
-                        .rows(max(settingViewModel.network.environmentVariables.size, 3))
+                        .rows(maxOf(settingViewModel.network.environmentVariables.size, 3))
                         .resizableColumn()
                         .align(AlignX.FILL)
                         .bindText(

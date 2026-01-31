@@ -70,7 +70,7 @@ class SimpleConsoleCustomizationComponent(
                     row {
                         textArea()
                             .enabled(true)
-                            .rows(max(consoleViewModel.environmentVariables.size, 3))
+                            .rows(maxOf(consoleViewModel.environmentVariables.size, 3))
                             .resizableColumn()
                             .align(AlignX.FILL)
                             .bindText(

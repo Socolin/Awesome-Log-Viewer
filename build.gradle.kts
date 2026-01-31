@@ -64,14 +64,16 @@ val runIdeaUltimate by intellijPlatformTesting.runIde.registering {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaCommunity(libs.versions.ideaSdk, useInstaller = false)
+        intellijIdea(libs.versions.ideaSdk) {
+            useInstaller = false
+        }
         pluginVerifier()
-        pluginModule(implementation(project(":pluginCore")))
-        pluginModule(implementation(project(":processorApplicationInsights")))
-        pluginModule(implementation(project(":processorOpenTelemetry")))
-        pluginModule(implementation(project(":processorSimpleConsole")))
-        pluginModule(implementation(project(":platformSpecificRider")))
-        pluginModule(implementation(project(":platformSpecificJava")))
+        pluginComposedModule(implementation(project(":pluginCore")))
+        pluginComposedModule(implementation(project(":processorApplicationInsights")))
+        pluginComposedModule(implementation(project(":processorOpenTelemetry")))
+        pluginComposedModule(implementation(project(":processorSimpleConsole")))
+        pluginComposedModule(implementation(project(":platformSpecificRider")))
+        pluginComposedModule(implementation(project(":platformSpecificJava")))
     }
 }
 
@@ -95,7 +97,10 @@ intellijPlatform {
     pluginVerification {
         ides {
             recommended()
-            ide(IntelliJPlatformType.Rider, libs.versions.riderSdk.get(), useInstaller = false)
+
+            create(IntelliJPlatformType.Rider, libs.versions.riderSdk.get()) {
+                useInstaller = false
+            }
         }
     }
 }

@@ -15,7 +15,9 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaCommunity(versionCatalogs.named("libs").findVersion("ideaSdk").get().requiredVersion, useInstaller = false)
+        intellijIdea(versionCatalogs.named("libs").findVersion("ideaSdk").get().requiredVersion) {
+            useInstaller = false
+        }
         pluginVerifier()
     }
 }
