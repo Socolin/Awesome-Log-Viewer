@@ -32,6 +32,7 @@ class LogListComponent(
 
         logTable.model = logTableModel
         logTable.setShowGrid(false)
+        logTable.rowHeight = logSession.pluginSettings.state.logLineHeight.value
         logTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)
         for ((index, columnDefinition) in LogListTableModel.columnDefinitions.withIndex()) {
             val column = logTable.columnModel.getColumn(index)
@@ -53,6 +54,9 @@ class LogListComponent(
         }
         logSession.pluginSettings.state.showTimeFromStart.advise(logSession.lifetime) {
             logTableModel.fireTableRowsUpdated(0, logSession.visibleLogCount)
+        }
+        logSession.pluginSettings.state.logLineHeight.advise(logSession.lifetime) {
+            logTable.rowHeight = it
         }
 
         val busConnection = ApplicationManager.getApplication().messageBus.connect(logSession.lifetime.createNestedDisposable())

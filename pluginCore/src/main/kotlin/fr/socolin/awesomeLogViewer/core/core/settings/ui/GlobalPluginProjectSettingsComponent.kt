@@ -47,6 +47,11 @@ class GlobalPluginProjectSettingsComponent {
                     checkBox(CoreBundle.Companion.message("settings.logs.show.time.from.start"))
                         .bindSelected(settingViewModel::showTimeFromStart)
                 }
+                row {
+                    intTextField(range = 12..100)
+                        .label(CoreBundle.Companion.message("settings.logs.line.height"))
+                        .bindIntText(settingViewModel::logLineHeight)
+                }
             }
             group(CoreBundle.Companion.message("settings.severity.level.group")) {
                 lateinit var colorizeLogCheckbox: Cell<JBCheckBox>

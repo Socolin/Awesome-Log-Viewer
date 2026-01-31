@@ -9,6 +9,7 @@ import kotlin.collections.iterator
 class GlobalPluginSettingsViewModel {
     var maxLogCount: Int = 0
     var showTimeFromStart: Boolean = true
+    var logLineHeight: Int = 32
     var colorLogBasedOnSeverity: Boolean = true
     var colorPerSeverity: MutableMap<GenericSeverityLevel, Color?> = mutableMapOf()
     var createPendingParent: Boolean = false
@@ -16,6 +17,7 @@ class GlobalPluginSettingsViewModel {
     fun updateModel(settings: GlobalPluginSettingsState) {
         maxLogCount = settings.maxLogCount.value
         showTimeFromStart = settings.showTimeFromStart.value
+        logLineHeight = settings.logLineHeight.value
         colorLogBasedOnSeverity = settings.colorLogBasedOnSeverity.value
         colorPerSeverity = settings.colorPerSeverity.map { it.key to it.value }.toMap().toMutableMap()
         createPendingParent = settings.createPendingParent.value
@@ -24,6 +26,7 @@ class GlobalPluginSettingsViewModel {
     fun applyChangesTo(settings: GlobalPluginSettingsState) {
         settings.maxLogCount.set(maxLogCount)
         settings.showTimeFromStart.set(showTimeFromStart)
+        settings.logLineHeight.set(logLineHeight)
         settings.colorLogBasedOnSeverity.set(colorLogBasedOnSeverity)
         settings.colorPerSeverity.clear()
         for ((key, value) in colorPerSeverity) {

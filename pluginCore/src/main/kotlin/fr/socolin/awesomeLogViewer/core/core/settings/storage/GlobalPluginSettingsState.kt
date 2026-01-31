@@ -42,6 +42,9 @@ class GlobalPluginSettingsState : BaseSettingsState() {
     @OptionTag("COLOR_LOG_BASED_ON_SEVERITY", converter = BooleanPropertyConverter::class)
     val showTimeFromStart: Property<Boolean> = Property(false)
 
+    @OptionTag("LOG_LINE_HEIGHT", converter = IntPropertyConverter::class)
+    val logLineHeight: Property<Int> = Property(32)
+
     @OptionTag("COLOR_LOG_BASED_ON_SEVERITY", converter = BooleanPropertyConverter::class)
     val colorLogBasedOnSeverity: Property<Boolean> = Property(true)
 
@@ -65,6 +68,7 @@ class GlobalPluginSettingsState : BaseSettingsState() {
     fun areSettingsEquals(settingModel: GlobalPluginSettingsViewModel): Boolean {
         return settingModel.maxLogCount == maxLogCount.value
             && settingModel.showTimeFromStart == showTimeFromStart.value
+            && settingModel.logLineHeight == logLineHeight.value
             && settingModel.createPendingParent == createPendingParent.value
             && settingModel.colorLogBasedOnSeverity == colorLogBasedOnSeverity.value
             && areSeverityColorsEquals(colorPerSeverity, settingModel.colorPerSeverity)
@@ -96,6 +100,7 @@ class GlobalPluginSettingsState : BaseSettingsState() {
         incrementTrackerWhenPropertyChanges(logListSplitProportion)
         incrementTrackerWhenPropertyChanges(colorLogBasedOnSeverity)
         incrementTrackerWhenPropertyChanges(showTimeFromStart)
+        incrementTrackerWhenPropertyChanges(logLineHeight)
         incrementTrackerWhenPropertyChanges(createPendingParent)
     }
 
