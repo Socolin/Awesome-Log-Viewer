@@ -13,7 +13,10 @@ Its main capabilities are:
   plugin hooks into your existing run and debug configurations.
 - **Multiple log sources** — console output (Serilog, Microsoft.Extensions.Logging, NLog,
   or a custom format), Azure **Application Insights**, and **OpenTelemetry**. Each source is
-  handled by a dedicated *module* (described on its own page).
+  handled by a dedicated *module*:
+  - **[Application Insights module](module-application-insights.md)** — capture and view Azure Application Insights telemetry (requests, dependencies, exceptions, metrics, …).
+  - **[OpenTelemetry module](module-opentelemetry.md)** — capture and view OpenTelemetry traces, metrics, and logs (OTLP).
+  - **[Custom / Console module](module-custom-console.md)** — parse console output from Serilog, Microsoft.Extensions.Logging, NLog, or any custom log format.
 - **Filtering** — full-text search plus per-property filters that populate themselves from
   the data you receive.
 - **Environment-variable injection** — for .NET and Java run configurations, the plugin can
@@ -106,7 +109,7 @@ Your filter selections are remembered per source.
 ## General settings
 
 Open **Settings / Preferences → Tools → Awesome Log Viewer**. These settings are stored per
-project. Each module (Application Insights, Open Telemetry, Simple Console) has its own
+project. Each module ([Application Insights](module-application-insights.md), [OpenTelemetry](module-opentelemetry.md), [Simple Console](module-custom-console.md)) has its own
 sub-page underneath this one.
 
 ### Logs
@@ -186,4 +189,5 @@ A license unlocks:
 - **Waterfall view** — a timeline column showing how entries overlap in time.
 
 ![Structured log view](images/alv_structured_log.png)
+
 
