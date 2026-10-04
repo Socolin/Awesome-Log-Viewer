@@ -1,6 +1,5 @@
 package fr.socolin.awesomeLogViewer.core.core.tool_window.filter
 
-import com.intellij.find.FindBundle
 import com.intellij.icons.AllIcons
 import com.intellij.ide.DataManager
 import com.intellij.openapi.actionSystem.*
@@ -14,6 +13,7 @@ import com.intellij.openapi.project.DumbAwareToggleAction
 import com.intellij.ui.SearchTextField
 import com.intellij.ui.components.JBPanel
 import com.intellij.util.ui.JBInsets
+import fr.socolin.awesomeLogViewer.core.core.CoreBundle
 import fr.socolin.awesomeLogViewer.core.core.session.FilterSection
 import fr.socolin.awesomeLogViewer.core.core.session.LogSession
 import fr.socolin.awesomeLogViewer.core.core.settings.storage.GlobalPluginSettingsStorageService
@@ -33,7 +33,7 @@ class FilterSectionPanel(
         val pluginSettings = GlobalPluginSettingsStorageService.Companion.getInstance()
         val searchTextField = SearchTextField(false)
         val toggleCaseSensitiveAction = MySwitchStateToggleAction(
-            "find.popup.case.sensitive",
+            "misc.filter.component.case.sensitive",
             AllIcons.Actions.MatchCase, AllIcons.Actions.MatchCaseHovered, AllIcons.Actions.MatchCaseSelected,
             pluginSettings.state.isFilterCaseSensitive,
             searchTextField.textEditor
@@ -125,7 +125,7 @@ class FilterSectionPanel(
         private val property: Property<Boolean>,
         component: JComponent,
         private val myTooltipLink: TooltipLink? = null
-    ) : DumbAwareToggleAction(FindBundle.message(message), null, icon),
+    ) : DumbAwareToggleAction(CoreBundle.message(message), null, icon),
         TooltipLinkProvider,
         TooltipDescriptionProvider {
         init {
