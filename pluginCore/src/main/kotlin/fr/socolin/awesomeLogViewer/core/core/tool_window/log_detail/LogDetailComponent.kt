@@ -36,15 +36,15 @@ class LogDetailComponent(
     init {
         layout = BorderLayout()
 
-
         document = SimpleDocumentCreator().createDocument("", logSession.getRawLogLanguage(), logSession.project)
-        ReadAction.nonBlocking<CodeFoldingState?> {
+        previewEditor = EditorFactory.getInstance().createViewer(document, logSession.project, EditorKind.MAIN_EDITOR)
+
+        ReadAction.nonBlocking<Unit> {
             CodeFoldingManager.getInstance(
                 logSession.project
-            ).buildInitialFoldings(document)
+            ).updateFoldRegionsAsync(previewEditor, true)
         }.submit(AppExecutorUtil.getAppExecutorService()).get()
 
-        previewEditor = EditorFactory.getInstance().createViewer(document, logSession.project, EditorKind.MAIN_EDITOR)
         previewEditor.settings.isIndentGuidesShown = true
         previewEditor.settings.additionalLinesCount = 3
         previewEditor.settings.isFoldingOutlineShown = true

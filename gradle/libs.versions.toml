@@ -5,11 +5,10 @@ gradleIntelliJPlatform = "2.11.0"
 kotlin = "2.2.20"
 # https://www.jetbrains.com/intellij-repository/snapshots/com/jetbrains/intellij/rider/riderRD/maven-metadata.xml
 # https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/rider/riderRD/maven-metadata.xml
-riderSdkPreview = "2025.3.1"
-riderSdk = "2025.3.1"
+riderSdk = "2026.1-EAP4-SNAPSHOT"
 # https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/maven-metadata.xml
 # https://d2s4y8xcwt8bet.cloudfront.net/com/jetbrains/intellij/idea/ideaIC/maven-metadata.xml
-ideaSdk = "2025.3.1"
+ideaSdk = "261.20869.38-EAP-SNAPSHOT"
 
 [libraries]
 intelliJPlatformModulePlugin = { group = "org.jetbrains.intellij.platform.module", name = "org.jetbrains.intellij.platform.module.gradle.plugin", version.ref = "gradleIntelliJPlatform" }
