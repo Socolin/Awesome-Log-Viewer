@@ -8,7 +8,7 @@ plugins {
 
 kotlin {
     jvmToolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
     compilerOptions {
         allWarningsAsErrors = true

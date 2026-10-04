@@ -12,11 +12,11 @@ plugins {
 }
 
 jvmWrapper {
-    linuxAarch64JvmUrl = "https://download.oracle.com/java/21/archive/jdk-21.0.3_linux-aarch64_bin.tar.gz"
-    linuxX64JvmUrl = "https://download.oracle.com/java/21/archive/jdk-21.0.3_linux-x64_bin.tar.gz"
-    macAarch64JvmUrl = "https://download.oracle.com/java/21/archive/jdk-21.0.3_macos-aarch64_bin.tar.gz"
-    macX64JvmUrl = "https://download.oracle.com/java/21/archive/jdk-21.0.3_macos-x64_bin.tar.gz"
-    windowsX64JvmUrl = "https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.zip"
+    linuxAarch64JvmUrl = "https://download.oracle.com/java/25/archive/jdk-25.0.4_linux-aarch64_bin.tar.gz"
+    linuxX64JvmUrl = "https://download.oracle.com/java/25/archive/jdk-25.0.4_linux-x64_bin.tar.gz"
+    macAarch64JvmUrl = "https://download.oracle.com/java/25/archive/jdk-25.0.4_macos-aarch64_bin.tar.gz"
+    macX64JvmUrl = "https://download.oracle.com/java/25/archive/jdk-25.0.4_macos-x64_bin.tar.gz"
+    windowsX64JvmUrl = "https://download.oracle.com/java/25/archive/jdk-25.0.4_windows-x64_bin.zip"
 }
 
 allprojects {
@@ -107,7 +107,7 @@ intellijPlatform {
 
 tasks {
     wrapper {
-        gradleVersion = "8.13"
+        gradleVersion = "9.8.0"
         distributionType = Wrapper.DistributionType.ALL
     }
 

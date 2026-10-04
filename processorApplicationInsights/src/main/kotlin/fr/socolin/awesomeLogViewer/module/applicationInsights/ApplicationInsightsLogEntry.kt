@@ -287,7 +287,7 @@ class ApplicationInsightsLogEntry(
     }
 
     override fun getFormattedRawLog(): String {
-        return prettyPrintGson.toJson(prettyPrintGson.fromJson(rawLog, Object::class.java))
+        return prettyPrintGson.toJson(prettyPrintGson.fromJson(rawLog, Any::class.java))
     }
 
     companion object {

@@ -14,22 +14,20 @@ import com.jetbrains.rider.run.PatchCommandLineExtension
 import com.jetbrains.rider.run.WorkerRunInfo
 import com.jetbrains.rider.runtime.DotNetExecutable
 import com.jetbrains.rider.runtime.DotNetRuntime
-import org.jetbrains.concurrency.Promise
-import org.jetbrains.concurrency.resolvedPromise
 
 private val LOG = logger<MyPatchCommandLineExtension>()
 
 class MyPatchCommandLineExtension(
     val project: Project,
 ) : PatchCommandLineExtension {
-    override fun patchDebugCommandLine(
+    override suspend fun patchDebugCommandLineSuspending(
         lifetime: Lifetime,
         workerRunInfo: WorkerRunInfo,
         processInfo: ProcessInfo?,
         dotNetExecutable: DotNetExecutable?,
         project: Project,
         dataContext: DataContext?
-    ): Promise<WorkerRunInfo> {
+    ): WorkerRunInfo {
         val logProcessorManager = LogProcessorManager.getInstance(project)
         val logProcessors = logProcessorManager.createLogProcessors(ExecutionMode.DEBUG)
         for (logProcessor in logProcessors) {
@@ -39,10 +37,10 @@ class MyPatchCommandLineExtension(
             workerRunInfo.commandLine.withEnvironment(logProcessor.getEnvironmentVariables())
         }
         logProcessorManager.storePreparedProcessors(logProcessors)
-        return resolvedPromise(workerRunInfo)
+        return workerRunInfo
     }
 
-    override fun patchRunCommandLine(
+    override suspend fun patchRunCommandLineSuspending(
         commandLine: GeneralCommandLine,
         dotNetRuntime: DotNetRuntime,
         dotNetExecutable: DotNetExecutable?,

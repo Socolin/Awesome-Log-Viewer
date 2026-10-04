@@ -5,4 +5,8 @@ plugins {
 
 dependencies {
     compileOnly(project(":pluginCore"))
+    intellijPlatform {
+        bundledModule("intellij.rd.client")
+        bundledModule("intellij.rider.rdclient.dotnet")
+    }
 }

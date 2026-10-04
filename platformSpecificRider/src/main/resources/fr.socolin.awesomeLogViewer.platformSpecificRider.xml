@@ -2,6 +2,8 @@
     <dependencies>
         <module name="fr.socolin.awesomeLogViewer.core"/>
         <plugin id="com.intellij.modules.rider"/>
+        <module name="intellij.rd.client"/>
+        <module name="intellij.rider.rdclient.dotnet"/>
     </dependencies>
 
     <extensions defaultExtensionNs="com.intellij">

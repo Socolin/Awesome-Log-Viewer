@@ -53,7 +53,7 @@ class SimpleConsoleLogProcessor(
                 val parentId = readStringFrom(jsonLog, "parentId")
                 val logEntry = SimpleConsoleLogEntry(
                     this,
-                    prettyPrintGson.toJson(prettyPrintGson.fromJson(line, Object::class.java)),
+                    prettyPrintGson.toJson(prettyPrintGson.fromJson(line, Any::class.java)),
                     LogEntryTimeInfo.createFromStartAndDuration(Instant.now(), Duration.ZERO),
                     id,
                     parentId

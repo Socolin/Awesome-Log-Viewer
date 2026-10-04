@@ -9,7 +9,7 @@ dependencies {
     }
 
     testImplementation(kotlin("test"))
-    testImplementation("io.mockk:mockk:1.14.2")
+    testImplementation("io.mockk:mockk:1.14.11")
 }
 
 tasks.test {

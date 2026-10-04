@@ -1,14 +1,14 @@
 [versions]
 # https://github.com/JetBrains/intellij-platform-gradle-plugin/releases
-gradleIntelliJPlatform = "2.11.0"
+gradleIntelliJPlatform = "2.19.0"
 # https://plugins.jetbrains.com/docs/intellij/using-kotlin.html#kotlin-standard-library
-kotlin = "2.2.20"
+kotlin = "2.4.20"
 # https://www.jetbrains.com/intellij-repository/snapshots/com/jetbrains/intellij/rider/riderRD/maven-metadata.xml
 # https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/rider/riderRD/maven-metadata.xml
-riderSdk = "2026.1-EAP4-SNAPSHOT"
+riderSdk = "2026.2.3.1"
 # https://www.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/maven-metadata.xml
 # https://d2s4y8xcwt8bet.cloudfront.net/com/jetbrains/intellij/idea/ideaIC/maven-metadata.xml
-ideaSdk = "261.20869.38-EAP-SNAPSHOT"
+ideaSdk = "2026.2.3"
 
 [libraries]
 intelliJPlatformModulePlugin = { group = "org.jetbrains.intellij.platform.module", name = "org.jetbrains.intellij.platform.module.gradle.plugin", version.ref = "gradleIntelliJPlatform" }
