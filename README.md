@@ -31,6 +31,14 @@ It also allows you to see the telemetry from Application Insights or Open Teleme
     <a href="./doc/images/alv_structured_log.png"><img src="./doc/images/alv_structured_log.png" alt="" width="800"/></a>
 </div>
 
+## Documentation
+
+For detailed documentation, configuration options, and module guides, see the [Documentation](doc/README.md):
+
+- [Overview & General Settings](doc/overview.md)
+- [Application Insights module](doc/module-application-insights.md)
+- [OpenTelemetry module](doc/module-opentelemetry.md)
+- [Custom / Console module](doc/module-custom-console.md)
 
 ## License
 
