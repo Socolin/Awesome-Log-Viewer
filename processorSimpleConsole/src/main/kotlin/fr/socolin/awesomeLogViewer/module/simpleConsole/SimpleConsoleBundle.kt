@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nls
 import org.jetbrains.annotations.NonNls
 import org.jetbrains.annotations.PropertyKey
 
-class SimpleConsoleBundle : DynamicBundle(BUNDLE) {
+class SimpleConsoleBundle : DynamicBundle(SimpleConsoleBundle::class.java, BUNDLE) {
     companion object {
         @NonNls
         private const val BUNDLE = "messages.SimpleConsoleBundle"

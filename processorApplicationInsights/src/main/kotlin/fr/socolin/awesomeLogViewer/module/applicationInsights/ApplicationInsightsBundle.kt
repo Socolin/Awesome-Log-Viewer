@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nls
 import org.jetbrains.annotations.NonNls
 import org.jetbrains.annotations.PropertyKey
 
-class ApplicationInsightsBundle : DynamicBundle(BUNDLE) {
+class ApplicationInsightsBundle : DynamicBundle(ApplicationInsightsBundle::class.java, BUNDLE) {
     companion object {
         @NonNls
         private const val BUNDLE = "messages.ApplicationInsightsBundle"

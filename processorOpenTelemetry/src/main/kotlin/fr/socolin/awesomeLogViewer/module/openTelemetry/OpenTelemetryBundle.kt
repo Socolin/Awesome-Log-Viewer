@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nls
 import org.jetbrains.annotations.NonNls
 import org.jetbrains.annotations.PropertyKey
 
-class OpenTelemetryBundle : DynamicBundle(BUNDLE) {
+class OpenTelemetryBundle : DynamicBundle(OpenTelemetryBundle::class.java, BUNDLE) {
     companion object {
         @NonNls
         private const val BUNDLE = "messages.OpenTelemetryBundle"

@@ -8,5 +8,8 @@ dependencies {
     intellijPlatform {
         bundledModule("intellij.rd.client")
         bundledModule("intellij.rider.rdclient.dotnet")
+        bundledModule("intellij.platform.debugger")
+        bundledModule("intellij.platform.debugger.impl")
+        bundledModule("intellij.rd.client.debugger")
     }
 }

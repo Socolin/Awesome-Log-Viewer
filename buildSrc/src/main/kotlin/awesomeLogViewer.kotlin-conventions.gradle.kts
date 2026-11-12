@@ -12,5 +12,7 @@ kotlin {
     }
     compilerOptions {
         allWarningsAsErrors = true
+        // Do not generate bridges for interface default methods (some are @ApiStatus.Internal and flagged by the plugin verifier)
+        jvmDefault = org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode.NO_COMPATIBILITY
     }
 }

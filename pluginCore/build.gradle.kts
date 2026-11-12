@@ -6,6 +6,7 @@ plugins {
 dependencies {
     intellijPlatform {
         compatiblePlugin("com.intellij.modules.json")
+        bundledModule("intellij.platform.debugger")
     }
 
     testImplementation(kotlin("test"))

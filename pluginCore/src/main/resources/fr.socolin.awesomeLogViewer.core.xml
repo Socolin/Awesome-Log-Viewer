@@ -1,6 +1,7 @@
 <idea-plugin package="fr.socolin.awesomeLogViewer.core">
     <dependencies>
         <plugin id="com.intellij.modules.json"/>
+        <module name="intellij.platform.debugger"/>
     </dependencies>
 
     <resource-bundle>messages.CoreBundle</resource-bundle>
