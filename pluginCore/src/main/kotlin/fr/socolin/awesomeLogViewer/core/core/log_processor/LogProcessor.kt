@@ -18,6 +18,7 @@ abstract class LogProcessor(
     abstract fun dispose()
     open fun supportNesting(): Boolean = true
     open fun supportSampling() = false
+    open fun getAdditionalColumns(): List<AdditionalColumnDefinition> = emptyList()
     open fun getEnvironmentVariables() = emptyMap<String, String>()
 }
 

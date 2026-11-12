@@ -53,6 +53,7 @@ The table shows, depending on the source and your column choices:
 - **Time** — timestamp (`HH:mm:ss:SSS`); click the header to sort.
 - A thin **color bar** reflecting the entry's severity.
 - **Severity** — Trace, Debug, Info, Warn, Error, or Critical.
+- **Additional columns** — extra columns provided by the source, shown before **Message** (sortable). OpenTelemetry adds a **Category** column (the logger category / instrumentation scope); for Custom Console sources you choose them with the [Additional Columns](module-custom-console.md) setting.
 - **Message** — the main text of the entry.
 - **Result** — a status/result code (e.g. an HTTP status).
 - **Duration** — how long the operation took (sortable; mainly for traces/requests).

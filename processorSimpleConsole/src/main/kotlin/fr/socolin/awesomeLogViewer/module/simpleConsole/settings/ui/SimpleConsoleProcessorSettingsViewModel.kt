@@ -104,6 +104,7 @@ class SimpleConsoleConsoleProcessorSettingsViewModel(val runtimeId: UUID) :
     var startingLogPattern: String = "^(?<message>.+)$"
     var secondaryLogPattern: String = ""
     var filteringProperties = mutableMapOf<String, String>()
+    var additionalColumns = mutableMapOf<String, String>()
     var environmentVariables = mutableMapOf<String, String>()
 
     init {
@@ -122,6 +123,7 @@ class SimpleConsoleConsoleProcessorSettingsViewModel(val runtimeId: UUID) :
         startingLogPattern = settings.startingLogPattern.value
         secondaryLogPattern = settings.secondaryLogPattern.value
         filteringProperties = settings.filteringProperties.toMutableMap()
+        additionalColumns = settings.additionalColumns.toMutableMap()
         environmentVariables = settings.environmentVariables.toMutableMap()
         super.updateModel(settings)
     }
@@ -135,6 +137,7 @@ class SimpleConsoleConsoleProcessorSettingsViewModel(val runtimeId: UUID) :
         if (startingLogPattern != settings.startingLogPattern.value) return false
         if (secondaryLogPattern != settings.secondaryLogPattern.value) return false
         if (!filteringProperties.contentEquals(settings.filteringProperties)) return false
+        if (additionalColumns.toList() != settings.additionalColumns.toList()) return false
         if (!environmentVariables.contentEquals(settings.environmentVariables)) return false
         return super.settingsEquals(settings)
 
@@ -151,6 +154,8 @@ class SimpleConsoleConsoleProcessorSettingsViewModel(val runtimeId: UUID) :
         settings.secondaryLogPattern.set(secondaryLogPattern)
         settings.filteringProperties.clear()
         settings.filteringProperties.putAll(filteringProperties)
+        settings.additionalColumns.clear()
+        settings.additionalColumns.putAll(additionalColumns)
         settings.environmentVariables.clear()
         settings.environmentVariables.putAll(environmentVariables)
     }

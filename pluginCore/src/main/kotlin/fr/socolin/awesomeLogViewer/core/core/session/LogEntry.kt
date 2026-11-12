@@ -31,6 +31,8 @@ abstract class LogEntry(
 
     open fun isSampled() = false
 
+    open fun getAdditionalColumnValue(propertyName: String): String? = null
+
     abstract fun updateRenderModel(logSession: LogSession, renderModel: LogEntryRenderModel)
 
     abstract fun updateResultCodeRenderModel(logSession: LogSession, renderModel: ResultCodeRenderModel)

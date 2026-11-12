@@ -76,6 +76,12 @@ class SimpleConsoleConsoleSettingsState(runtimeId: UUID? = null) : ConsoleLogPro
     @MapAnnotation(surroundWithTag = false, surroundKeyWithTag = false, surroundValueWithTag = false)
     val filteringProperties = mutableMapOf<String, String>()
 
+    /**
+     * Properties displayed as additional columns in the log table: property name -> column name.
+     */
+    @MapAnnotation(surroundWithTag = false, surroundKeyWithTag = false, surroundValueWithTag = false, sortBeforeSave = false)
+    val additionalColumns = mutableMapOf<String, String>()
+
     @MapAnnotation(surroundWithTag = false, surroundKeyWithTag = false, surroundValueWithTag = false)
     val environmentVariables = mutableMapOf<String, String>()
 

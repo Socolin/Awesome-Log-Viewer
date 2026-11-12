@@ -34,7 +34,7 @@ class LogListComponent(
         logTable.setShowGrid(false)
         logTable.rowHeight = logSession.pluginSettings.state.logLineHeight.value
         logTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)
-        for ((index, columnDefinition) in LogListTableModel.columnDefinitions.withIndex()) {
+        for ((index, columnDefinition) in logTableModel.columnDefinitions.withIndex()) {
             val column = logTable.columnModel.getColumn(index)
             applyColumnConfiguration(column, columnDefinition, logSession)
             column.identifier = columnDefinition.columnId
@@ -103,8 +103,12 @@ class LogListComponent(
             }
 
             override fun mouseClicked(e: MouseEvent) {
-                val columnModelIndex = logTable.columnAtPoint(e.point)
-                val columnDefinition = LogListTableModel.columnDefinitions.getOrNull(columnModelIndex)
+                val columnViewIndex = logTable.columnAtPoint(e.point)
+                if (columnViewIndex < 0) {
+                    return
+                }
+                val column = logTable.columnModel.getColumn(columnViewIndex)
+                val columnDefinition = logTableModel.columnDefinitions.getOrNull(column.modelIndex)
                 if (columnDefinition == null) {
                     return
                 }
@@ -112,7 +116,6 @@ class LogListComponent(
                     return
                 }
 
-                val column = logTable.columnModel.getColumn(columnModelIndex)
                 val columnId = column.identifier
                 if (columnId is String) {
                     val result = logSession.toggleColumnSort(columnId)
@@ -130,7 +133,7 @@ class LogListComponent(
                 sortAsc: Boolean?,
             ) {
                 val column = logTable.columnModel.columns.toList().firstOrNull { it.identifier == columnId } ?: return
-                val columnDefinition = LogListTableModel.columnDefinitions[column.modelIndex]
+                val columnDefinition = logTableModel.columnDefinitions[column.modelIndex]
                 if (sortAsc == true) {
                     column.headerValue = columnDefinition.columnName + " ↓"
                 } else if (sortAsc == false) {
@@ -142,7 +145,7 @@ class LogListComponent(
         })
 
         for (columnId in logSession.pluginSettings.state.getHiddenColumns(logSession.logProcessor.definition.getId())) {
-            val columnIndex = LogListTableModel.columnDefinitions.indexOfFirst { it.columnId == columnId }
+            val columnIndex = logTableModel.columnDefinitions.indexOfFirst { it.columnId == columnId }
             if (columnIndex < 0) {
                 continue
             }
@@ -181,7 +184,7 @@ class LogListComponent(
     private fun updateColumnSize() {
         logTable.setRowHeight(EditorUtil.getEditorFont().size + 18)
         logTable.columnModel.columns.toList().forEach { column ->
-            val columnDefinition = LogListTableModel.columnDefinitions[column.modelIndex]
+            val columnDefinition = logTableModel.columnDefinitions[column.modelIndex]
             column.minWidth = columnDefinition.minWidth?.invoke() ?: column.minWidth
             column.preferredWidth = columnDefinition.preferredWidth?.invoke() ?: column.preferredWidth
             column.maxWidth = columnDefinition.maxWidth?.invoke() ?: column.maxWidth
@@ -201,7 +204,7 @@ class LogListComponent(
 
         val activeTabs = logTable.columnModel.columns.toList().map { it.modelIndex }.toSet()
         val filterActions: MutableList<ToggleToolbarAction> = mutableListOf()
-        for ((modelIndex, columnDefinition) in LogListTableModel.columnDefinitions.withIndex()) {
+        for ((modelIndex, columnDefinition) in logTableModel.columnDefinitions.withIndex()) {
             val filterAction = ToggleToolbarAction(
                 columnDefinition.columnName,
                 activeTabs.contains(modelIndex)

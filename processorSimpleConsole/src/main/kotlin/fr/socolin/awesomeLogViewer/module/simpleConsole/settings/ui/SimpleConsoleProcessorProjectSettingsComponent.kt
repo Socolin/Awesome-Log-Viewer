@@ -89,6 +89,7 @@ class SimpleConsoleProcessorProjectSettingsComponent(val lifetime: Lifetime) {
                 consoleViewModel.secondaryLogPattern = "^ {6}(?<message>.*)$"
                 consoleViewModel.filteringProperties["severity"] = "Severity Level"
                 consoleViewModel.filteringProperties["category"] = "Category"
+                consoleViewModel.additionalColumns["category"] = "Category"
                 addConsolePanel(consoleViewModel)
             })
         }
@@ -101,6 +102,7 @@ class SimpleConsoleProcessorProjectSettingsComponent(val lifetime: Lifetime) {
                 consoleViewModel.secondaryLogPattern = "^(?<message>.*)$"
                 consoleViewModel.filteringProperties["severity"] = "Severity Level"
                 consoleViewModel.filteringProperties["category"] = "Category"
+                consoleViewModel.additionalColumns["category"] = "Category"
                 addConsolePanel(consoleViewModel)
             })
         }

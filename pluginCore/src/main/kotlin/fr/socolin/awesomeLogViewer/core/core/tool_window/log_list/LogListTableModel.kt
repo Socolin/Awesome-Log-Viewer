@@ -1,6 +1,7 @@
 package fr.socolin.awesomeLogViewer.core.core.tool_window.log_list
 
 import fr.socolin.awesomeLogViewer.core.core.CoreBundle
+import fr.socolin.awesomeLogViewer.core.core.log_processor.AdditionalColumnDefinition
 import fr.socolin.awesomeLogViewer.core.core.session.LogEntryDisplay
 import fr.socolin.awesomeLogViewer.core.core.session.LogEntryTimeInfo
 import fr.socolin.awesomeLogViewer.core.core.session.LogSession
@@ -24,6 +25,8 @@ data class ColumnDefinition<T>(
 )
 
 class LogListTableModel(val logSession: LogSession) : AbstractTableModel() {
+    val columnDefinitions: List<ColumnDefinition<*>> = buildColumnDefinitions(logSession)
+
     init {
         logSession.changeLogChangeNotifier.logAdded.advise(logSession.lifetime) {
             this.fireTableRowsInserted(it.first, it.second)
@@ -35,8 +38,11 @@ class LogListTableModel(val logSession: LogSession) : AbstractTableModel() {
             this.fireTableRowsUpdated(it.first, it.second)
         }
         logSession.visibleLogsTimeRange.totalDurationUpdated.debounce(300, logSession.lifetime) {
-            for (row in 0..<logSession.visibleLogCount) {
-                fireTableCellUpdated(row, 3)
+            val waterfallColumnIndex = columnDefinitions.indexOfFirst { it.columnId == "waterfall" }
+            if (waterfallColumnIndex >= 0) {
+                for (row in 0..<logSession.visibleLogCount) {
+                    fireTableCellUpdated(row, waterfallColumnIndex)
+                }
             }
         }
     }
@@ -71,7 +77,34 @@ class LogListTableModel(val logSession: LogSession) : AbstractTableModel() {
     }
 
     companion object {
-        val columnDefinitions: List<ColumnDefinition<*>> = listOf(
+        private const val ADDITIONAL_COLUMNS_INSERTION_COLUMN_ID = "message"
+
+        fun buildColumnDefinitions(logSession: LogSession): List<ColumnDefinition<*>> {
+            val additionalColumns = logSession.logProcessor.getAdditionalColumns()
+                .distinctBy { it.propertyName }
+                .map { createAdditionalColumnDefinition(it) }
+            if (additionalColumns.isEmpty())
+                return staticColumnDefinitions
+
+            val result = staticColumnDefinitions.toMutableList()
+            val insertionIndex = result.indexOfFirst { it.columnId == ADDITIONAL_COLUMNS_INSERTION_COLUMN_ID }
+            result.addAll(if (insertionIndex < 0) result.size else insertionIndex, additionalColumns)
+            return result
+        }
+
+        private fun createAdditionalColumnDefinition(additionalColumn: AdditionalColumnDefinition): ColumnDefinition<String> {
+            return ColumnDefinition(
+                additionalColumn.columnId,
+                additionalColumn.displayName,
+                String::class.java,
+                minWidth = { -> CellFontHelper.Companion.getIdealColumnSize(" ${additionalColumn.displayName} ") },
+                preferredWidth = { -> 150 },
+                isSortable = true,
+                createCellRenderer = { TextCellRenderer() },
+            ) { it.logEntry.getAdditionalColumnValue(additionalColumn.propertyName) ?: "" }
+        }
+
+        val staticColumnDefinitions: List<ColumnDefinition<*>> = listOf(
             ColumnDefinition(
                 "time",
                 "Time",

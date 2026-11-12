@@ -10,6 +10,7 @@ import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.fileTypes.PlainTextLanguage
 import com.intellij.openapi.project.Project
 import com.intellij.util.containers.toArray
+import fr.socolin.awesomeLogViewer.core.core.log_processor.AdditionalColumnDefinition
 import fr.socolin.awesomeLogViewer.core.core.log_processor.ConsoleLogProcessor
 import fr.socolin.awesomeLogViewer.core.core.log_processor.ExecutionMode
 import fr.socolin.awesomeLogViewer.core.core.log_processor.LogProcessor
@@ -42,6 +43,10 @@ class SimpleConsoleLogProcessor(
 
     val filteringProperties = simpleConsoleSettings.filteringProperties.toMap()
     val filterSectionNames = simpleConsoleSettings.filteringProperties.keys.toArray(arrayOf())
+
+    private val additionalColumns = simpleConsoleSettings.additionalColumns
+        .filter { it.key.isNotBlank() }
+        .map { AdditionalColumnDefinition(it.key, it.value.ifBlank { it.key }) }
 
     var lastLog: SimpleConsoleLogEntry? = null
 
@@ -148,6 +153,10 @@ class SimpleConsoleLogProcessor(
     }
 
     override fun dispose() {
+    }
+
+    override fun getAdditionalColumns(): List<AdditionalColumnDefinition> {
+        return additionalColumns
     }
 
     override fun supportNesting(): Boolean {

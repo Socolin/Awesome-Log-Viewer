@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- Add support for additional columns in the log table #15
+  - Custom Console: new `Additional Columns` setting to display any captured property as a column (the NLog and Microsoft.Extensions.Logging presets add a `Category` column)
+  - OpenTelemetry: new `Category` column
+- Fix sorting the wrong column when clicking a header after hiding or moving columns
+
 ## 2025.3.2
 
 - Fix UI not appearing in Rider 2025.3.2

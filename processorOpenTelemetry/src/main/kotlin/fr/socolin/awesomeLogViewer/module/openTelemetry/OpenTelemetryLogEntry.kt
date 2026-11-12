@@ -1,6 +1,7 @@
 package fr.socolin.awesomeLogViewer.module.openTelemetry
 
 import com.intellij.icons.AllIcons
+import fr.socolin.awesomeLogViewer.core.core.log_processor.AdditionalColumnDefinition
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogPropertyModel
 import fr.socolin.awesomeLogViewer.core.core.tool_window.log_detail.FormattedLogSectionModel
@@ -63,6 +64,13 @@ class OpenTelemetryLogEntry(
         }
 
         return filtered
+    }
+
+    override fun getAdditionalColumnValue(propertyName: String): String? {
+        if (propertyName == CATEGORY_COLUMN.propertyName && signal is OpenTelemetryLogRecord) {
+            return signal.categoryName
+        }
+        return null
     }
 
     override fun getBarColor(): Color? {
@@ -272,6 +280,8 @@ class OpenTelemetryLogEntry(
     }
 
     companion object {
+        val CATEGORY_COLUMN = AdditionalColumnDefinition("category", "Category")
+
         fun createFromSignal(rawLog: String, signal: OpenTelemetrySignal): OpenTelemetryLogEntry {
             when (signal) {
                 is OpenTelemetryLogRecord -> {

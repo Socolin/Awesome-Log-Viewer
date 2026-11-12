@@ -1,5 +1,7 @@
 package fr.socolin.awesomeLogViewer.module.openTelemetry.network
 
+import fr.socolin.awesomeLogViewer.module.openTelemetry.OpenTelemetryLogEntry
+import fr.socolin.awesomeLogViewer.core.core.log_processor.AdditionalColumnDefinition
 import com.intellij.lang.Language
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.diagnostic.logger
@@ -42,6 +44,8 @@ class OpenTelemetryNetworkLogProcessor(
             FilterSectionDefinition("OT_Severity", "Severity Level"),
         )
     }
+
+    override fun getAdditionalColumns(): List<AdditionalColumnDefinition> = listOf(OpenTelemetryLogEntry.CATEGORY_COLUMN)
 
     override fun getRawLogLanguage(): Language? {
         return PlainTextLanguage.INSTANCE

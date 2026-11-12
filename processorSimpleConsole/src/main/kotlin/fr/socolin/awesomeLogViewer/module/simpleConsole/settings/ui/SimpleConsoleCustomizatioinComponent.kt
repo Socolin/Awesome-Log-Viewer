@@ -150,6 +150,27 @@ class SimpleConsoleCustomizationComponent(
                                 .comment(SimpleConsoleBundle.message("settings.simple.console.processor.properties.comment"))
                         }
                     }
+                    group(SimpleConsoleBundle.message("settings.simple.console.processor.additional.columns")) {
+                        row {
+                            textArea()
+                                .rows(3)
+                                .resizableColumn()
+                                .align(AlignX.FILL)
+                                .bindText(
+                                    MutableProperty(
+                                        { consoleViewModel.additionalColumns.entries.joinToString("\n") { "${it.key}: ${it.value}" } },
+                                        {
+                                            consoleViewModel.additionalColumns = it.lines()
+                                                .filter { line -> line.isNotBlank() }
+                                                .associate { line -> line.substringBefore(':').trim() to line.substringAfter(':', "").trim() }
+                                                .filterKeys { key -> key.isNotEmpty() }
+                                                .toMutableMap()
+                                        }
+                                    )
+                                )
+                                .comment(SimpleConsoleBundle.message("settings.simple.console.processor.additional.columns.comment"))
+                        }
+                    }
                 }
             }
         }

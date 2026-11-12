@@ -50,8 +50,9 @@ Choose a **Parsing Method**:
     color (see the [severity mapping](#severity-mapping) below).
   - `category` — the logger/category name.
   - `id` / `parentId` — used to build the structured (tree) view *(premium)*.
-  - any other name — kept as a property: visible in the detail panel and usable as a filter
-    if you add it under **Filtering Properties**.
+  - any other name — kept as a property: visible in the detail panel, usable as a filter
+    if you add it under **Filtering Properties**, and shown as a column if you add it under
+    **Additional Columns**.
 
   Whole-line matching: each console line is matched **in its entirety** against the pattern.
   This means the `^` (start) and `$` (end) anchors are optional — the pattern already has to
@@ -124,6 +125,20 @@ pick apart with a pattern, and **Use JSON** when your app can emit one JSON obje
   category: Logger Category
   threadId: Thread ID
   ```
+
+- **Additional Columns** — *"One column per line, using the format `property: Column Name`
+  where properties are values captured by the regex groups (or JSON keys)."* Each line adds a
+  column to the log table, placed before **Message**, in the order you list them. Columns are
+  sortable, resizable, and can be hidden by right-clicking the table header, e.g.:
+
+  ```
+  category: Category
+  threadId: Thread
+  ```
+
+  The **.NET: Microsoft.Extensions.Logging** and **.NET: NLog** presets add a `category:
+  Category` column. Consoles created from those presets before this setting existed do not
+  have it: add the line yourself.
 
 ### Environment Variables
 

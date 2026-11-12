@@ -72,6 +72,10 @@ class SimpleConsoleLogEntry(
         else -> null
     }
 
+    override fun getAdditionalColumnValue(propertyName: String): String? {
+        return properties[propertyName]
+    }
+
     override fun getFilteringParameters(): List<FilterValueDefinition> {
         val result = mutableListOf<FilterValueDefinition>()
         for (sectionName in logProcessor.filterSectionNames) {
