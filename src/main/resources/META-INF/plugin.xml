@@ -10,6 +10,9 @@
         <p>
             A versatile log viewer plugin that allows you to view logs in a much nicer way. It also allows you to see the telemetry from Application Insights or Open Telemetry.
         </p>
+        <p>
+        Documentation: https://github.com/Socolin/Awesome-Log-Viewer/blob/main/doc/README.md
+        </p>
 
         Features:
         <ul>
