@@ -2,6 +2,8 @@
     <dependencies>
         <module name="fr.socolin.awesomeLogViewer.core"/>
         <plugin id="com.intellij.modules.java"/>
+        <module name="intellij.java.execution"/>
+        <module name="intellij.java.execution.impl"/>
     </dependencies>
 
     <extensions defaultExtensionNs="com.intellij">
