@@ -9,12 +9,15 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.colors.EditorColorsListener
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.ex.util.EditorUtil
+import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.openapi.rd.createNestedDisposable
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
+import com.intellij.ui.components.JBTextArea
 import com.intellij.unscramble.AnalyzeStacktraceUtil
 import com.intellij.util.ui.JBFont
 import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.UIUtil
 import com.jetbrains.rd.util.AtomicInteger
 import com.jetbrains.rd.util.lifetime.LifetimeDefinition
 import fr.socolin.awesomeLogViewer.core.core.CoreBundle
@@ -22,16 +25,18 @@ import fr.socolin.awesomeLogViewer.core.core.session.LogEntryDisplay
 import fr.socolin.awesomeLogViewer.core.core.session.LogSession
 import fr.socolin.awesomeLogViewer.core.core.session.PendingLogEntry
 import fr.socolin.awesomeLogViewer.core.core.settings.storage.GlobalPluginSettingsStorageService
-import io.ktor.util.*
 import java.awt.Cursor
 import java.awt.Dimension
 import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
+import java.awt.datatransfer.StringSelection
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.Box
 import javax.swing.JComponent
 import javax.swing.JPanel
+import javax.swing.SwingUtilities
+import javax.swing.Timer
 import javax.swing.SwingConstants
 
 class LogDetailFormattedComponent(private val logSession: LogSession) : JBPanel<LogDetailFormattedComponent>() {
@@ -160,16 +165,31 @@ class LogDetailFormattedComponent(private val logSession: LogSession) : JBPanel<
                 insets = JBUI.insets(4, 0)
             })
         } else {
-            val valueLabel = JBLabel("<html><a href=''>${value.escapeHTML()}</a></html>").apply {
+            val valueLabel = JBTextArea(value).apply {
                 font = editorFont
+                foreground = JBUI.CurrentTheme.Link.Foreground.ENABLED
+                isEditable = false
+                isOpaque = false
+                lineWrap = true
+                border = JBUI.Borders.empty()
+                toolTipText = CoreBundle.message("logs.detail.value.tooltip")
+                cursor = Cursor(Cursor.HAND_CURSOR)
             }
-            valueLabel.setCursor(Cursor(Cursor.HAND_CURSOR))
-            valueLabel.addMouseListener(object : MouseAdapter() {
-                override fun mouseClicked(e: MouseEvent) {
+            // Delay the filter so a double/triple click (word/line selection) does not trigger it
+            val setFilterTimer = Timer(UIUtil.getMultiClickInterval()) {
+                if (valueLabel.selectedText.isNullOrEmpty()) {
                     logSession.setTextFilter(value)
                 }
+            }.apply { isRepeats = false }
+            valueLabel.addMouseListener(object : MouseAdapter() {
+                override fun mouseClicked(e: MouseEvent) {
+                    if (SwingUtilities.isRightMouseButton(e)) {
+                        CopyPasteManager.getInstance().setContents(StringSelection(value))
+                    } else if (SwingUtilities.isLeftMouseButton(e)) {
+                        if (e.clickCount == 1) setFilterTimer.restart() else setFilterTimer.stop()
+                    }
+                }
             })
-            valueLabel.isAllowAutoWrapping = true
             propertyPanel.add(valueLabel, GridBagConstraints().apply {
                 gridx = 1
                 weightx = 1.0
