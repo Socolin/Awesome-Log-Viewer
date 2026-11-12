@@ -116,29 +116,31 @@ pick apart with a pattern, and **Use JSON** when your app can emit one JSON obje
   properties you capture: an entry whose `parentId` equals another entry's `id` becomes its
   child. See [Structured / hierarchical view](overview.md#structured-logs-premium) for what it
   is and when it helps. Leave it off if your logs have no parent/child relationship.
-- **Filtering Properties** — *"One property per line, using the format `property: Display
-  Name` where properties are values captured by the regex groups."* This is how you turn a
-  captured group into a named, filterable column, e.g.:
+- **Filtering Properties** — a table where each row turns a captured value into a filter:
+  **Property** is a value captured by a regex group (or a JSON key) and **Display Name** is
+  the name of its section in the filter panel. Use the `+` / `-` / arrow buttons to add,
+  remove and reorder rows. For example:
 
-  ```
-  severity: Severity Level
-  category: Logger Category
-  threadId: Thread ID
-  ```
+  | Property   | Display Name    |
+  |------------|-----------------|
+  | `severity` | Severity Level  |
+  | `category` | Logger Category |
+  | `threadId` | Thread ID       |
 
-- **Additional Columns** — *"One column per line, using the format `property: Column Name`
-  where properties are values captured by the regex groups (or JSON keys)."* Each line adds a
-  column to the log table, placed before **Message**, in the order you list them. Columns are
-  sortable, resizable, and can be hidden by right-clicking the table header, e.g.:
+- **Additional Columns** — a table where each row adds a column to the log table: **Property**
+  is a value captured by a regex group (or a JSON key) and **Column Name** is the header shown
+  in the log table. Use the `+` / `-` / arrow buttons to add, remove and reorder rows. Columns
+  are placed before **Message**, in the order of the rows, and are sortable, resizable, and
+  can be hidden by right-clicking the table header. For example:
 
-  ```
-  category: Category
-  threadId: Thread
-  ```
+  | Property   | Column Name |
+  |------------|-------------|
+  | `category` | Category    |
+  | `threadId` | Thread      |
 
-  The **.NET: Microsoft.Extensions.Logging** and **.NET: NLog** presets add a `category:
-  Category` column. Consoles created from those presets before this setting existed do not
-  have it: add the line yourself.
+  The **.NET: Microsoft.Extensions.Logging** and **.NET: NLog** presets add a `category` →
+  *Category* column. Consoles created from those presets before this setting existed do not
+  have it: add the row yourself.
 
 ### Environment Variables
 

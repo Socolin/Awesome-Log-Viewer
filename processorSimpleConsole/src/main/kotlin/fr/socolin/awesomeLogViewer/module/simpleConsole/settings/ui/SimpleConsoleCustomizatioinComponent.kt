@@ -136,38 +136,34 @@ class SimpleConsoleCustomizationComponent(
                         }.visibleIf(useRegexButton.selected)
                     }
                     group(SimpleConsoleBundle.message("settings.simple.console.processor.filtering.properties")) {
+                        val filteringPropertiesTable = KeyValueTableComponent(
+                            SimpleConsoleBundle.message("settings.simple.console.processor.filtering.properties.property"),
+                            SimpleConsoleBundle.message("settings.simple.console.processor.filtering.properties.name"),
+                            SimpleConsoleBundle.message("settings.simple.console.processor.filtering.properties.empty"),
+                        )
                         row {
-                            textArea()
-                                .rows(5)
+                            cell(filteringPropertiesTable.component)
                                 .resizableColumn()
                                 .align(AlignX.FILL)
-                                .bindText(
-                                    MutableProperty(
-                                        { consoleViewModel.filteringProperties.entries.joinToString("\n") { "${it.key}: ${it.value}" } },
-                                        { consoleViewModel.filteringProperties = it.trim().split('\n').associate { line -> line.substringBefore(':').trim() to line.substringAfter(':').trim()}.toMutableMap()}
-                                    )
-                                )
+                                .onApply { consoleViewModel.filteringProperties = filteringPropertiesTable.getValues() }
+                                .onReset { filteringPropertiesTable.setValues(consoleViewModel.filteringProperties) }
+                                .onIsModified { filteringPropertiesTable.getValues().toList() != consoleViewModel.filteringProperties.toList() }
                                 .comment(SimpleConsoleBundle.message("settings.simple.console.processor.properties.comment"))
                         }
                     }
                     group(SimpleConsoleBundle.message("settings.simple.console.processor.additional.columns")) {
+                        val additionalColumnsTable = KeyValueTableComponent(
+                            SimpleConsoleBundle.message("settings.simple.console.processor.additional.columns.property"),
+                            SimpleConsoleBundle.message("settings.simple.console.processor.additional.columns.name"),
+                            SimpleConsoleBundle.message("settings.simple.console.processor.additional.columns.empty"),
+                        )
                         row {
-                            textArea()
-                                .rows(3)
+                            cell(additionalColumnsTable.component)
                                 .resizableColumn()
                                 .align(AlignX.FILL)
-                                .bindText(
-                                    MutableProperty(
-                                        { consoleViewModel.additionalColumns.entries.joinToString("\n") { "${it.key}: ${it.value}" } },
-                                        {
-                                            consoleViewModel.additionalColumns = it.lines()
-                                                .filter { line -> line.isNotBlank() }
-                                                .associate { line -> line.substringBefore(':').trim() to line.substringAfter(':', "").trim() }
-                                                .filterKeys { key -> key.isNotEmpty() }
-                                                .toMutableMap()
-                                        }
-                                    )
-                                )
+                                .onApply { consoleViewModel.additionalColumns = additionalColumnsTable.getValues() }
+                                .onReset { additionalColumnsTable.setValues(consoleViewModel.additionalColumns) }
+                                .onIsModified { additionalColumnsTable.getValues().toList() != consoleViewModel.additionalColumns.toList() }
                                 .comment(SimpleConsoleBundle.message("settings.simple.console.processor.additional.columns.comment"))
                         }
                     }
